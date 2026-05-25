@@ -1,5 +1,8 @@
-// Smog Tracker dashboard — vanilla JS, Chart.js.
-// Reads data/dashboard.json, renders the national panel + 11 metro cards.
+// Smog Tracker dashboard — vanilla JS + Chart.js.
+// Headline = 28-day rolling YoY. Thin gray = 7-day raw YoY (context only).
+// Loads docs/data/dashboard.json relative to index.html.
+
+console.log('[smog-tracker] app.js loaded');
 
 const PALETTE = {
   teal:  '#1F6F73',
@@ -31,25 +34,41 @@ const fmtPct = v => v == null ? '—' : (v >= 0 ? '+' : '') + v.toFixed(1) + '%'
 })();
 
 async function loadData() {
-  const r = await fetch('data/dashboard.json?_=' + Date.now());
-  return r.json();
+  const url = './data/dashboard.json?_=' + Date.now();
+  console.log('[smog-tracker] fetching', url);
+  const r = await fetch(url);
+  if (!r.ok) throw new Error('HTTP ' + r.status + ' loading ' + url);
+  const d = await r.json();
+  console.log('[smog-tracker] dashboard.json loaded',
+              'national.current_yoy_28d =', d.national?.current_yoy_28d,
+              ' metros =', Object.keys(d.metros || {}).length);
+  return d;
 }
 
 function setKpis(d) {
-  document.getElementById('last-updated').textContent =
+  const last = document.getElementById('last-updated');
+  if (last) last.textContent =
     'Updated ' + d.last_updated + ' · last week ' + (d.last_week || '—');
-  document.getElementById('nat-yoy').textContent = fmtPct(d.national.current_yoy);
-  document.getElementById('nat-trail').textContent = fmtPct(d.national.trailing_12m_yoy);
-  document.getElementById('nat-week').textContent = d.last_week || '—';
+  const yoy = document.getElementById('nat-yoy');
+  if (yoy) yoy.textContent = fmtPct(d.national.current_yoy_28d);
+  const yoy7 = document.getElementById('nat-yoy-7d');
+  if (yoy7) yoy7.textContent = fmtPct(d.national.current_yoy_7d);
+  const trail = document.getElementById('nat-trail');
+  if (trail) trail.textContent = fmtPct(d.national.trailing_12m_yoy);
+  const week = document.getElementById('nat-week');
+  if (week) week.textContent = d.last_week || '—';
   const dot = document.getElementById('nat-dot');
-  dot.className = 'dot ' + (d.national.status || 'grey');
+  if (dot) dot.className = 'dot ' + (d.national.status || 'grey');
 }
 
 function nationalChart(d) {
   const ctx = document.getElementById('nat-chart');
-  if (!ctx || !d.national.series.length) return;
-  const labels = d.national.series.map(p => p.week);
-  const vals = d.national.series.map(p => p.yoy);
+  if (!ctx) return;
+  const series = d.national.series || [];
+  if (!series.length) return;
+  const labels = series.map(p => p.week);
+  const vals28 = series.map(p => (p.yoy_28d == null ? null : p.yoy_28d));
+  const vals7  = series.map(p => (p.yoy_7d  == null ? null : p.yoy_7d));
   const gasolinazo = d.gasolinazo_date;
   const idxGas = labels.findIndex(l => l >= gasolinazo);
 
@@ -57,33 +76,47 @@ function nationalChart(d) {
     type: 'line',
     data: {
       labels,
-      datasets: [{
-        label: 'YoY anomaly (%)',
-        data: vals,
-        borderColor: PALETTE.teal,
-        backgroundColor: 'rgba(31,111,115,0.10)',
-        borderWidth: 2,
-        tension: 0.25,
-        pointRadius: 0,
-        spanGaps: true,
-        fill: true,
-      }],
+      datasets: [
+        {
+          label: '7-day raw YoY',
+          data: vals7,
+          borderColor: 'rgba(120,120,120,0.45)',
+          borderWidth: 1,
+          tension: 0.15,
+          pointRadius: 0,
+          spanGaps: false,
+          fill: false,
+          order: 2,
+        },
+        {
+          label: '28-day rolling YoY',
+          data: vals28,
+          borderColor: PALETTE.teal,
+          backgroundColor: 'rgba(31,111,115,0.10)',
+          borderWidth: 2.5,
+          tension: 0.25,
+          pointRadius: 0,
+          spanGaps: false,
+          fill: true,
+          order: 1,
+        },
+      ],
     },
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: c => 'YoY ' + fmtPct(c.parsed.y) } },
+        legend: { display: true, position: 'top', labels: { boxWidth: 14 } },
+        tooltip: {
+          callbacks: {
+            label: c => c.dataset.label + ': ' + fmtPct(c.parsed.y),
+          },
+        },
       },
       scales: {
-        y: {
-          title: { display: true, text: 'YoY anomaly (%)' },
-          grid:  { color: 'rgba(120,120,120,0.12)' },
-        },
-        x: {
-          ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 },
-          grid:  { display: false },
-        },
+        y: { title: { display: true, text: 'YoY anomaly (%)' },
+             grid: { color: 'rgba(120,120,120,0.12)' } },
+        x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 },
+             grid: { display: false } },
       },
     },
     plugins: [{
@@ -91,26 +124,20 @@ function nationalChart(d) {
       beforeDraw(chart) {
         const { ctx, chartArea, scales } = chart;
         if (!chartArea) return;
-        // ±5 % band
         const y5  = scales.y.getPixelForValue(5);
         const yN5 = scales.y.getPixelForValue(-5);
         ctx.save();
         ctx.fillStyle = 'rgba(150,150,150,0.10)';
         ctx.fillRect(chartArea.left, y5, chartArea.right - chartArea.left, yN5 - y5);
-        // Red shading below −5 %
         ctx.fillStyle = 'rgba(161,61,45,0.10)';
         ctx.fillRect(chartArea.left, yN5, chartArea.right - chartArea.left,
                      chartArea.bottom - yN5);
-        // 0 line
         const y0 = scales.y.getPixelForValue(0);
-        ctx.strokeStyle = PALETTE.slate;
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = PALETTE.slate; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(chartArea.left, y0); ctx.lineTo(chartArea.right, y0); ctx.stroke();
-        // Gasolinazo vertical line
         if (idxGas >= 0) {
           const xGas = scales.x.getPixelForValue(idxGas);
-          ctx.strokeStyle = PALETTE.rust;
-          ctx.setLineDash([5, 4]);
+          ctx.strokeStyle = PALETTE.rust; ctx.setLineDash([5, 4]);
           ctx.beginPath(); ctx.moveTo(xGas, chartArea.top); ctx.lineTo(xGas, chartArea.bottom); ctx.stroke();
           ctx.setLineDash([]);
           ctx.fillStyle = PALETTE.rust;
@@ -123,11 +150,18 @@ function nationalChart(d) {
   });
 }
 
+function colorFor(status) {
+  if (status === 'green')  return PALETTE.green;
+  if (status === 'red')    return PALETTE.rust;
+  if (status === 'yellow') return PALETTE.ochre;
+  return PALETTE.grey;
+}
+
 function metroCard(id, m) {
   const a = document.createElement('a');
   a.className = 'metro-card';
   a.href = 'metros/' + id + '.html';
-  const insuff = m.current_yoy == null;
+  const insuff = m.current_yoy_28d == null;
   a.innerHTML = `
     <div class="top">
       <div>
@@ -138,7 +172,7 @@ function metroCard(id, m) {
     </div>
     ${insuff
       ? '<div class="insuff">insufficient data</div>'
-      : '<div class="yoy" style="color:' + colorFor(m.status) + '">' + fmtPct(m.current_yoy) + '</div>'}
+      : '<div class="yoy" style="color:' + colorFor(m.status) + '">' + fmtPct(m.current_yoy_28d) + '</div>'}
     <canvas class="spark"></canvas>
   `;
   document.getElementById('metro-grid').appendChild(a);
@@ -147,15 +181,8 @@ function metroCard(id, m) {
   return a;
 }
 
-function colorFor(status) {
-  if (status === 'green')  return PALETTE.green;
-  if (status === 'red')    return PALETTE.rust;
-  if (status === 'yellow') return PALETTE.ochre;
-  return PALETTE.grey;
-}
-
 function drawSpark(canvas, vals, status) {
-  if (!canvas) return;
+  if (!canvas || !vals.length) return;
   const ctx = canvas.getContext('2d');
   new Chart(ctx, {
     type: 'line',
@@ -167,7 +194,7 @@ function drawSpark(canvas, vals, status) {
         borderWidth: 1.5,
         tension: 0.3,
         pointRadius: 0,
-        spanGaps: true,
+        spanGaps: false,
         fill: false,
       }],
     },
@@ -175,7 +202,6 @@ function drawSpark(canvas, vals, status) {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false }, tooltip: { enabled: false } },
       scales: { x: { display: false }, y: { display: false } },
-      elements: { line: { capBezierPoints: false } },
     },
   });
 }
@@ -185,10 +211,17 @@ function drawSpark(canvas, vals, status) {
     const d = await loadData();
     setKpis(d);
     nationalChart(d);
-    for (const [id, m] of Object.entries(d.metros)) metroCard(id, m);
+    const grid = document.getElementById('metro-grid');
+    if (grid) {
+      grid.innerHTML = '';
+      for (const [id, m] of Object.entries(d.metros)) metroCard(id, m);
+    }
+    console.log('[smog-tracker] init complete');
   } catch (e) {
-    document.querySelector('main').innerHTML =
-      '<p style="color:#A13D2D">Could not load data/dashboard.json — has the pipeline run yet?</p>'
-      + '<pre>' + String(e) + '</pre>';
+    console.error('[smog-tracker]', e);
+    const main = document.querySelector('main');
+    if (main) main.innerHTML =
+      '<p style="color:#A13D2D">Could not load <code>data/dashboard.json</code> — has the pipeline run yet?</p>'
+      + '<pre style="background:#0001;padding:10px;border-radius:6px;">' + String(e) + '</pre>';
   }
 })();

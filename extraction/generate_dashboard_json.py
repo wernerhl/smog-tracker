@@ -1,7 +1,7 @@
-"""Generate docs/data/dashboard.json from the indicator outputs.
+"""Generate docs/data/dashboard.json + per-metro HTML pages.
 
-Frontend reads this single file. Keeps last 104 weeks for charts, 52 weeks
-for sparklines, last 12 weeks per metro for the detail tables.
+Emits both yoy_28d (headline, 28-day rolling) and yoy_7d (raw weekly, for
+the thin gray context line). Status is computed off the 28-day series.
 """
 from __future__ import annotations
 
@@ -44,18 +44,22 @@ def main() -> None:
 
     last_week = nat["week_ending"].max()
     nat_recent = nat[nat["week_ending"] >= (last_week - pd.Timedelta(weeks=WEEKS_CHART))]
-    nat_last = nat.dropna(subset=["yoy_anomaly_pct"]).iloc[-1] if nat["yoy_anomaly_pct"].notna().any() else None
+    nat_last_28 = (nat.dropna(subset=["yoy_28d"]).iloc[-1]
+                   if nat["yoy_28d"].notna().any() else None)
 
     payload: dict = {
         "last_updated": date.today().isoformat(),
         "last_week": last_week.date().isoformat() if pd.notna(last_week) else None,
         "gasolinazo_date": cfg.get("gasolinazo_date"),
         "national": {
-            "current_yoy": _f(nat_last["yoy_anomaly_pct"]) if nat_last is not None else None,
-            "status": nat_last["status"] if nat_last is not None else None,
-            "trailing_12m_yoy": _f(nat_last["trailing_12m_yoy"]) if nat_last is not None else None,
+            "current_yoy_28d": _f(nat_last_28["yoy_28d"]) if nat_last_28 is not None else None,
+            "current_yoy_7d":  _f(nat_last_28["yoy_7d"])  if nat_last_28 is not None else None,
+            "trailing_12m_yoy": _f(nat_last_28["trailing_12m_yoy"]) if nat_last_28 is not None else None,
+            "status": nat_last_28["status"] if nat_last_28 is not None else None,
             "series": [
-                {"week": r["week_ending"].date().isoformat(), "yoy": _f(r["yoy_anomaly_pct"])}
+                {"week": r["week_ending"].date().isoformat(),
+                 "yoy_28d": _f(r["yoy_28d"]),
+                 "yoy_7d":  _f(r["yoy_7d"])}
                 for _, r in nat_recent.iterrows()
             ],
         },
@@ -69,32 +73,40 @@ def main() -> None:
 
         a_recent = a[a["week_ending"] >= (last_week - pd.Timedelta(weeks=WEEKS_CHART))]
         spark = a[a["week_ending"] >= (last_week - pd.Timedelta(weeks=WEEKS_SPARK))]
-        recent_table_rows = w.merge(a[["week_ending", "yoy_anomaly_pct", "status"]],
-                                     on="week_ending", how="left")
-        recent_table_rows = recent_table_rows.sort_values("week_ending").tail(WEEKS_TABLE)
+        recent_table_rows = w.merge(
+            a[["week_ending", "yoy_28d", "yoy_7d", "status"]],
+            on="week_ending", how="left",
+        ).sort_values("week_ending").tail(WEEKS_TABLE)
 
-        a_last = a.dropna(subset=["yoy_anomaly_pct"]).iloc[-1] if a["yoy_anomaly_pct"].notna().any() else None
+        a_last = (a.dropna(subset=["yoy_28d"]).iloc[-1]
+                  if a["yoy_28d"].notna().any() else None)
 
         payload["metros"][rid] = {
             "name": roi["name"],
             "dept": roi["dept"],
             "altitude": roi["altitude"],
-            "current_yoy": _f(a_last["yoy_anomaly_pct"]) if a_last is not None else None,
+            "current_yoy_28d": _f(a_last["yoy_28d"]) if a_last is not None else None,
+            "current_yoy_7d":  _f(a_last["yoy_7d"])  if a_last is not None else None,
             "status": a_last["status"] if a_last is not None else None,
-            "sparkline": [_f(v) for v in spark["yoy_anomaly_pct"].tolist()],
+            "sparkline": [_f(v) for v in spark["yoy_28d"].tolist()],
             "series": [
-                {"week": r["week_ending"].date().isoformat(), "yoy": _f(r["yoy_anomaly_pct"])}
+                {"week": r["week_ending"].date().isoformat(),
+                 "yoy_28d": _f(r["yoy_28d"]),
+                 "yoy_7d":  _f(r["yoy_7d"])}
                 for _, r in a_recent.iterrows()
             ],
             "level_series": [
-                {"week": r["week_ending"].date().isoformat(), "no2": _f(r["no2_weekly_mean"])}
+                {"week": r["week_ending"].date().isoformat(),
+                 "no2_28d": _f(r["no2_28d"]),
+                 "no2_7d":  _f(r["no2_7d"])}
                 for _, r in w.tail(WEEKS_CHART).iterrows()
             ],
             "recent_weeks": [
                 {
                     "week": r["week_ending"].date().isoformat(),
-                    "no2": _f(r["no2_weekly_mean"]),
-                    "yoy": _f(r["yoy_anomaly_pct"]),
+                    "no2_28d": _f(r["no2_28d"]),
+                    "yoy_28d": _f(r["yoy_28d"]),
+                    "yoy_7d":  _f(r["yoy_7d"]),
                     "status": r["status"] if isinstance(r.get("status"), str) else None,
                 }
                 for _, r in recent_table_rows.iterrows()
@@ -110,11 +122,9 @@ def main() -> None:
     # ---------- per-metro HTML pages ----------
     metros_dir = root / "docs" / "metros"
     metros_dir.mkdir(parents=True, exist_ok=True)
-    template = METRO_TEMPLATE
     for roi in cfg["rois"]:
-        html = template.replace("__ROI_ID__", roi["id"]).replace("__ROI_NAME__", roi["name"])
-        out_h = metros_dir / f"{roi['id']}.html"
-        out_h.write_text(html)
+        html = METRO_TEMPLATE.replace("__ROI_ID__", roi["id"]).replace("__ROI_NAME__", roi["name"])
+        (metros_dir / f"{roi['id']}.html").write_text(html)
     print(f"[dashboard-json] wrote {len(cfg['rois'])} per-metro HTML pages")
 
 
@@ -145,7 +155,8 @@ METRO_TEMPLATE = """<!DOCTYPE html>
       <h2 id="metro-name">__ROI_NAME__</h2>
       <div class="kpis">
         <span class="kpi"><span class="kpi-label">Department</span> <span class="kpi-val" id="metro-meta">—</span></span>
-        <span class="kpi"><span class="kpi-label">Current YoY</span> <span class="kpi-val" id="current-yoy">—</span> <span class="dot" id="current-dot"></span></span>
+        <span class="kpi"><span class="kpi-label">28-day YoY</span> <span class="kpi-val" id="current-yoy">—</span> <span class="dot" id="current-dot"></span></span>
+        <span class="kpi"><span class="kpi-label">7-day YoY</span> <span class="kpi-val" id="current-yoy-7d" style="color:var(--muted)">—</span></span>
       </div>
     </div>
   </section>
@@ -154,19 +165,19 @@ METRO_TEMPLATE = """<!DOCTYPE html>
     <div class="panel">
       <h2>Weekly NO₂ level</h2>
       <div class="chart-wrap"><canvas id="lvl-chart"></canvas></div>
-      <p class="caption">7-day rolling mean (mol/m²).</p>
+      <p class="caption">28-day rolling mean (mol/m²). Thin gray = 7-day raw, for context.</p>
     </div>
     <div class="panel">
       <h2>Year-on-year anomaly</h2>
       <div class="chart-wrap"><canvas id="yoy-chart"></canvas></div>
-      <p class="caption">log(NO₂_t) − log(NO₂_{t-52w}). Vertical dashed line = gasolinazo (2025-12-17).</p>
+      <p class="caption">log(NO₂_t) − log(NO₂_{t-365d}). Teal = 28-day rolling (headline), thin gray = 7-day raw. Dashed line = gasolinazo (2025-12-17).</p>
     </div>
   </section>
 
   <section class="panel">
     <h2>Last 12 weeks</h2>
     <table class="recent">
-      <thead><tr><th>Week ending</th><th>NO₂ (mol/m²)</th><th>YoY %</th><th>Status</th></tr></thead>
+      <thead><tr><th>Week ending</th><th>NO₂ 28-day (mol/m²)</th><th>YoY 28-day</th><th>YoY 7-day</th><th>Status</th></tr></thead>
       <tbody id="recent-tbody"></tbody>
     </table>
   </section>
