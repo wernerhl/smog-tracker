@@ -212,6 +212,7 @@ function metroCard(id, m) {
     </div>
     <div class="yoy" style="color:${valColor}">${val}</div>
     <div class="metro-sublabel">${T('log-pts-label')} ${dateLabel}</div>
+    <div class="metro-trail">${T('kpi-trail')}: ${fmtPct(m.trailing_yoy)}</div>
     <div class="spark-wrap"><canvas class="spark"></canvas></div>
   `;
   document.getElementById('metro-grid').appendChild(a);
