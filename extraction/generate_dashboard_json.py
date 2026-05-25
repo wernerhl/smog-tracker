@@ -75,6 +75,7 @@ for roi_id, meta in ROI_META.items():
         m_series.append({
             "month": date.strftime("%Y-%m"),
             "log_dev_2019": safe(row.log_dev_2019),
+            "trailing_yoy": safe(row.trailing_yoy),
             "no2": float(row.no2_monthly) if not np.isnan(row.no2_monthly) else None,
         })
 

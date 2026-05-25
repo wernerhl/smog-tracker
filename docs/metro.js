@@ -75,19 +75,29 @@ function renderMetroPage(d, m, id) {
       type: 'line',
       data: {
         labels,
-        datasets: [{
-          label: T('chart-centered'),
-          data: mseries.map(p => p.log_dev_2019),
-          borderColor: PALETTE.teal,
-          backgroundColor: 'rgba(31,111,115,0.10)',
-          borderWidth: 2.5, pointRadius: 0, tension: 0.3, fill: true, spanGaps: true,
-        }],
+        datasets: [
+          {
+            label: T('chart-trailing'),
+            data: mseries.map(p => p.trailing_yoy),
+            borderColor: 'rgba(120,120,120,0.45)',
+            borderWidth: 1, tension: 0.2, pointRadius: 0,
+            spanGaps: true, fill: false, order: 2,
+          },
+          {
+            label: T('chart-centered'),
+            data: mseries.map(p => p.log_dev_2019),
+            borderColor: PALETTE.teal,
+            backgroundColor: 'rgba(31,111,115,0.10)',
+            borderWidth: 2.5, pointRadius: 0, tension: 0.3, fill: true, spanGaps: true,
+            order: 1,
+          },
+        ],
       },
       options: {
         responsive: true, maintainAspectRatio: false,
         plugins: {
-          legend: { display: false },
-          tooltip: { callbacks: { label: c => fmtDev(c.parsed.y) + ' ' + T('log-pts') } },
+          legend: { display: true, position: 'top', labels: { boxWidth: 14 } },
+          tooltip: { callbacks: { label: c => c.dataset.label + ': ' + fmtDev(c.parsed.y) + ' ' + T('log-pts') } },
         },
         scales: {
           y: { title: { display: true, text: T('chart-yaxis-logdev') },
