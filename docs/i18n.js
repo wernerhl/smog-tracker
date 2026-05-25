@@ -10,9 +10,9 @@ const STRINGS = {
   'updated':              { en: 'Updated',                             es: 'Actualizado' },
 
   // ── National panel ──────────────────────────────────────────────
-  ‘national-title’:       { en: ‘National aggregate — year-over-year growth’,
-                            es: ‘Agregado nacional — crecimiento interanual’ },
-  ‘kpi-c12-yoy’:          { en: ‘Centered 12m YoY’,                    es: ‘Centrado 12m interanual’ },
+  'national-title':       { en: 'National aggregate — year-over-year growth',
+                            es: 'Agregado nacional — crecimiento interanual' },
+  'kpi-c12-yoy':          { en: 'Centered 12m YoY',                    es: 'Centrado 12m interanual' },
   'kpi-trail':            { en: 'Trailing 12m YoY',                    es: 'Rezagado 12m interanual' },
   'kpi-asof':             { en: 'As of',                               es: 'Al' },
   'caption-monthly':      { en: '<b>Year-over-year growth</b> of 12-month rolling NO₂ (%). Population-weighted national aggregate. Zero = no change vs prior year. Dashed line = Dec 2025 (gasolinazo).',
@@ -32,8 +32,8 @@ const STRINGS = {
 
   // ── Metro detail page ──────────────────────────────────────────
   'back-link':            { en: '← all metros',                   es: '← todas las ciudades' },
-  ‘kpi-dept’:             { en: ‘Department’,                          es: ‘Departamento’ },
-  ‘metro-chart-c12’:      { en: ‘Year-over-year growth’,               es: ‘Crecimiento interanual’ },
+  'kpi-dept':             { en: 'Department',                          es: 'Departamento' },
+  'metro-chart-c12':      { en: 'Year-over-year growth',               es: 'Crecimiento interanual' },
   'metro-chart-lvl':      { en: 'Monthly NO₂ level',             es: 'Nivel mensual de NO₂' },
   'caption-metro-c12':    { en: 'YoY growth of centered and trailing 12-month NO₂ (%). Zero = no change vs prior year.',
                             es: 'Crecimiento interanual del NO₂ centrado y rezagado de 12 meses (%). Cero = sin cambio vs año anterior.' },
