@@ -1,5 +1,6 @@
 // Per-metro detail page. Reads ?id=<roi> from query string OR a global ROI_ID.
 // Charts: 1) monthly centered-12m (paper's indicator) 2) monthly NO₂ level
+// i18n.js must be loaded before this file.
 
 console.log('[smog-tracker] metro.js loaded');
 
@@ -44,120 +45,137 @@ function colorFor(s) {
   });
 })();
 
+let _chartC12 = null, _chartLvl = null, _metroData = null, _metroId = null;
+
+function renderMetroPage(d, m, id) {
+  document.title = m.name + ' — Smog Tracker';
+  document.getElementById('metro-name').textContent = m.name;
+  document.getElementById('metro-meta').textContent = m.dept + ' · ' + m.altitude;
+  document.getElementById('last-updated').textContent = T('updated') + ' ' + d.last_updated;
+
+  const dot = document.getElementById('current-dot');
+  dot.className = 'dot ' + (m.status || 'grey');
+  const c12El = document.getElementById('current-c12');
+  c12El.textContent = fmtDev(m.centered_12m) + ' ' + T('log-pts');
+  c12El.style.color = colorFor(m.status);
+  const c12Date = document.getElementById('c12-date');
+  if (c12Date) c12Date.textContent = m.centered_12m_date || '—';
+  const trailEl = document.getElementById('current-trail');
+  if (trailEl) trailEl.textContent = fmtPct(m.trailing_yoy);
+
+  // ---- Monthly chart (paper's indicator) ----
+  const mseries = m.monthly_series || [];
+  if (mseries.length > 0) {
+    const labels = mseries.map(p => p.month);
+    const gasMonth = '2025-12';
+    const idxGas = labels.findIndex(l => l >= gasMonth);
+
+    if (_chartC12) _chartC12.destroy();
+    _chartC12 = new Chart(document.getElementById('chart-monthly'), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: T('chart-centered'),
+          data: mseries.map(p => p.log_dev_2019),
+          borderColor: PALETTE.teal,
+          backgroundColor: 'rgba(31,111,115,0.10)',
+          borderWidth: 2.5, pointRadius: 0, tension: 0.3, fill: true, spanGaps: true,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: c => fmtDev(c.parsed.y) + ' ' + T('log-pts') } },
+        },
+        scales: {
+          y: { title: { display: true, text: T('chart-yaxis-logdev') },
+               grid: { color: 'rgba(120,120,120,0.12)' } },
+          x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }, grid: { display: false } },
+        },
+      },
+      plugins: [{
+        id: 'monthlyOverlays',
+        beforeDraw(chart) {
+          const { ctx, chartArea, scales } = chart;
+          if (!chartArea || !scales.y) return;
+          ctx.save();
+          const y0 = scales.y.getPixelForValue(0);
+          ctx.strokeStyle = PALETTE.slate; ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.moveTo(chartArea.left, y0); ctx.lineTo(chartArea.right, y0); ctx.stroke();
+          if (idxGas >= 0) {
+            const xGas = scales.x.getPixelForValue(idxGas);
+            ctx.strokeStyle = PALETTE.rust; ctx.setLineDash([5, 4]);
+            ctx.beginPath(); ctx.moveTo(xGas, chartArea.top); ctx.lineTo(xGas, chartArea.bottom); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = PALETTE.rust; ctx.font = '11px sans-serif';
+            ctx.fillText('gasolinazo', xGas + 4, chartArea.top + 12);
+          }
+          ctx.restore();
+        }
+      }],
+    });
+  }
+
+  // ---- Monthly NO₂ level chart ----
+  const lvlData = mseries.filter(p => p.no2 != null);
+  if (lvlData.length > 0) {
+    if (_chartLvl) _chartLvl.destroy();
+    _chartLvl = new Chart(document.getElementById('lvl-chart'), {
+      type: 'line',
+      data: {
+        labels: lvlData.map(p => p.month),
+        datasets: [{
+          label: T('metro-chart-lvl'),
+          data: lvlData.map(p => p.no2),
+          borderColor: PALETTE.teal,
+          backgroundColor: 'rgba(31,111,115,0.10)',
+          borderWidth: 2, pointRadius: 0, tension: 0.25, fill: true, spanGaps: true,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: c => fmtNo2(c.parsed.y) + ' mol/m²' } },
+        },
+        scales: {
+          y: { title: { display: true, text: 'mol/m²' }, grid: { color: 'rgba(120,120,120,0.12)' } },
+          x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }, grid: { display: false } },
+        },
+      },
+    });
+  }
+}
+
+// Rebuild on language change
+window._rebuildCharts = function() {
+  if (_metroData && _metroData.metros[_metroId]) {
+    renderMetroPage(_metroData, _metroData.metros[_metroId], _metroId);
+  }
+};
+
 (async function() {
   try {
-    const id = getRoiId();
+    _metroId = getRoiId();
     const url = '../data/dashboard.json?_=' + Date.now();
-    console.log('[smog-tracker] fetching', url, 'for', id);
+    console.log('[smog-tracker] fetching', url, 'for', _metroId);
     const r = await fetch(url);
     if (!r.ok) throw new Error('HTTP ' + r.status);
-    const d = await r.json();
-    const m = d.metros[id];
+    _metroData = await r.json();
+    const m = _metroData.metros[_metroId];
     if (!m) {
-      document.body.innerHTML = '<p style="padding:24px">Unknown metro: ' + id + '</p>';
+      document.body.innerHTML = '<p style="padding:24px">Unknown metro: ' + _metroId + '</p>';
       return;
     }
-    document.title = m.name + ' — Smog Tracker';
-    document.getElementById('metro-name').textContent = m.name;
-    document.getElementById('metro-meta').textContent = m.dept + ' · ' + m.altitude;
-    document.getElementById('last-updated').textContent = 'Updated ' + d.last_updated;
 
-    const dot = document.getElementById('current-dot');
-    dot.className = 'dot ' + (m.status || 'grey');
-    const c12El = document.getElementById('current-c12');
-    c12El.textContent = fmtDev(m.centered_12m) + ' log pts';
-    c12El.style.color = colorFor(m.status);
-    const c12Date = document.getElementById('c12-date');
-    if (c12Date) c12Date.textContent = m.centered_12m_date || '—';
-    const trailEl = document.getElementById('current-trail');
-    if (trailEl) trailEl.textContent = fmtPct(m.trailing_yoy);
-
-    // ---- Monthly chart (paper's indicator) ----
-    const mseries = m.monthly_series || [];
-    if (mseries.length > 0) {
-      const labels = mseries.map(p => p.month);
-      const gasMonth = '2025-12';
-      const idxGas = labels.findIndex(l => l >= gasMonth);
-
-      new Chart(document.getElementById('chart-monthly'), {
-        type: 'line',
-        data: {
-          labels,
-          datasets: [{
-            label: 'Centered 12m (log dev from 2019)',
-            data: mseries.map(p => p.log_dev_2019),
-            borderColor: PALETTE.teal,
-            backgroundColor: 'rgba(31,111,115,0.10)',
-            borderWidth: 2.5, pointRadius: 0, tension: 0.3, fill: true, spanGaps: true,
-          }],
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: { callbacks: { label: c => fmtDev(c.parsed.y) + ' log pts' } },
-          },
-          scales: {
-            y: { title: { display: true, text: 'Log dev from 2019 (%)' },
-                 grid: { color: 'rgba(120,120,120,0.12)' } },
-            x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }, grid: { display: false } },
-          },
-        },
-        plugins: [{
-          id: 'monthlyOverlays',
-          beforeDraw(chart) {
-            const { ctx, chartArea, scales } = chart;
-            if (!chartArea || !scales.y) return;
-            ctx.save();
-            const y0 = scales.y.getPixelForValue(0);
-            ctx.strokeStyle = PALETTE.slate; ctx.lineWidth = 1.5;
-            ctx.beginPath(); ctx.moveTo(chartArea.left, y0); ctx.lineTo(chartArea.right, y0); ctx.stroke();
-            if (idxGas >= 0) {
-              const xGas = scales.x.getPixelForValue(idxGas);
-              ctx.strokeStyle = PALETTE.rust; ctx.setLineDash([5, 4]);
-              ctx.beginPath(); ctx.moveTo(xGas, chartArea.top); ctx.lineTo(xGas, chartArea.bottom); ctx.stroke();
-              ctx.setLineDash([]);
-              ctx.fillStyle = PALETTE.rust; ctx.font = '11px sans-serif';
-              ctx.fillText('gasolinazo', xGas + 4, chartArea.top + 12);
-            }
-            ctx.restore();
-          }
-        }],
-      });
-    }
-
-    // ---- Monthly NO₂ level chart ----
-    const lvlData = mseries.filter(p => p.no2 != null);
-    if (lvlData.length > 0) {
-      new Chart(document.getElementById('lvl-chart'), {
-        type: 'line',
-        data: {
-          labels: lvlData.map(p => p.month),
-          datasets: [{
-            label: 'Monthly NO₂',
-            data: lvlData.map(p => p.no2),
-            borderColor: PALETTE.teal,
-            backgroundColor: 'rgba(31,111,115,0.10)',
-            borderWidth: 2, pointRadius: 0, tension: 0.25, fill: true, spanGaps: true,
-          }],
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: { callbacks: { label: c => fmtNo2(c.parsed.y) + ' mol/m²' } },
-          },
-          scales: {
-            y: { title: { display: true, text: 'mol/m²' }, grid: { color: 'rgba(120,120,120,0.12)' } },
-            x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }, grid: { display: false } },
-          },
-        },
-      });
-    }
+    renderMetroPage(_metroData, m, _metroId);
 
     // ---- CSV download ----
     document.getElementById('csv-dl').addEventListener('click', e => {
       e.preventDefault();
+      const mseries = m.monthly_series || [];
       const rows = [['month', 'no2_mol_m2', 'log_dev_2019']];
       for (const p of mseries) {
         rows.push([p.month, p.no2 ?? '', p.log_dev_2019 ?? '']);
@@ -165,7 +183,7 @@ function colorFor(s) {
       const blob = new Blob([rows.map(r => r.join(',')).join('\n')], {type: 'text/csv'});
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = url; link.download = id + '_monthly.csv';
+      link.href = url; link.download = _metroId + '_monthly.csv';
       link.click();
     });
 

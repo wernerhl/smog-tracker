@@ -1,6 +1,7 @@
 // Smog Tracker dashboard — vanilla JS + Chart.js.
 // Two charts: 1) Paper's centered-12m indicator (headline)
 //             2) Weekly 28-day rolling YoY (supplement)
+// i18n.js must be loaded before this file.
 
 console.log('[smog-tracker] app.js loaded');
 
@@ -41,6 +42,11 @@ function colorFor(status) {
   return PALETTE.grey;
 }
 
+// ---------- Chart instances (for rebuild on lang change) ----------
+let _chartMonthly = null;
+let _chartWeekly = null;
+let _dashData = null;
+
 // ---------- Monthly headline chart (paper's indicator) ----------
 function monthlyChart(d) {
   const ctx = document.getElementById('chart-monthly');
@@ -53,33 +59,26 @@ function monthlyChart(d) {
   const gasMonth = '2025-12';
   const idxGas = labels.findIndex(l => l >= gasMonth);
 
-  new Chart(ctx, {
+  if (_chartMonthly) _chartMonthly.destroy();
+  _chartMonthly = new Chart(ctx, {
     type: 'line',
     data: {
       labels,
       datasets: [
         {
-          label: 'Trailing 12m YoY',
+          label: T('chart-trailing'),
           data: trailvals,
           borderColor: 'rgba(120,120,120,0.45)',
-          borderWidth: 1,
-          tension: 0.2,
-          pointRadius: 0,
-          spanGaps: true,
-          fill: false,
-          order: 2,
+          borderWidth: 1, tension: 0.2, pointRadius: 0,
+          spanGaps: true, fill: false, order: 2,
         },
         {
-          label: 'Centered 12-month (log dev from 2019)',
+          label: T('chart-centered'),
           data: c12vals,
           borderColor: PALETTE.teal,
           backgroundColor: 'rgba(31,111,115,0.10)',
-          borderWidth: 2.5,
-          tension: 0.3,
-          pointRadius: 0,
-          spanGaps: true,
-          fill: true,
-          order: 1,
+          borderWidth: 2.5, tension: 0.3, pointRadius: 0,
+          spanGaps: true, fill: true, order: 1,
         },
       ],
     },
@@ -89,12 +88,12 @@ function monthlyChart(d) {
         legend: { display: true, position: 'top', labels: { boxWidth: 14 } },
         tooltip: {
           callbacks: {
-            label: c => c.dataset.label + ': ' + fmtDev(c.parsed.y) + ' log pts',
+            label: c => c.dataset.label + ': ' + fmtDev(c.parsed.y) + ' ' + T('log-pts'),
           },
         },
       },
       scales: {
-        y: { title: { display: true, text: 'Log dev from 2019 (%)' },
+        y: { title: { display: true, text: T('chart-yaxis-logdev') },
              grid: { color: 'rgba(120,120,120,0.12)' } },
         x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 },
              grid: { display: false } },
@@ -106,11 +105,9 @@ function monthlyChart(d) {
         const { ctx, chartArea, scales } = chart;
         if (!chartArea || !scales.y) return;
         ctx.save();
-        // Zero line
         const y0 = scales.y.getPixelForValue(0);
         ctx.strokeStyle = PALETTE.slate; ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.moveTo(chartArea.left, y0); ctx.lineTo(chartArea.right, y0); ctx.stroke();
-        // Gasolinazo
         if (idxGas >= 0) {
           const xGas = scales.x.getPixelForValue(idxGas);
           ctx.strokeStyle = PALETTE.rust; ctx.setLineDash([5, 4]);
@@ -136,32 +133,28 @@ function weeklyChart(d) {
   const gasDate = d.gasolinazo_date || '2025-12-17';
   const idxGas = labels.findIndex(l => l >= gasDate);
 
-  new Chart(ctx, {
+  if (_chartWeekly) _chartWeekly.destroy();
+  _chartWeekly = new Chart(ctx, {
     type: 'line',
     data: {
       labels,
       datasets: [{
-        label: '28-day rolling YoY (%)',
+        label: T('chart-28d-yoy'),
         data: vals,
         borderColor: PALETTE.teal,
         backgroundColor: 'rgba(31,111,115,0.10)',
-        borderWidth: 1.5,
-        tension: 0.2,
-        pointRadius: 0,
-        spanGaps: true,
-        fill: true,
+        borderWidth: 1.5, tension: 0.2, pointRadius: 0,
+        spanGaps: true, fill: true,
       }],
     },
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        tooltip: {
-          callbacks: { label: c => fmtPct(c.parsed.y) },
-        },
+        tooltip: { callbacks: { label: c => fmtPct(c.parsed.y) } },
       },
       scales: {
-        y: { title: { display: true, text: 'YoY anomaly (%)' },
+        y: { title: { display: true, text: T('chart-yaxis-yoy') },
              grid: { color: 'rgba(120,120,120,0.12)' } },
         x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 },
              grid: { display: false } },
@@ -173,18 +166,15 @@ function weeklyChart(d) {
         const { ctx, chartArea, scales } = chart;
         if (!chartArea || !scales.y) return;
         ctx.save();
-        // ±5% band
         const y5  = scales.y.getPixelForValue(5);
         const yN5 = scales.y.getPixelForValue(-5);
         ctx.fillStyle = 'rgba(150,150,150,0.10)';
         ctx.fillRect(chartArea.left, y5, chartArea.right - chartArea.left, yN5 - y5);
         ctx.fillStyle = 'rgba(161,61,45,0.10)';
         ctx.fillRect(chartArea.left, yN5, chartArea.right - chartArea.left, chartArea.bottom - yN5);
-        // Zero line
         const y0 = scales.y.getPixelForValue(0);
         ctx.strokeStyle = PALETTE.slate; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(chartArea.left, y0); ctx.lineTo(chartArea.right, y0); ctx.stroke();
-        // Gasolinazo
         if (idxGas >= 0) {
           const xGas = scales.x.getPixelForValue(idxGas);
           ctx.strokeStyle = PALETTE.rust; ctx.setLineDash([5, 4]);
@@ -198,13 +188,18 @@ function weeklyChart(d) {
 }
 
 // ---------- Metro cards ----------
+function renderMetros(d) {
+  const grid = document.getElementById('metro-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  for (const [id, m] of Object.entries(d.metros)) metroCard(id, m);
+}
+
 function metroCard(id, m) {
   const a = document.createElement('a');
   a.className = 'metro-card';
   a.href = 'metros/' + id + '.html';
-  const val = m.centered_12m != null
-    ? fmtDev(m.centered_12m)
-    : '—';
+  const val = m.centered_12m != null ? fmtDev(m.centered_12m) : '—';
   const valColor = colorFor(m.status);
   const dateLabel = m.centered_12m_date || '—';
   a.innerHTML = `
@@ -216,7 +211,7 @@ function metroCard(id, m) {
       <span class="dot ${m.status || 'grey'}" title="${m.status || 'no data'}"></span>
     </div>
     <div class="yoy" style="color:${valColor}">${val}</div>
-    <div class="metro-sublabel">log pts vs 2019 at ${dateLabel}</div>
+    <div class="metro-sublabel">${T('log-pts-label')} ${dateLabel}</div>
     <div class="spark-wrap"><canvas class="spark"></canvas></div>
   `;
   document.getElementById('metro-grid').appendChild(a);
@@ -234,11 +229,8 @@ function drawSpark(canvas, vals, status) {
       datasets: [{
         data: vals,
         borderColor: colorFor(status),
-        borderWidth: 1.5,
-        tension: 0.3,
-        pointRadius: 0,
-        spanGaps: true,
-        fill: false,
+        borderWidth: 1.5, tension: 0.3, pointRadius: 0,
+        spanGaps: true, fill: false,
       }],
     },
     options: {
@@ -249,6 +241,34 @@ function drawSpark(canvas, vals, status) {
   });
 }
 
+// ---------- Rebuild on language change ----------
+window._rebuildCharts = function() {
+  if (!_dashData) return;
+  setKpis(_dashData);
+  monthlyChart(_dashData);
+  weeklyChart(_dashData);
+  renderMetros(_dashData);
+};
+
+function setKpis(d) {
+  const lastUp = document.getElementById('last-updated');
+  if (lastUp) lastUp.textContent = T('updated') + ' ' + d.last_updated;
+
+  const c12El = document.getElementById('nat-c12');
+  if (c12El) {
+    c12El.textContent = fmtDev(d.national.centered_12m) + ' ' + T('log-pts');
+    c12El.style.color = colorFor(d.national.status);
+  }
+  const dotEl = document.getElementById('nat-dot');
+  if (dotEl) dotEl.className = 'dot ' + (d.national.status || 'grey');
+  const trailEl = document.getElementById('nat-trail');
+  if (trailEl) trailEl.textContent = fmtPct(d.national.trailing_yoy);
+  const weeklyEl = document.getElementById('nat-weekly');
+  if (weeklyEl) weeklyEl.textContent = fmtPct(d.national.weekly_yoy_28d);
+  const dateEl = document.getElementById('nat-date');
+  if (dateEl) dateEl.textContent = d.national.centered_12m_date || '—';
+}
+
 // ---------- Init ----------
 (async function init() {
   try {
@@ -256,37 +276,13 @@ function drawSpark(canvas, vals, status) {
     console.log('[smog-tracker] fetching', url);
     const r = await fetch(url);
     if (!r.ok) throw new Error('HTTP ' + r.status);
-    const d = await r.json();
-    console.log('[smog-tracker] dashboard loaded', d.national);
+    _dashData = await r.json();
+    console.log('[smog-tracker] dashboard loaded', _dashData.national);
 
-    // KPIs
-    const lastUp = document.getElementById('last-updated');
-    if (lastUp) lastUp.textContent = 'Updated ' + d.last_updated;
-
-    const c12El = document.getElementById('nat-c12');
-    if (c12El) {
-      c12El.textContent = fmtDev(d.national.centered_12m) + ' log pts';
-      c12El.style.color = colorFor(d.national.status);
-    }
-    const dotEl = document.getElementById('nat-dot');
-    if (dotEl) dotEl.className = 'dot ' + (d.national.status || 'grey');
-    const trailEl = document.getElementById('nat-trail');
-    if (trailEl) trailEl.textContent = fmtPct(d.national.trailing_yoy);
-    const weeklyEl = document.getElementById('nat-weekly');
-    if (weeklyEl) weeklyEl.textContent = fmtPct(d.national.weekly_yoy_28d);
-    const dateEl = document.getElementById('nat-date');
-    if (dateEl) dateEl.textContent = d.national.centered_12m_date || '—';
-
-    // Charts
-    monthlyChart(d);
-    weeklyChart(d);
-
-    // Metro cards
-    const grid = document.getElementById('metro-grid');
-    if (grid) {
-      grid.innerHTML = '';
-      for (const [id, m] of Object.entries(d.metros)) metroCard(id, m);
-    }
+    setKpis(_dashData);
+    monthlyChart(_dashData);
+    weeklyChart(_dashData);
+    renderMetros(_dashData);
     console.log('[smog-tracker] init complete');
   } catch (e) {
     console.error('[smog-tracker]', e);

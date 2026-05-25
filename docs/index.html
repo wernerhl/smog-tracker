@@ -6,21 +6,22 @@
 <title>Smog Tracker — Bolivia Economic Activity Monitor</title>
 <link rel="stylesheet" href="style.css" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="i18n.js"></script>
 </head>
 <body>
 <header>
   <div class="bar">
-    <h1>SMOG TRACKER <span class="sub">· Bolivia Economic Activity Monitor</span></h1>
+    <h1>SMOG TRACKER <span class="sub">· <span data-i18n="site-subtitle">Bolivia Economic Activity Monitor</span></span></h1>
     <nav>
       <span id="last-updated"></span>
       <a href="https://github.com/wernerhl/smog-tracker" target="_blank">GitHub</a>
       <a href="data/dashboard.json" target="_blank">JSON</a>
+      <a href="#" id="lang-toggle" class="lang-btn">ES</a>
       <a href="#" id="theme-toggle">☾</a>
     </nav>
   </div>
   <p class="tagline">
-    Tropospheric NO₂ from Sentinel-5P TROPOMI over 11 Bolivian metropolitan areas.
-    A real-time combustion-activity proxy. Companion to
+    <span data-i18n="tagline">Tropospheric NO₂ from Sentinel-5P TROPOMI over 11 Bolivian metropolitan areas. A real-time combustion-activity proxy. Companion to</span>
     <em>Smog, Not Lights</em> (Hernani-Limarino &amp; Eid, 2026).
   </p>
 </header>
@@ -29,18 +30,18 @@
   <!-- HEADLINE: Paper's indicator -->
   <section id="national" class="panel">
     <div class="panel-head">
-      <h2>National aggregate — the paper's indicator</h2>
+      <h2 data-i18n="national-title">National aggregate — the paper's indicator</h2>
       <div class="kpis">
-        <span class="kpi"><span class="kpi-label">Centered 12-month</span> <span class="kpi-val" id="nat-c12">—</span> <span class="dot" id="nat-dot"></span></span>
-        <span class="kpi"><span class="kpi-label">Trailing 12m YoY</span> <span class="kpi-val" id="nat-trail">—</span></span>
-        <span class="kpi"><span class="kpi-label">Weekly 28-day YoY</span> <span class="kpi-val" id="nat-weekly" style="color:var(--muted)">—</span></span>
-        <span class="kpi"><span class="kpi-label">As of</span> <span class="kpi-val" id="nat-date">—</span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-c12">Centered 12-month</span> <span class="kpi-val" id="nat-c12">—</span> <span class="dot" id="nat-dot"></span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-trail">Trailing 12m YoY</span> <span class="kpi-val" id="nat-trail">—</span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-weekly">Weekly 28-day YoY</span> <span class="kpi-val" id="nat-weekly" style="color:var(--muted)">—</span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-asof">As of</span> <span class="kpi-val" id="nat-date">—</span></span>
       </div>
     </div>
     <div class="chart-wrap">
       <canvas id="chart-monthly"></canvas>
     </div>
-    <p class="caption">
+    <p class="caption" data-i18n="caption-monthly" data-i18n-html="true">
       <b>Centered 12-month rolling NO₂</b>, log deviation from 2019 mean (%).
       This is Figure 2 from the paper, updated monthly. Population-weighted national aggregate.
       Dashed line = Dec 2025 (gasolinazo). 0 = 2019 baseline.
@@ -50,27 +51,25 @@
   <!-- SUPPLEMENT: Weekly early-warning -->
   <section id="weekly-supplement" class="panel">
     <div class="panel-head">
-      <h2>Weekly early-warning supplement</h2>
+      <h2 data-i18n="weekly-title">Weekly early-warning supplement</h2>
     </div>
     <div class="chart-wrap" style="height:220px">
       <canvas id="chart-weekly"></canvas>
     </div>
-    <p class="caption">
+    <p class="caption" data-i18n="caption-weekly">
       28-day rolling YoY anomaly (%). Noisy — use for event detection, not trend.
       Gray band = ±5% "normal" zone. Dashed line = Dec 17 2025 (gasolinazo).
     </p>
   </section>
 
   <section id="metros">
-    <h2>Metropolitan areas</h2>
+    <h2 data-i18n="metros-title">Metropolitan areas</h2>
     <div class="metro-grid" id="metro-grid"></div>
   </section>
 
   <footer>
     <p>
-      Data: Copernicus Sentinel-5P TROPOMI OFFL L3 NO₂ ·
-      Updated every Sunday 06:00 UTC via GitHub Actions ·
-      Code MIT, data CC-BY 4.0 ·
+      <span data-i18n="footer">Data: Copernicus Sentinel-5P TROPOMI OFFL L3 NO₂ · Updated every Sunday 06:00 UTC via GitHub Actions · Code MIT, data CC-BY 4.0 ·</span>
       <a href="https://github.com/wernerhl/smog-tracker">repo</a>
     </p>
   </footer>

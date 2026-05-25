@@ -48,6 +48,8 @@ nav { display: flex; gap: 14px; font-size: 0.85rem; color: var(--muted); align-i
 nav a { color: var(--teal); text-decoration: none; }
 nav a:hover { text-decoration: underline; }
 #theme-toggle { font-size: 1.1rem; cursor: pointer; }
+.lang-btn { font-weight: 700; font-size: 0.8rem; letter-spacing: 0.04em; cursor: pointer;
+  padding: 2px 6px; border: 1px solid var(--border); border-radius: 4px; }
 .tagline {
   color: var(--muted); font-size: 0.9rem; margin: 8px 0 0;
   max-width: 880px; line-height: 1.4;

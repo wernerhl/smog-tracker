@@ -6,14 +6,16 @@
 <title>Sucre — Smog Tracker</title>
 <link rel="stylesheet" href="../style.css" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="../i18n.js"></script>
 </head>
 <body>
 <header>
   <div class="bar">
-    <h1>SMOG TRACKER <span class="sub">· <a href="../index.html" class="back-link">← all metros</a></span></h1>
+    <h1>SMOG TRACKER <span class="sub">· <a href="../index.html" class="back-link" data-i18n="back-link">← all metros</a></span></h1>
     <nav>
       <span id="last-updated"></span>
-      <a href="#" id="csv-dl">Download CSV</a>
+      <a href="#" id="csv-dl" data-i18n="download-csv">Download CSV</a>
+      <a href="#" id="lang-toggle" class="lang-btn">ES</a>
       <a href="#" id="theme-toggle">☾</a>
     </nav>
   </div>
@@ -24,24 +26,24 @@
     <div class="panel-head">
       <h2 id="metro-name">Sucre</h2>
       <div class="kpis">
-        <span class="kpi"><span class="kpi-label">Department</span> <span class="kpi-val" id="metro-meta">—</span></span>
-        <span class="kpi"><span class="kpi-label">Centered 12m</span> <span class="kpi-val" id="current-c12">—</span> <span class="dot" id="current-dot"></span></span>
-        <span class="kpi"><span class="kpi-label">As of</span> <span class="kpi-val" id="c12-date">—</span></span>
-        <span class="kpi"><span class="kpi-label">Trailing 12m YoY</span> <span class="kpi-val" id="current-trail" style="color:var(--muted)">—</span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-dept">Department</span> <span class="kpi-val" id="metro-meta">—</span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-c12">Centered 12m</span> <span class="kpi-val" id="current-c12">—</span> <span class="dot" id="current-dot"></span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-asof">As of</span> <span class="kpi-val" id="c12-date">—</span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-trail">Trailing 12m YoY</span> <span class="kpi-val" id="current-trail" style="color:var(--muted)">—</span></span>
       </div>
     </div>
   </section>
 
   <section class="detail-grid">
     <div class="panel">
-      <h2>Paper's indicator: centered 12-month</h2>
+      <h2 data-i18n="metro-chart-c12">Paper's indicator: centered 12-month</h2>
       <div class="chart-wrap"><canvas id="chart-monthly"></canvas></div>
-      <p class="caption">log(centered 12m NO₂ / 2019 mean) × 100. Zero = 2019 baseline.</p>
+      <p class="caption" data-i18n="caption-metro-c12">log(centered 12m NO₂ / 2019 mean) × 100. Zero = 2019 baseline.</p>
     </div>
     <div class="panel">
-      <h2>Monthly NO₂ level</h2>
+      <h2 data-i18n="metro-chart-lvl">Monthly NO₂ level</h2>
       <div class="chart-wrap"><canvas id="lvl-chart"></canvas></div>
-      <p class="caption">Monthly mean NO₂ (mol/m²).</p>
+      <p class="caption" data-i18n="caption-metro-lvl">Monthly mean NO₂ (mol/m²).</p>
     </div>
   </section>
 </main>
