@@ -1,0 +1,24 @@
+{
+  "rois": [
+    {"id": "la_paz_el_alto", "name": "La Paz–El Alto", "lat": -16.500, "lon": -68.150, "buffer_km": 20, "pop": 1800000, "dept": "La Paz", "altitude": "highland"},
+    {"id": "santa_cruz", "name": "Santa Cruz", "lat": -17.784, "lon": -63.180, "buffer_km": 25, "pop": 1900000, "dept": "Santa Cruz", "altitude": "lowland"},
+    {"id": "cochabamba", "name": "Cochabamba", "lat": -17.394, "lon": -66.157, "buffer_km": 15, "pop": 700000, "dept": "Cochabamba", "altitude": "highland"},
+    {"id": "sucre", "name": "Sucre", "lat": -19.033, "lon": -65.263, "buffer_km": 8, "pop": 300000, "dept": "Chuquisaca", "altitude": "highland"},
+    {"id": "oruro", "name": "Oruro", "lat": -17.970, "lon": -67.112, "buffer_km": 7, "pop": 270000, "dept": "Oruro", "altitude": "highland"},
+    {"id": "potosi", "name": "Potosí", "lat": -19.583, "lon": -65.753, "buffer_km": 6, "pop": 190000, "dept": "Potosí", "altitude": "highland"},
+    {"id": "tarija", "name": "Tarija", "lat": -21.534, "lon": -64.729, "buffer_km": 8, "pop": 230000, "dept": "Tarija", "altitude": "lowland"},
+    {"id": "trinidad", "name": "Trinidad", "lat": -14.832, "lon": -64.903, "buffer_km": 5, "pop": 130000, "dept": "Beni", "altitude": "lowland"},
+    {"id": "cobija", "name": "Cobija", "lat": -11.028, "lon": -68.768, "buffer_km": 4, "pop": 65000, "dept": "Pando", "altitude": "lowland"},
+    {"id": "montero", "name": "Montero", "lat": -17.339, "lon": -63.253, "buffer_km": 6, "pop": 140000, "dept": "Santa Cruz", "altitude": "lowland"},
+    {"id": "yacuiba", "name": "Yacuiba", "lat": -22.017, "lon": -63.685, "buffer_km": 5, "pop": 100000, "dept": "Tarija", "altitude": "lowland"}
+  ],
+  "reference_year": 2019,
+  "qa_threshold": 0.75,
+  "min_valid_days_per_week": 3,
+  "tropomi_collection": "COPERNICUS/S5P/OFFL/L3_NO2",
+  "tropomi_band": "tropospheric_NO2_column_number_density",
+  "backfill_start": "2018-07-01",
+  "gee_export_bucket": "haiti-sae-2026",
+  "gee_export_prefix": "smog-tracker",
+  "gasolinazo_date": "2025-12-17"
+}

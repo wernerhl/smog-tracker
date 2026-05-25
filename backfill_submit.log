@@ -1,0 +1,2 @@
+[backfill] 2018-07-01 -> 2026-05-24, 11 ROIs
+[backfill] queued: task_id=V6ETR5UZDTXZKFZSQDHWPO6U  -> gs://haiti-sae-2026/smog-tracker/tropomi_backfill_2018-07-01_2026-05-24.csv

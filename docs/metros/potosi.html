@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Potosí — Smog Tracker</title>
+<link rel="stylesheet" href="../style.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>SMOG TRACKER <span class="sub">· <a href="../index.html" class="back-link">← all metros</a></span></h1>
+    <nav>
+      <span id="last-updated"></span>
+      <a href="#" id="csv-dl">Download CSV</a>
+      <a href="#" id="theme-toggle">☾</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <div class="panel-head">
+      <h2 id="metro-name">Potosí</h2>
+      <div class="kpis">
+        <span class="kpi"><span class="kpi-label">Department</span> <span class="kpi-val" id="metro-meta">—</span></span>
+        <span class="kpi"><span class="kpi-label">Current YoY</span> <span class="kpi-val" id="current-yoy">—</span> <span class="dot" id="current-dot"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-grid">
+    <div class="panel">
+      <h2>Weekly NO₂ level</h2>
+      <div class="chart-wrap"><canvas id="lvl-chart"></canvas></div>
+      <p class="caption">7-day rolling mean (mol/m²).</p>
+    </div>
+    <div class="panel">
+      <h2>Year-on-year anomaly</h2>
+      <div class="chart-wrap"><canvas id="yoy-chart"></canvas></div>
+      <p class="caption">log(NO₂_t) − log(NO₂_{t-52w}). Vertical dashed line = gasolinazo (2025-12-17).</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Last 12 weeks</h2>
+    <table class="recent">
+      <thead><tr><th>Week ending</th><th>NO₂ (mol/m²)</th><th>YoY %</th><th>Status</th></tr></thead>
+      <tbody id="recent-tbody"></tbody>
+    </table>
+  </section>
+</main>
+
+<script>window.ROI_ID = "potosi";</script>
+<script src="../metro.js"></script>
+</body>
+</html>
