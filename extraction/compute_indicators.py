@@ -1,174 +1,156 @@
-"""Compute weekly NO₂ indicators + 28-day rolling YoY anomalies.
-
-Two rolling windows:
-  * 7-day  rolling mean → weekly raw signal (noisy, kept for transparency)
-  * 28-day rolling mean → headline YoY (≥14 valid days required; cloud-robust)
-
-YoY = log(rolling_t) − log(rolling_{t−365d}).
-
-Outputs:
-  data/weekly/weekly_no2.csv          muni × week, 7d + 28d means + valid-day counts
-  data/anomalies/yoy_anomalies.csv    muni × week, yoy_7d + yoy_28d + status
-  data/national/national_aggregate.csv national pop-weighted, 7d + 28d + trailing_12m
+#!/usr/bin/env python3
 """
-from __future__ import annotations
+Compute the paper's recession indicator + weekly early-warning supplement.
 
-import sys
-from pathlib import Path
-
-import numpy as np
+Reads:  data/raw/tropomi_daily_*.csv
+Writes: data/monthly/monthly_no2.csv          (monthly means by ROI)
+        data/monthly/centered_12m.csv          (the paper's indicator)
+        data/weekly/weekly_28d.csv             (28-day rolling weekly supplement)
+        data/national/national_monthly.csv     (pop-weighted national monthly)
+        data/national/national_weekly.csv      (pop-weighted national weekly)
+"""
+import json, glob, os
 import pandas as pd
+import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _common import load_config, repo_root
+# ── Config ──────────────────────────────────────────────────────────
+with open("config.json") as f:
+    cfg = json.load(f)
 
-ROLL_SMOOTH = 28      # days — headline smoothing window
-ROLL_NOISY = 7        # days — raw weekly for context line
-MIN_VALID_28D = 14    # ≥ this many valid days within the 28-day window
-MIN_VALID_7D = 3      # ≥ this many valid days within the 7-day window
-YOY_DAYS = 365        # YoY = today vs ~52 weeks prior
+POP = {r["id"]: r["pop"] for r in cfg["rois"]}
+ROI_IDS = list(POP.keys())
+MIN_DAYS_MONTH = 15
+MIN_DAYS_28D = 10
+REF_YEAR = 2019
 
+# Ensure output dirs
+for d in ["data/monthly", "data/weekly", "data/national"]:
+    os.makedirs(d, exist_ok=True)
 
-def _status(yoy_pct: float | None) -> str | None:
-    if yoy_pct is None or pd.isna(yoy_pct):
-        return None
-    if yoy_pct > 5:
-        return "green"
-    if yoy_pct < -5:
-        return "red"
-    return "yellow"
+# ── Load daily data ─────────────────────────────────────────────────
+frames = []
+for path in sorted(glob.glob("data/raw/tropomi_daily_*.csv")):
+    df = pd.read_csv(path, parse_dates=["date"])
+    frames.append(df)
+daily = pd.concat(frames, ignore_index=True)
+daily = daily[daily.roi.isin(ROI_IDS)].copy()
+daily = daily.dropna(subset=["no2_mol_m2"])
+daily["month"] = daily.date.dt.to_period("M")
+print(f"Loaded {len(daily)} daily obs, {daily.date.min().date()} to {daily.date.max().date()}")
 
+# ── 1. Monthly means by ROI ────────────────────────────────────────
+monthly = (
+    daily.groupby(["month", "roi"])
+    .agg(no2_mean=("no2_mol_m2", "mean"), n_days=("no2_mol_m2", "count"))
+    .reset_index()
+)
+monthly = monthly[monthly.n_days >= MIN_DAYS_MONTH].copy()
+monthly["date"] = monthly.month.dt.to_timestamp()
+monthly.to_csv("data/monthly/monthly_no2.csv", index=False)
+print(f"Monthly means: {len(monthly)} ROI-months")
 
-def main() -> None:
-    cfg = load_config()
-    raw_dir = repo_root() / "data" / "raw"
-    files = sorted(raw_dir.glob("tropomi_daily_*.csv"))
-    if not files:
-        print(f"[indicators] no raw files in {raw_dir} — run backfill.py first")
-        return
-    df = pd.concat((pd.read_csv(f) for f in files), ignore_index=True)
-    df["date"] = pd.to_datetime(df["date"])
-    df = df.sort_values(["roi", "date"])
-    print(f"[indicators] read {len(df):,} rows from {len(files)} files, "
-          f"date range {df['date'].min().date()}..{df['date'].max().date()}")
+# ── 2. National pop-weighted monthly ────────────────────────────────
+def pop_weighted_monthly(monthly_df):
+    rows = []
+    for date, g in monthly_df.groupby("date"):
+        avail = g[g.roi.isin(POP)]
+        if len(avail) == 0:
+            continue
+        w = np.array([POP[r] for r in avail.roi])
+        w = w / w.sum()
+        rows.append({
+            "date": date,
+            "no2": np.sum(w * avail.no2_mean.values),
+            "n_rois": len(avail),
+        })
+    return pd.DataFrame(rows).set_index("date").sort_index()
 
-    # ---------- daily collapse (multiple TROPOMI orbits per day) ----------
-    daily = (
-        df.groupby(["roi", "name", "dept", "altitude", "date"], as_index=False)
-        .agg(no2_mol_m2=("no2_mol_m2", "mean"),
-             n_valid_pixels=("n_valid_pixels", "sum"))
-    )
+natl_m = pop_weighted_monthly(monthly)
 
-    # ---------- per-ROI: rolling 7d + 28d, then YoY, then weekly resample ----------
-    weekly_chunks, anom_chunks = [], []
-    for roi, g in daily.groupby("roi"):
-        g = g.set_index("date").sort_index()
-        idx = pd.date_range(g.index.min(), g.index.max(), freq="D")
-        g = g.reindex(idx)
+# ── 3. Centered 12-month rolling = THE PAPER'S INDICATOR ───────────
+#    log(centered_12m / ref_2019) × 100 = log deviation in percent
+ref_2019 = natl_m.loc["2019":"2019", "no2"].mean()
+print(f"Reference 2019 national NO2: {ref_2019:.6e} mol/m2")
 
-        valid = g["no2_mol_m2"].notna().astype(int)
-        roll7  = g["no2_mol_m2"].rolling(f"{ROLL_NOISY}D",  min_periods=MIN_VALID_7D).mean()
-        roll28 = g["no2_mol_m2"].rolling(f"{ROLL_SMOOTH}D", min_periods=MIN_VALID_28D).mean()
-        valid7  = valid.rolling(f"{ROLL_NOISY}D").sum()
-        valid28 = valid.rolling(f"{ROLL_SMOOTH}D").sum()
+natl_m["log_no2"] = np.log(natl_m.no2)
+natl_m["centered_12m"] = natl_m.log_no2.rolling(12, center=True, min_periods=12).mean()
+natl_m["log_dev_2019"] = (natl_m.centered_12m - np.log(ref_2019)) * 100
 
-        # Mask out windows below the min-valid threshold.
-        roll7  = roll7.where(valid7  >= MIN_VALID_7D)
-        roll28 = roll28.where(valid28 >= MIN_VALID_28D)
+# Trailing 12-month (for growth rates, recession dating)
+natl_m["trailing_12m"] = natl_m.log_no2.rolling(12, min_periods=12).mean()
+natl_m["trailing_12m_dev"] = (natl_m.trailing_12m - np.log(ref_2019)) * 100
 
-        log7  = np.log(roll7)
-        log28 = np.log(roll28)
-        # YoY: shift by 365 calendar days, daily-aligned (so D/D-365 comparison is exact).
-        yoy7_daily  = (log7  - log7.shift(YOY_DAYS))  * 100
-        yoy28_daily = (log28 - log28.shift(YOY_DAYS)) * 100
+# YoY trailing growth
+natl_m["trailing_yoy"] = (natl_m.trailing_12m - natl_m.trailing_12m.shift(12)) * 100
 
-        # Sample to weekly (Sunday-ending) — the last available daily value per Sunday.
-        sundays = pd.date_range(g.index.min(), g.index.max(), freq="W-SUN")
+natl_m.to_csv("data/national/national_monthly.csv")
+print(f"National monthly: {len(natl_m)} months")
+print(f"  Last centered-12m: {natl_m.log_dev_2019.dropna().iloc[-1]:+.1f} log pts "
+      f"at {natl_m.log_dev_2019.dropna().index[-1].strftime('%Y-%m')}")
+print(f"  Trailing-12m peak: {natl_m.trailing_12m_dev.dropna().idxmax().strftime('%Y-%m')} "
+      f"at {natl_m.trailing_12m_dev.dropna().max():+.1f}")
 
-        name = g["name"].dropna().iloc[0] if g["name"].notna().any() else roi
-        dept = g["dept"].dropna().iloc[0] if g["dept"].notna().any() else None
-        altitude = g["altitude"].dropna().iloc[0] if g["altitude"].notna().any() else None
+# ── 4. Per-metro centered 12-month ──────────────────────────────────
+c12_rows = []
+for roi in ROI_IDS:
+    sub = monthly[monthly.roi == roi].set_index("date").sort_index()
+    if len(sub) < 12:
+        continue
+    ref_roi = sub.loc["2019":"2019", "no2_mean"].mean()
+    if np.isnan(ref_roi) or ref_roi <= 0:
+        continue
+    log_s = np.log(sub.no2_mean)
+    c12 = log_s.rolling(12, center=True, min_periods=12).mean()
+    dev = (c12 - np.log(ref_roi)) * 100
+    t12 = log_s.rolling(12, min_periods=12).mean()
+    t12_yoy = (t12 - t12.shift(12)) * 100
+    for date in sub.index:
+        c12_rows.append({
+            "date": date, "roi": roi,
+            "log_dev_2019": float(dev.get(date, np.nan)),
+            "trailing_yoy": float(t12_yoy.get(date, np.nan)),
+            "no2_monthly": float(sub.loc[date, "no2_mean"]),
+        })
 
-        weekly_chunks.append(pd.DataFrame({
-            "week_ending": sundays,
-            "roi": roi, "name": name, "dept": dept, "altitude": altitude,
-            "no2_7d":  roll7.reindex(sundays).values,
-            "no2_28d": roll28.reindex(sundays).values,
-            "n_valid_days_7d":  valid7.reindex(sundays).values,
-            "n_valid_days_28d": valid28.reindex(sundays).values,
-        }))
-        anom_chunks.append(pd.DataFrame({
-            "week_ending": sundays,
-            "roi": roi,
-            "yoy_7d":  yoy7_daily.reindex(sundays).values,
-            "yoy_28d": yoy28_daily.reindex(sundays).values,
-        }))
+pd.DataFrame(c12_rows).to_csv("data/monthly/centered_12m.csv", index=False)
+print(f"Per-metro centered-12m: {len(c12_rows)} ROI-months")
 
-    weekly = pd.concat(weekly_chunks, ignore_index=True)
-    anom = pd.concat(anom_chunks, ignore_index=True)
-    anom["status"] = anom["yoy_28d"].apply(_status)
-    # Backwards-compat aliases for any legacy reader.
-    weekly["no2_weekly_mean"] = weekly["no2_7d"]
-    weekly["log_no2"] = np.log(weekly["no2_7d"])
-    anom["yoy_anomaly_pct"] = anom["yoy_28d"]
+# ── 5. Weekly 28-day rolling supplement ─────────────────────────────
+daily_nat = []
+for date, g in daily.groupby("date"):
+    avail = g[g.roi.isin(POP)]
+    if len(avail) == 0:
+        continue
+    w = np.array([POP[r] for r in avail.roi])
+    w = w / w.sum()
+    daily_nat.append({"date": date, "no2": np.sum(w * avail.no2_mol_m2.values)})
+daily_nat = pd.DataFrame(daily_nat).set_index("date").sort_index()
 
-    weekly_out = repo_root() / "data" / "weekly" / "weekly_no2.csv"
-    weekly_out.parent.mkdir(parents=True, exist_ok=True)
-    weekly.to_csv(weekly_out, index=False, date_format="%Y-%m-%d")
-    print(f"[indicators] wrote {weekly_out.name} ({len(weekly):,} rows)")
+daily_nat["roll_28d"] = daily_nat.no2.rolling(28, min_periods=MIN_DAYS_28D).mean()
+daily_nat["log_28d"] = np.log(daily_nat.roll_28d)
+daily_nat["log_28d_lag52w"] = daily_nat.log_28d.shift(364)
+daily_nat["yoy_28d"] = (daily_nat.log_28d - daily_nat.log_28d_lag52w) * 100
 
-    anom_out = repo_root() / "data" / "anomalies" / "yoy_anomalies.csv"
-    anom_out.parent.mkdir(parents=True, exist_ok=True)
-    anom.to_csv(anom_out, index=False, date_format="%Y-%m-%d")
-    print(f"[indicators] wrote {anom_out.name} ({len(anom):,} rows)")
+weekly = daily_nat.resample("W-SUN").last().dropna(subset=["roll_28d"])
+weekly.to_csv("data/national/national_weekly.csv")
 
-    # ---------- national pop-weighted aggregate (on the 28-day smoothed series) ----------
-    pop = {r["id"]: r["pop"] for r in cfg["rois"]}
-    weekly["pop"] = weekly["roi"].map(pop)
-    nat_rows = []
-    for col_no2 in ("no2_28d", "no2_7d"):
-        sub = weekly.dropna(subset=[col_no2]).copy()
-        sub["wval"] = sub[col_no2] * sub["pop"]
-        g = sub.groupby("week_ending", as_index=False).agg(
-            wsum=("wval", "sum"), w=("pop", "sum"),
-        )
-        g["no2"] = g["wsum"] / g["w"]
-        g["window"] = col_no2.split("_")[1]
-        nat_rows.append(g[["week_ending", "window", "no2"]])
-    nat_long = pd.concat(nat_rows, ignore_index=True)
-    nat = nat_long.pivot_table(index="week_ending", columns="window", values="no2").reset_index()
-    nat.columns.name = None
-    nat = nat.rename(columns={"28d": "no2_national_28d", "7d": "no2_national_7d"})
-    nat = nat.sort_values("week_ending").reset_index(drop=True)
+# Per-metro weekly
+wk_rows = []
+for roi in ROI_IDS:
+    sub = daily[daily.roi == roi].set_index("date").sort_index()
+    if len(sub) < 28:
+        continue
+    sub_no2 = sub.no2_mol_m2
+    roll = sub_no2.rolling(28, min_periods=MIN_DAYS_28D).mean()
+    log_roll = np.log(roll)
+    yoy = (log_roll - log_roll.shift(364)) * 100
+    wk = pd.DataFrame({"no2_28d": roll, "yoy_28d": yoy}).resample("W-SUN").last().dropna(subset=["no2_28d"])
+    for date, row in wk.iterrows():
+        wk_rows.append({"date": date, "roi": roi,
+                        "no2_28d": float(row.no2_28d),
+                        "yoy_28d": float(row.yoy_28d)})
 
-    # YoY at the national level — log diff with the 52-week-prior week.
-    for src, dst in (("no2_national_28d", "yoy_28d"),
-                     ("no2_national_7d", "yoy_7d")):
-        if src in nat.columns:
-            nat[f"log_{src}"] = np.log(nat[src])
-            nat[dst] = (nat[f"log_{src}"] - nat[f"log_{src}"].shift(52)) * 100
-
-    nat["status"] = nat["yoy_28d"].apply(_status)
-    # 12-month trailing on the 28-day smoothed log series.
-    nat["trailing_12m_log"] = nat["log_no2_national_28d"].rolling(52, min_periods=26).mean()
-    nat["trailing_12m_yoy"] = (
-        nat["trailing_12m_log"] - nat["trailing_12m_log"].shift(52)
-    ) * 100
-
-    nat_out = repo_root() / "data" / "national" / "national_aggregate.csv"
-    nat_out.parent.mkdir(parents=True, exist_ok=True)
-    nat[["week_ending", "no2_national_28d", "no2_national_7d",
-         "yoy_28d", "yoy_7d", "status",
-         "trailing_12m_log", "trailing_12m_yoy"]].to_csv(
-        nat_out, index=False, date_format="%Y-%m-%d")
-    print(f"[indicators] wrote {nat_out.name} ({len(nat):,} rows)")
-
-    last = nat.dropna(subset=["yoy_28d"]).iloc[-1] if nat["yoy_28d"].notna().any() else None
-    if last is not None:
-        print(f"[indicators] latest national YoY (28d): {last['yoy_28d']:+.2f}%  "
-              f"7d: {last['yoy_7d']:+.2f}%  status={last['status']}  "
-              f"trailing-12m: {last['trailing_12m_yoy']:+.2f}%  week={last['week_ending'].date()}")
-
-
-if __name__ == "__main__":
-    main()
+pd.DataFrame(wk_rows).to_csv("data/weekly/weekly_28d.csv", index=False)
+print(f"Weekly 28-day rolling: {len(weekly)} national weeks")
+print(f"  Last weekly YoY: {weekly.yoy_28d.iloc[-1]:+.1f}%")
+print("Done.")

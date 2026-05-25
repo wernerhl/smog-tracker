@@ -19,30 +19,45 @@
     </nav>
   </div>
   <p class="tagline">
-    Tropospheric NO₂ from Sentinel-5P TROPOMI over 11 Bolivian metropolitan areas —
-    weekly, year-on-year. A real-time combustion-activity proxy. Companion to
+    Tropospheric NO₂ from Sentinel-5P TROPOMI over 11 Bolivian metropolitan areas.
+    A real-time combustion-activity proxy. Companion to
     <em>Smog, Not Lights</em> (Hernani-Limarino &amp; Eid, 2026).
   </p>
 </header>
 
 <main>
+  <!-- HEADLINE: Paper's indicator -->
   <section id="national" class="panel">
     <div class="panel-head">
-      <h2>National aggregate</h2>
+      <h2>National aggregate — the paper's indicator</h2>
       <div class="kpis">
-        <span class="kpi"><span class="kpi-label">28-day YoY</span> <span class="kpi-val" id="nat-yoy">—</span> <span class="dot" id="nat-dot"></span></span>
-        <span class="kpi"><span class="kpi-label">7-day YoY (raw)</span> <span class="kpi-val" id="nat-yoy-7d" style="color:var(--muted)">—</span></span>
-        <span class="kpi"><span class="kpi-label">Trailing 12 m</span> <span class="kpi-val" id="nat-trail">—</span></span>
-        <span class="kpi"><span class="kpi-label">Week ending</span> <span class="kpi-val" id="nat-week">—</span></span>
+        <span class="kpi"><span class="kpi-label">Centered 12-month</span> <span class="kpi-val" id="nat-c12">—</span> <span class="dot" id="nat-dot"></span></span>
+        <span class="kpi"><span class="kpi-label">Trailing 12m YoY</span> <span class="kpi-val" id="nat-trail">—</span></span>
+        <span class="kpi"><span class="kpi-label">Weekly 28-day YoY</span> <span class="kpi-val" id="nat-weekly" style="color:var(--muted)">—</span></span>
+        <span class="kpi"><span class="kpi-label">As of</span> <span class="kpi-val" id="nat-date">—</span></span>
       </div>
     </div>
     <div class="chart-wrap">
-      <canvas id="nat-chart"></canvas>
+      <canvas id="chart-monthly"></canvas>
     </div>
     <p class="caption">
-      Population-weighted national NO₂ anomaly vs. 52 weeks prior.
-      <b>Teal = 28-day rolling (headline)</b>, thin gray = 7-day raw (context).
-      Gray band = ±5 % "normal" zone. Dashed line = Dec 17 2025 (gasolinazo).
+      <b>Centered 12-month rolling NO₂</b>, log deviation from 2019 mean (%).
+      This is Figure 2 from the paper, updated monthly. Population-weighted national aggregate.
+      Dashed line = Dec 2025 (gasolinazo). 0 = 2019 baseline.
+    </p>
+  </section>
+
+  <!-- SUPPLEMENT: Weekly early-warning -->
+  <section id="weekly-supplement" class="panel">
+    <div class="panel-head">
+      <h2>Weekly early-warning supplement</h2>
+    </div>
+    <div class="chart-wrap" style="height:220px">
+      <canvas id="chart-weekly"></canvas>
+    </div>
+    <p class="caption">
+      28-day rolling YoY anomaly (%). Noisy — use for event detection, not trend.
+      Gray band = ±5% "normal" zone. Dashed line = Dec 17 2025 (gasolinazo).
     </p>
   </section>
 

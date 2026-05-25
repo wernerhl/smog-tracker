@@ -1,133 +1,117 @@
-"""Generate docs/data/dashboard.json + per-metro HTML pages.
-
-Emits both yoy_28d (headline, 28-day rolling) and yoy_7d (raw weekly, for
-the thin gray context line). Status is computed off the 28-day series.
+#!/usr/bin/env python3
 """
-from __future__ import annotations
-
-import json
-import sys
-from datetime import date
-from pathlib import Path
-
-import numpy as np
+Generate docs/data/dashboard.json from computed indicators.
+Two layers: monthly headline (the paper's indicator) + weekly supplement.
+"""
+import json, os
 import pandas as pd
+import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _common import load_config, repo_root
+with open("config.json") as f:
+    cfg = json.load(f)
+ROI_META = {r["id"]: r for r in cfg["rois"]}
 
-WEEKS_CHART = 104
-WEEKS_SPARK = 52
-WEEKS_TABLE = 12
+os.makedirs("docs/data", exist_ok=True)
 
+# Load
+natl_m = pd.read_csv("data/national/national_monthly.csv", index_col=0, parse_dates=True)
+natl_w = pd.read_csv("data/national/national_weekly.csv", index_col=0, parse_dates=True)
+metro_c12 = pd.read_csv("data/monthly/centered_12m.csv", parse_dates=["date"])
+metro_wk = pd.read_csv("data/weekly/weekly_28d.csv", parse_dates=["date"])
 
-def _f(x):
-    if x is None or (isinstance(x, float) and (np.isnan(x) or np.isinf(x))):
+def status(val):
+    if pd.isna(val): return "nodata"
+    if val > 5: return "green"
+    if val < -5: return "red"
+    return "yellow"
+
+def safe(v):
+    if v is None or (isinstance(v, float) and np.isnan(v)):
         return None
-    if isinstance(x, (np.floating,)):
-        return float(round(float(x), 6))
-    if isinstance(x, (np.integer,)):
-        return int(x)
-    return x
+    return round(float(v), 1)
 
+# ── National ────────────────────────────────────────────────────────
+last_c12 = natl_m.log_dev_2019.dropna()
+last_trail = natl_m.trailing_yoy.dropna()
+last_wk = natl_w.yoy_28d.dropna()
 
-def main() -> None:
-    cfg = load_config()
-    root = repo_root()
+monthly_series = []
+for date, row in natl_m.tail(48).iterrows():
+    monthly_series.append({
+        "month": date.strftime("%Y-%m"),
+        "log_dev_2019": safe(row.log_dev_2019),
+        "trailing_yoy": safe(row.trailing_yoy),
+    })
 
-    nat = pd.read_csv(root / "data" / "national" / "national_aggregate.csv",
-                      parse_dates=["week_ending"]).sort_values("week_ending")
-    anom = pd.read_csv(root / "data" / "anomalies" / "yoy_anomalies.csv",
-                       parse_dates=["week_ending"]).sort_values(["roi", "week_ending"])
-    weekly = pd.read_csv(root / "data" / "weekly" / "weekly_no2.csv",
-                         parse_dates=["week_ending"]).sort_values(["roi", "week_ending"])
+weekly_series = []
+for date, row in natl_w.tail(104).iterrows():
+    weekly_series.append({
+        "week": date.strftime("%Y-%m-%d"),
+        "yoy_28d": safe(row.yoy_28d),
+    })
 
-    last_week = nat["week_ending"].max()
-    nat_recent = nat[nat["week_ending"] >= (last_week - pd.Timedelta(weeks=WEEKS_CHART))]
-    nat_last_28 = (nat.dropna(subset=["yoy_28d"]).iloc[-1]
-                   if nat["yoy_28d"].notna().any() else None)
+national = {
+    "centered_12m": safe(last_c12.iloc[-1]),
+    "centered_12m_date": last_c12.index[-1].strftime("%Y-%m"),
+    "trailing_yoy": safe(last_trail.iloc[-1]),
+    "weekly_yoy_28d": safe(last_wk.iloc[-1]),
+    "weekly_date": last_wk.index[-1].strftime("%Y-%m-%d"),
+    "status": status(float(last_trail.iloc[-1])),
+    "monthly_series": monthly_series,
+    "weekly_series": weekly_series,
+}
 
-    payload: dict = {
-        "last_updated": date.today().isoformat(),
-        "last_week": last_week.date().isoformat() if pd.notna(last_week) else None,
-        "gasolinazo_date": cfg.get("gasolinazo_date"),
-        "national": {
-            "current_yoy_28d": _f(nat_last_28["yoy_28d"]) if nat_last_28 is not None else None,
-            "current_yoy_7d":  _f(nat_last_28["yoy_7d"])  if nat_last_28 is not None else None,
-            "trailing_12m_yoy": _f(nat_last_28["trailing_12m_yoy"]) if nat_last_28 is not None else None,
-            "status": nat_last_28["status"] if nat_last_28 is not None else None,
-            "series": [
-                {"week": r["week_ending"].date().isoformat(),
-                 "yoy_28d": _f(r["yoy_28d"]),
-                 "yoy_7d":  _f(r["yoy_7d"])}
-                for _, r in nat_recent.iterrows()
-            ],
-        },
-        "metros": {},
+# ── Per metro ───────────────────────────────────────────────────────
+metros = {}
+for roi_id, meta in ROI_META.items():
+    mc = metro_c12[metro_c12.roi == roi_id].set_index("date").sort_index()
+    mw = metro_wk[metro_wk.roi == roi_id].set_index("date").sort_index()
+
+    valid_c12 = mc.log_dev_2019.dropna()
+    valid_tyoy = mc.trailing_yoy.dropna()
+
+    m_series = []
+    for date, row in mc.tail(48).iterrows():
+        m_series.append({
+            "month": date.strftime("%Y-%m"),
+            "log_dev_2019": safe(row.log_dev_2019),
+            "no2": float(row.no2_monthly) if not np.isnan(row.no2_monthly) else None,
+        })
+
+    sparkline = []
+    for date, row in mw.tail(52).iterrows():
+        sparkline.append(safe(row.yoy_28d))
+
+    metros[roi_id] = {
+        "name": meta["name"],
+        "dept": meta["dept"],
+        "altitude": meta["altitude"],
+        "centered_12m": safe(valid_c12.iloc[-1]) if len(valid_c12) > 0 else None,
+        "centered_12m_date": valid_c12.index[-1].strftime("%Y-%m") if len(valid_c12) > 0 else None,
+        "trailing_yoy": safe(valid_tyoy.iloc[-1]) if len(valid_tyoy) > 0 else None,
+        "status": status(float(valid_tyoy.iloc[-1])) if len(valid_tyoy) > 0 else "nodata",
+        "sparkline_28d": sparkline,
+        "monthly_series": m_series,
     }
 
-    for roi in cfg["rois"]:
-        rid = roi["id"]
-        a = anom[anom["roi"] == rid].sort_values("week_ending")
-        w = weekly[weekly["roi"] == rid].sort_values("week_ending")
+# ── Write ───────────────────────────────────────────────────────────
+out = {
+    "last_updated": pd.Timestamp.now().strftime("%Y-%m-%d"),
+    "gasolinazo_date": "2025-12-17",
+    "reference_year": 2019,
+    "note": "centered_12m = log(12-month centered rolling NO2 / 2019 mean) x 100. "
+            "This is the paper's headline indicator (Figure 2). "
+            "trailing_yoy = trailing 12-month YoY growth in log points. "
+            "weekly_yoy_28d = 28-day rolling YoY for early warning.",
+    "national": national,
+    "metros": metros,
+}
 
-        a_recent = a[a["week_ending"] >= (last_week - pd.Timedelta(weeks=WEEKS_CHART))]
-        spark = a[a["week_ending"] >= (last_week - pd.Timedelta(weeks=WEEKS_SPARK))]
-        recent_table_rows = w.merge(
-            a[["week_ending", "yoy_28d", "yoy_7d", "status"]],
-            on="week_ending", how="left",
-        ).sort_values("week_ending").tail(WEEKS_TABLE)
+with open("docs/data/dashboard.json", "w") as f:
+    json.dump(out, f, indent=2)
+print(f"Wrote docs/data/dashboard.json ({len(metros)} metros)")
 
-        a_last = (a.dropna(subset=["yoy_28d"]).iloc[-1]
-                  if a["yoy_28d"].notna().any() else None)
-
-        payload["metros"][rid] = {
-            "name": roi["name"],
-            "dept": roi["dept"],
-            "altitude": roi["altitude"],
-            "current_yoy_28d": _f(a_last["yoy_28d"]) if a_last is not None else None,
-            "current_yoy_7d":  _f(a_last["yoy_7d"])  if a_last is not None else None,
-            "status": a_last["status"] if a_last is not None else None,
-            "sparkline": [_f(v) for v in spark["yoy_28d"].tolist()],
-            "series": [
-                {"week": r["week_ending"].date().isoformat(),
-                 "yoy_28d": _f(r["yoy_28d"]),
-                 "yoy_7d":  _f(r["yoy_7d"])}
-                for _, r in a_recent.iterrows()
-            ],
-            "level_series": [
-                {"week": r["week_ending"].date().isoformat(),
-                 "no2_28d": _f(r["no2_28d"]),
-                 "no2_7d":  _f(r["no2_7d"])}
-                for _, r in w.tail(WEEKS_CHART).iterrows()
-            ],
-            "recent_weeks": [
-                {
-                    "week": r["week_ending"].date().isoformat(),
-                    "no2_28d": _f(r["no2_28d"]),
-                    "yoy_28d": _f(r["yoy_28d"]),
-                    "yoy_7d":  _f(r["yoy_7d"]),
-                    "status": r["status"] if isinstance(r.get("status"), str) else None,
-                }
-                for _, r in recent_table_rows.iterrows()
-            ],
-        }
-
-    out = root / "docs" / "data" / "dashboard.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    with open(out, "w") as f:
-        json.dump(payload, f, indent=2)
-    print(f"[dashboard-json] wrote {out} ({out.stat().st_size/1024:.1f} KB)")
-
-    # ---------- per-metro HTML pages ----------
-    metros_dir = root / "docs" / "metros"
-    metros_dir.mkdir(parents=True, exist_ok=True)
-    for roi in cfg["rois"]:
-        html = METRO_TEMPLATE.replace("__ROI_ID__", roi["id"]).replace("__ROI_NAME__", roi["name"])
-        (metros_dir / f"{roi['id']}.html").write_text(html)
-    print(f"[dashboard-json] wrote {len(cfg['rois'])} per-metro HTML pages")
-
-
+# ── Per-metro HTML pages ───────────────────────────────────────────
 METRO_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,31 +139,24 @@ METRO_TEMPLATE = """<!DOCTYPE html>
       <h2 id="metro-name">__ROI_NAME__</h2>
       <div class="kpis">
         <span class="kpi"><span class="kpi-label">Department</span> <span class="kpi-val" id="metro-meta">—</span></span>
-        <span class="kpi"><span class="kpi-label">28-day YoY</span> <span class="kpi-val" id="current-yoy">—</span> <span class="dot" id="current-dot"></span></span>
-        <span class="kpi"><span class="kpi-label">7-day YoY</span> <span class="kpi-val" id="current-yoy-7d" style="color:var(--muted)">—</span></span>
+        <span class="kpi"><span class="kpi-label">Centered 12m</span> <span class="kpi-val" id="current-c12">—</span> <span class="dot" id="current-dot"></span></span>
+        <span class="kpi"><span class="kpi-label">As of</span> <span class="kpi-val" id="c12-date">—</span></span>
+        <span class="kpi"><span class="kpi-label">Trailing 12m YoY</span> <span class="kpi-val" id="current-trail" style="color:var(--muted)">—</span></span>
       </div>
     </div>
   </section>
 
   <section class="detail-grid">
     <div class="panel">
-      <h2>Weekly NO₂ level</h2>
-      <div class="chart-wrap"><canvas id="lvl-chart"></canvas></div>
-      <p class="caption">28-day rolling mean (mol/m²). Thin gray = 7-day raw, for context.</p>
+      <h2>Paper's indicator: centered 12-month</h2>
+      <div class="chart-wrap"><canvas id="chart-monthly"></canvas></div>
+      <p class="caption">log(centered 12m NO₂ / 2019 mean) × 100. Zero = 2019 baseline.</p>
     </div>
     <div class="panel">
-      <h2>Year-on-year anomaly</h2>
-      <div class="chart-wrap"><canvas id="yoy-chart"></canvas></div>
-      <p class="caption">log(NO₂_t) − log(NO₂_{t-365d}). Teal = 28-day rolling (headline), thin gray = 7-day raw. Dashed line = gasolinazo (2025-12-17).</p>
+      <h2>Monthly NO₂ level</h2>
+      <div class="chart-wrap"><canvas id="lvl-chart"></canvas></div>
+      <p class="caption">Monthly mean NO₂ (mol/m²).</p>
     </div>
-  </section>
-
-  <section class="panel">
-    <h2>Last 12 weeks</h2>
-    <table class="recent">
-      <thead><tr><th>Week ending</th><th>NO₂ 28-day (mol/m²)</th><th>YoY 28-day</th><th>YoY 7-day</th><th>Status</th></tr></thead>
-      <tbody id="recent-tbody"></tbody>
-    </table>
   </section>
 </main>
 
@@ -189,6 +166,10 @@ METRO_TEMPLATE = """<!DOCTYPE html>
 </html>
 """
 
-
-if __name__ == "__main__":
-    main()
+metros_dir = os.path.join("docs", "metros")
+os.makedirs(metros_dir, exist_ok=True)
+for roi in cfg["rois"]:
+    html = METRO_TEMPLATE.replace("__ROI_ID__", roi["id"]).replace("__ROI_NAME__", roi["name"])
+    with open(os.path.join(metros_dir, f"{roi['id']}.html"), "w") as f:
+        f.write(html)
+print(f"Wrote {len(cfg['rois'])} per-metro HTML pages")

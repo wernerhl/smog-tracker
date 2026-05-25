@@ -25,31 +25,24 @@
       <h2 id="metro-name">La Paz–El Alto</h2>
       <div class="kpis">
         <span class="kpi"><span class="kpi-label">Department</span> <span class="kpi-val" id="metro-meta">—</span></span>
-        <span class="kpi"><span class="kpi-label">28-day YoY</span> <span class="kpi-val" id="current-yoy">—</span> <span class="dot" id="current-dot"></span></span>
-        <span class="kpi"><span class="kpi-label">7-day YoY</span> <span class="kpi-val" id="current-yoy-7d" style="color:var(--muted)">—</span></span>
+        <span class="kpi"><span class="kpi-label">Centered 12m</span> <span class="kpi-val" id="current-c12">—</span> <span class="dot" id="current-dot"></span></span>
+        <span class="kpi"><span class="kpi-label">As of</span> <span class="kpi-val" id="c12-date">—</span></span>
+        <span class="kpi"><span class="kpi-label">Trailing 12m YoY</span> <span class="kpi-val" id="current-trail" style="color:var(--muted)">—</span></span>
       </div>
     </div>
   </section>
 
   <section class="detail-grid">
     <div class="panel">
-      <h2>Weekly NO₂ level</h2>
-      <div class="chart-wrap"><canvas id="lvl-chart"></canvas></div>
-      <p class="caption">28-day rolling mean (mol/m²). Thin gray = 7-day raw, for context.</p>
+      <h2>Paper's indicator: centered 12-month</h2>
+      <div class="chart-wrap"><canvas id="chart-monthly"></canvas></div>
+      <p class="caption">log(centered 12m NO₂ / 2019 mean) × 100. Zero = 2019 baseline.</p>
     </div>
     <div class="panel">
-      <h2>Year-on-year anomaly</h2>
-      <div class="chart-wrap"><canvas id="yoy-chart"></canvas></div>
-      <p class="caption">log(NO₂_t) − log(NO₂_{t-365d}). Teal = 28-day rolling (headline), thin gray = 7-day raw. Dashed line = gasolinazo (2025-12-17).</p>
+      <h2>Monthly NO₂ level</h2>
+      <div class="chart-wrap"><canvas id="lvl-chart"></canvas></div>
+      <p class="caption">Monthly mean NO₂ (mol/m²).</p>
     </div>
-  </section>
-
-  <section class="panel">
-    <h2>Last 12 weeks</h2>
-    <table class="recent">
-      <thead><tr><th>Week ending</th><th>NO₂ 28-day (mol/m²)</th><th>YoY 28-day</th><th>YoY 7-day</th><th>Status</th></tr></thead>
-      <tbody id="recent-tbody"></tbody>
-    </table>
   </section>
 </main>
 
