@@ -34,7 +34,6 @@
       <div class="kpis">
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-c12">Centered 12-month</span> <span class="kpi-val" id="nat-c12">—</span> <span class="dot" id="nat-dot"></span></span>
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-trail">Trailing 12m YoY</span> <span class="kpi-val" id="nat-trail">—</span></span>
-        <span class="kpi"><span class="kpi-label" data-i18n="kpi-weekly">Weekly 28-day YoY</span> <span class="kpi-val" id="nat-weekly" style="color:var(--muted)">—</span></span>
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-asof">As of</span> <span class="kpi-val" id="nat-date">—</span></span>
       </div>
     </div>
@@ -48,17 +47,17 @@
     </p>
   </section>
 
-  <!-- SUPPLEMENT: Weekly early-warning -->
-  <section id="weekly-supplement" class="panel">
+  <!-- SUPPLEMENT: Trailing 12-month YoY -->
+  <section id="trailing-supplement" class="panel">
     <div class="panel-head">
-      <h2 data-i18n="weekly-title">Weekly early-warning supplement</h2>
+      <h2 data-i18n="trailing-title">Trailing 12-month year-over-year</h2>
     </div>
     <div class="chart-wrap" style="height:220px">
-      <canvas id="chart-weekly"></canvas>
+      <canvas id="chart-trailing"></canvas>
     </div>
-    <p class="caption" data-i18n="caption-weekly">
-      28-day rolling YoY anomaly (%). Noisy — use for event detection, not trend.
-      Gray band = ±5% "normal" zone. Dashed line = Dec 17 2025 (gasolinazo).
+    <p class="caption" data-i18n="caption-trailing" data-i18n-html="true">
+      <b>Trailing 12-month YoY growth</b> in log points (%).
+      Negative = economic activity contracting vs prior year. Dashed line = Dec 2025 (gasolinazo).
     </p>
   </section>
 

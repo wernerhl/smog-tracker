@@ -14,15 +14,14 @@ const STRINGS = {
                             es: "Agregado nacional — indicador del paper" },
   'kpi-c12':              { en: 'Centered 12-month',                   es: 'Centrado 12 meses' },
   'kpi-trail':            { en: 'Trailing 12m YoY',                    es: 'Rezagado 12m interanual' },
-  'kpi-weekly':           { en: 'Weekly 28-day YoY',                   es: 'Semanal 28 días interanual' },
   'kpi-asof':             { en: 'As of',                               es: 'Al' },
   'caption-monthly':      { en: '<b>Centered 12-month rolling NO₂</b>, log deviation from 2019 mean (%). This is Figure 2 from the paper, updated monthly. Population-weighted national aggregate. Dashed line = Dec 2025 (gasolinazo). 0 = 2019 baseline.',
                             es: '<b>NO₂ promedio centrado de 12 meses</b>, desviación logarítmica respecto a la media de 2019 (%). Figura 2 del paper, actualizada mensualmente. Agregado nacional ponderado por población. Línea punteada = dic. 2025 (gasolinazo). 0 = línea base 2019.' },
 
-  // ── Weekly supplement ───────────────────────────────────────────
-  'weekly-title':         { en: 'Weekly early-warning supplement',     es: 'Suplemento semanal de alerta temprana' },
-  'caption-weekly':       { en: '28-day rolling YoY anomaly (%). Noisy — use for event detection, not trend. Gray band = ±5% "normal" zone. Dashed line = Dec 17 2025 (gasolinazo).',
-                            es: 'Anomalía interanual con promedio móvil de 28 días (%). Ruidoso — usar para detección de eventos, no tendencia. Banda gris = zona "normal" ±5%. Línea punteada = 17 dic. 2025 (gasolinazo).' },
+  // ── Trailing 12m supplement ──────────────────────────────────────
+  'trailing-title':       { en: 'Trailing 12-month year-over-year',    es: 'Interanual rezagado de 12 meses' },
+  'caption-trailing':     { en: '<b>Trailing 12-month YoY growth</b> in log points (%). Negative = economic activity contracting vs prior year. Dashed line = Dec 2025 (gasolinazo).',
+                            es: '<b>Crecimiento interanual rezagado de 12 meses</b> en puntos logarítmicos (%). Negativo = actividad económica contrayéndose vs año anterior. Línea punteada = dic. 2025 (gasolinazo).' },
 
   // ── Metro section ──────────────────────────────────────────────
   'metros-title':         { en: 'Metropolitan areas',                  es: 'Áreas metropolitanas' },
