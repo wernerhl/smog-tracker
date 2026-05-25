@@ -173,7 +173,7 @@ function metroCard(id, m) {
     ${insuff
       ? '<div class="insuff">insufficient data</div>'
       : '<div class="yoy" style="color:' + colorFor(m.status) + '">' + fmtPct(m.current_yoy_28d) + '</div>'}
-    <canvas class="spark"></canvas>
+    <div class="spark-wrap"><canvas class="spark"></canvas></div>
   `;
   document.getElementById('metro-grid').appendChild(a);
   const canvas = a.querySelector('canvas');

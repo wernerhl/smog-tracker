@@ -88,7 +88,8 @@ section h2 {
 .metro-card .name { font-weight: 600; }
 .metro-card .meta { color: var(--muted); font-size: 0.75rem; margin-top: 2px; }
 .metro-card .yoy { font-size: 1.6rem; font-weight: 600; margin: 8px 0 4px; font-variant-numeric: tabular-nums; }
-.metro-card .spark { height: 48px; }
+.metro-card .spark-wrap { position: relative; width: 100%; height: 48px; }
+.metro-card .spark { position: absolute; inset: 0; }
 .metro-card .insuff { color: var(--muted); font-style: italic; font-size: 0.85rem; }
 
 .dot {
