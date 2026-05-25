@@ -1,6 +1,5 @@
 // Smog Tracker dashboard — vanilla JS + Chart.js.
-// Two charts: 1) Paper's centered-12m indicator (headline)
-//             2) Trailing 12-month YoY (supplement)
+// One national chart: paper's centered-12m indicator with trailing YoY overlay.
 // i18n.js must be loaded before this file.
 
 console.log('[smog-tracker] app.js loaded');
@@ -44,7 +43,6 @@ function colorFor(status) {
 
 // ---------- Chart instances (for rebuild on lang change) ----------
 let _chartMonthly = null;
-let _chartTrailing = null;
 let _dashData = null;
 
 // ---------- Monthly headline chart (paper's indicator) ----------
@@ -122,72 +120,6 @@ function monthlyChart(d) {
   });
 }
 
-// ---------- Trailing 12-month YoY supplement chart ----------
-function trailingChart(d) {
-  const ctx = document.getElementById('chart-trailing');
-  if (!ctx) return;
-  const series = d.national.monthly_series || [];
-  if (!series.length) return;
-  const labels = series.map(p => p.month);
-  const vals = series.map(p => p.trailing_yoy);
-  const gasMonth = '2025-12';
-  const idxGas = labels.findIndex(l => l >= gasMonth);
-
-  if (_chartTrailing) _chartTrailing.destroy();
-  _chartTrailing = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [{
-        label: T('chart-trailing'),
-        data: vals,
-        borderColor: PALETTE.teal,
-        backgroundColor: 'rgba(31,111,115,0.10)',
-        borderWidth: 2, tension: 0.25, pointRadius: 0,
-        spanGaps: true, fill: true,
-      }],
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: c => c.dataset.label + ': ' + fmtDev(c.parsed.y) + ' ' + T('log-pts') } },
-      },
-      scales: {
-        y: { title: { display: true, text: T('chart-yaxis-yoy') },
-             grid: { color: 'rgba(120,120,120,0.12)' } },
-        x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 },
-             grid: { display: false } },
-      },
-    },
-    plugins: [{
-      id: 'trailingOverlays',
-      beforeDraw(chart) {
-        const { ctx, chartArea, scales } = chart;
-        if (!chartArea || !scales.y) return;
-        ctx.save();
-        // Zero line
-        const y0 = scales.y.getPixelForValue(0);
-        ctx.strokeStyle = PALETTE.slate; ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.moveTo(chartArea.left, y0); ctx.lineTo(chartArea.right, y0); ctx.stroke();
-        // Red shading below zero
-        ctx.fillStyle = 'rgba(161,61,45,0.08)';
-        ctx.fillRect(chartArea.left, y0, chartArea.right - chartArea.left, chartArea.bottom - y0);
-        // Gasolinazo
-        if (idxGas >= 0) {
-          const xGas = scales.x.getPixelForValue(idxGas);
-          ctx.strokeStyle = PALETTE.rust; ctx.setLineDash([5, 4]);
-          ctx.beginPath(); ctx.moveTo(xGas, chartArea.top); ctx.lineTo(xGas, chartArea.bottom); ctx.stroke();
-          ctx.setLineDash([]);
-          ctx.fillStyle = PALETTE.rust; ctx.font = '11px sans-serif';
-          ctx.fillText('gasolinazo', xGas + 4, chartArea.top + 12);
-        }
-        ctx.restore();
-      }
-    }],
-  });
-}
-
 // ---------- Metro cards ----------
 function renderMetros(d) {
   const grid = document.getElementById('metro-grid');
@@ -248,7 +180,6 @@ window._rebuildCharts = function() {
   if (!_dashData) return;
   setKpis(_dashData);
   monthlyChart(_dashData);
-  trailingChart(_dashData);
   renderMetros(_dashData);
 };
 
@@ -281,7 +212,6 @@ function setKpis(d) {
 
     setKpis(_dashData);
     monthlyChart(_dashData);
-    trailingChart(_dashData);
     renderMetros(_dashData);
     console.log('[smog-tracker] init complete');
   } catch (e) {
