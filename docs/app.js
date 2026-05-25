@@ -1,5 +1,5 @@
 // Smog Tracker dashboard — vanilla JS + Chart.js.
-// One national chart: paper's centered-12m indicator with trailing YoY overlay.
+// One national chart: YoY growth of centered + trailing 12-month NO₂.
 // i18n.js must be loaded before this file.
 
 console.log('[smog-tracker] app.js loaded');
@@ -45,14 +45,14 @@ function colorFor(status) {
 let _chartMonthly = null;
 let _dashData = null;
 
-// ---------- Monthly headline chart (paper's indicator) ----------
+// ---------- YoY growth chart ----------
 function monthlyChart(d) {
   const ctx = document.getElementById('chart-monthly');
   if (!ctx) return;
   const series = d.national.monthly_series || [];
   if (!series.length) return;
   const labels = series.map(p => p.month);
-  const c12vals = series.map(p => p.log_dev_2019);
+  const c12vals = series.map(p => p.centered_yoy);
   const trailvals = series.map(p => p.trailing_yoy);
   const gasMonth = '2025-12';
   const idxGas = labels.findIndex(l => l >= gasMonth);
@@ -86,12 +86,12 @@ function monthlyChart(d) {
         legend: { display: true, position: 'top', labels: { boxWidth: 14 } },
         tooltip: {
           callbacks: {
-            label: c => c.dataset.label + ': ' + fmtDev(c.parsed.y) + ' ' + T('log-pts'),
+            label: c => c.dataset.label + ': ' + fmtPct(c.parsed.y),
           },
         },
       },
       scales: {
-        y: { title: { display: true, text: T('chart-yaxis-logdev') },
+        y: { title: { display: true, text: T('chart-yaxis-yoy') },
              grid: { color: 'rgba(120,120,120,0.12)' } },
         x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 },
              grid: { display: false } },
@@ -103,9 +103,14 @@ function monthlyChart(d) {
         const { ctx, chartArea, scales } = chart;
         if (!chartArea || !scales.y) return;
         ctx.save();
+        // Zero line
         const y0 = scales.y.getPixelForValue(0);
         ctx.strokeStyle = PALETTE.slate; ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.moveTo(chartArea.left, y0); ctx.lineTo(chartArea.right, y0); ctx.stroke();
+        // Red shading below zero
+        ctx.fillStyle = 'rgba(161,61,45,0.08)';
+        ctx.fillRect(chartArea.left, y0, chartArea.right - chartArea.left, chartArea.bottom - y0);
+        // Gasolinazo
         if (idxGas >= 0) {
           const xGas = scales.x.getPixelForValue(idxGas);
           ctx.strokeStyle = PALETTE.rust; ctx.setLineDash([5, 4]);
@@ -132,9 +137,8 @@ function metroCard(id, m) {
   const a = document.createElement('a');
   a.className = 'metro-card';
   a.href = 'metros/' + id + '.html';
-  const val = m.centered_12m != null ? fmtDev(m.centered_12m) : '—';
   const valColor = colorFor(m.status);
-  const dateLabel = m.centered_12m_date || '—';
+  const dateLabel = m.centered_yoy_date || '—';
   a.innerHTML = `
     <div class="top">
       <div>
@@ -143,9 +147,8 @@ function metroCard(id, m) {
       </div>
       <span class="dot ${m.status || 'grey'}" title="${m.status || 'no data'}"></span>
     </div>
-    <div class="yoy" style="color:${valColor}">${val}</div>
-    <div class="metro-sublabel">${T('log-pts-label')} ${dateLabel}</div>
-    <div class="metro-kpi"><span class="kpi-label">${T('kpi-trail')}</span> <span class="kpi-val" style="font-size:1rem;color:${colorFor(m.status)}">${fmtPct(m.trailing_yoy)}</span></div>
+    <div class="yoy" style="color:${valColor}">${fmtPct(m.trailing_yoy)}</div>
+    <div class="metro-sublabel">${T('kpi-trail')} ${dateLabel}</div>
     <div class="spark-wrap"><canvas class="spark"></canvas></div>
   `;
   document.getElementById('metro-grid').appendChild(a);
@@ -189,7 +192,7 @@ function setKpis(d) {
 
   const c12El = document.getElementById('nat-c12');
   if (c12El) {
-    c12El.textContent = fmtDev(d.national.centered_12m) + ' ' + T('log-pts');
+    c12El.textContent = fmtPct(d.national.centered_yoy);
     c12El.style.color = colorFor(d.national.status);
   }
   const dotEl = document.getElementById('nat-dot');
@@ -197,7 +200,7 @@ function setKpis(d) {
   const trailEl = document.getElementById('nat-trail');
   if (trailEl) trailEl.textContent = fmtPct(d.national.trailing_yoy);
   const dateEl = document.getElementById('nat-date');
-  if (dateEl) dateEl.textContent = d.national.centered_12m_date || '—';
+  if (dateEl) dateEl.textContent = d.national.trailing_yoy_date || '—';
 }
 
 // ---------- Init ----------

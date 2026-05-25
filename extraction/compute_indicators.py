@@ -123,6 +123,7 @@ print(f"Reference log(NO2) 2019: {ref_log_2019:.6f} [mean of log, not log of mea
 
 natl_m["centered_12m"] = natl_m.log_no2.rolling(12, center=True, min_periods=12).mean()
 natl_m["log_dev_2019"] = (natl_m.centered_12m - ref_log_2019) * 100
+natl_m["centered_yoy"] = (natl_m.centered_12m - natl_m.centered_12m.shift(12)) * 100
 
 # Trailing 12-month
 natl_m["trailing_12m"] = natl_m.log_no2.rolling(12, min_periods=12).mean()
@@ -153,12 +154,14 @@ for roi in ROI_IDS:
     ref_log_roi = log_s.loc["2019":"2019"].mean()
     c12 = log_s.rolling(12, center=True, min_periods=12).mean()
     dev = (c12 - ref_log_roi) * 100
+    c12_yoy = (c12 - c12.shift(12)) * 100
     t12 = log_s.rolling(12, min_periods=12).mean()
     t12_yoy = (t12 - t12.shift(12)) * 100
     for i, (date, row_val) in enumerate(sub.iterrows()):
         c12_rows.append({
             "date": date, "roi": roi,
             "log_dev_2019": float(dev.iloc[i]) if not np.isnan(dev.iloc[i]) else np.nan,
+            "centered_yoy": float(c12_yoy.iloc[i]) if not np.isnan(c12_yoy.iloc[i]) else np.nan,
             "trailing_yoy": float(t12_yoy.iloc[i]) if not np.isnan(t12_yoy.iloc[i]) else np.nan,
             "no2_monthly": float(row_val.no2_mean),
         })

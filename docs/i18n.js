@@ -10,22 +10,16 @@ const STRINGS = {
   'updated':              { en: 'Updated',                             es: 'Actualizado' },
 
   // ── National panel ──────────────────────────────────────────────
-  'national-title':       { en: "National aggregate — the paper’s indicator",
-                            es: "Agregado nacional — indicador del paper" },
-  'kpi-c12':              { en: 'Centered 12-month',                   es: 'Centrado 12 meses' },
+  ‘national-title’:       { en: ‘National aggregate — year-over-year growth’,
+                            es: ‘Agregado nacional — crecimiento interanual’ },
+  ‘kpi-c12-yoy’:          { en: ‘Centered 12m YoY’,                    es: ‘Centrado 12m interanual’ },
   'kpi-trail':            { en: 'Trailing 12m YoY',                    es: 'Rezagado 12m interanual' },
   'kpi-asof':             { en: 'As of',                               es: 'Al' },
-  'caption-monthly':      { en: '<b>Centered 12-month rolling NO₂</b>, log deviation from 2019 mean (%). This is Figure 2 from the paper, updated monthly. Population-weighted national aggregate. Dashed line = Dec 2025 (gasolinazo). 0 = 2019 baseline.',
-                            es: '<b>NO₂ promedio centrado de 12 meses</b>, desviación logarítmica respecto a la media de 2019 (%). Figura 2 del paper, actualizada mensualmente. Agregado nacional ponderado por población. Línea punteada = dic. 2025 (gasolinazo). 0 = línea base 2019.' },
-
-  // ── Trailing 12m supplement ──────────────────────────────────────
-  'trailing-title':       { en: 'Trailing 12-month year-over-year',    es: 'Interanual rezagado de 12 meses' },
-  'caption-trailing':     { en: '<b>Trailing 12-month YoY growth</b> in log points (%). Negative = economic activity contracting vs prior year. Dashed line = Dec 2025 (gasolinazo).',
-                            es: '<b>Crecimiento interanual rezagado de 12 meses</b> en puntos logarítmicos (%). Negativo = actividad económica contrayéndose vs año anterior. Línea punteada = dic. 2025 (gasolinazo).' },
+  'caption-monthly':      { en: '<b>Year-over-year growth</b> of 12-month rolling NO₂ (%). Population-weighted national aggregate. Zero = no change vs prior year. Dashed line = Dec 2025 (gasolinazo).',
+                            es: '<b>Crecimiento interanual</b> del NO₂ promedio de 12 meses (%). Agregado nacional ponderado por población. Cero = sin cambio vs año anterior. Línea punteada = dic. 2025 (gasolinazo).' },
 
   // ── Metro section ──────────────────────────────────────────────
   'metros-title':         { en: 'Metropolitan areas',                  es: 'Áreas metropolitanas' },
-  'log-pts-label':        { en: 'log pts vs 2019 at',                  es: 'pts log vs 2019 al' },
 
   // ── Footer ─────────────────────────────────────────────────────
   'footer':               { en: 'Data: Copernicus Sentinel-5P TROPOMI OFFL L3 NO₂ · Updated every Sunday 06:00 UTC via GitHub Actions · Code MIT, data CC-BY 4.0 ·',
@@ -33,19 +27,16 @@ const STRINGS = {
 
   // ── Chart labels (used via T()) ─────────────────────────────────
   'chart-trailing':       { en: 'Trailing 12m YoY',                    es: 'Rezagado 12m interanual' },
-  'chart-centered':       { en: 'Centered 12-month (log dev from 2019)', es: 'Centrado 12 meses (desv. log vs 2019)' },
-  'chart-yaxis-logdev':   { en: 'Log dev from 2019 (%)',               es: 'Desv. log vs 2019 (%)' },
+  'chart-centered':       { en: 'Centered 12m YoY',                    es: 'Centrado 12m interanual' },
   'chart-yaxis-yoy':      { en: 'YoY anomaly (%)',                     es: 'Anomalía interanual (%)' },
-  'chart-28d-yoy':        { en: '28-day rolling YoY (%)',              es: 'Interanual móvil 28 días (%)' },
-  'log-pts':              { en: 'log pts',                             es: 'pts log' },
 
   // ── Metro detail page ──────────────────────────────────────────
   'back-link':            { en: '← all metros',                   es: '← todas las ciudades' },
-  'kpi-dept':             { en: 'Department',                          es: 'Departamento' },
-  'metro-chart-c12':      { en: "Paper’s indicator: centered 12-month", es: 'Indicador del paper: centrado 12 meses' },
+  ‘kpi-dept’:             { en: ‘Department’,                          es: ‘Departamento’ },
+  ‘metro-chart-c12’:      { en: ‘Year-over-year growth’,               es: ‘Crecimiento interanual’ },
   'metro-chart-lvl':      { en: 'Monthly NO₂ level',             es: 'Nivel mensual de NO₂' },
-  'caption-metro-c12':    { en: 'log(centered 12m NO₂ / 2019 mean) × 100. Zero = 2019 baseline.',
-                            es: 'log(NO₂ centrado 12m / media 2019) × 100. Cero = línea base 2019.' },
+  'caption-metro-c12':    { en: 'YoY growth of centered and trailing 12-month NO₂ (%). Zero = no change vs prior year.',
+                            es: 'Crecimiento interanual del NO₂ centrado y rezagado de 12 meses (%). Cero = sin cambio vs año anterior.' },
   'caption-metro-lvl':    { en: 'Monthly mean NO₂ (mol/m²).',  es: 'NO₂ promedio mensual (mol/m²).' },
   'download-csv':         { en: 'Download CSV',                       es: 'Descargar CSV' },
 };

@@ -27,7 +27,7 @@
       <h2 id="metro-name">La Paz–El Alto</h2>
       <div class="kpis">
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-dept">Department</span> <span class="kpi-val" id="metro-meta">—</span></span>
-        <span class="kpi"><span class="kpi-label" data-i18n="kpi-c12">Centered 12m</span> <span class="kpi-val" id="current-c12">—</span> <span class="dot" id="current-dot"></span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-c12-yoy">Centered 12m YoY</span> <span class="kpi-val" id="current-c12">—</span> <span class="dot" id="current-dot"></span></span>
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-asof">As of</span> <span class="kpi-val" id="c12-date">—</span></span>
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-trail">Trailing 12m YoY</span> <span class="kpi-val" id="current-trail" style="color:var(--muted)">—</span></span>
       </div>
@@ -36,9 +36,9 @@
 
   <section class="detail-grid">
     <div class="panel">
-      <h2 data-i18n="metro-chart-c12">Paper's indicator: centered 12-month</h2>
+      <h2 data-i18n="metro-chart-c12">Year-over-year growth</h2>
       <div class="chart-wrap"><canvas id="chart-monthly"></canvas></div>
-      <p class="caption" data-i18n="caption-metro-c12">log(centered 12m NO₂ / 2019 mean) × 100. Zero = 2019 baseline.</p>
+      <p class="caption" data-i18n="caption-metro-c12">YoY growth of centered and trailing 12-month NO₂ (%). Zero = no change vs prior year.</p>
     </div>
     <div class="panel">
       <h2 data-i18n="metro-chart-lvl">Monthly NO₂ level</h2>

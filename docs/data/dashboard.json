@@ -2,672 +2,253 @@
   "last_updated": "2026-05-25",
   "gasolinazo_date": "2025-12-17",
   "reference_year": 2019,
-  "note": "centered_12m = log(12-month centered rolling NO2 / 2019 mean) x 100. This is the paper's headline indicator (Figure 2). trailing_yoy = trailing 12-month YoY growth in log points. weekly_yoy_28d = 28-day rolling YoY for early warning.",
+  "note": "centered_yoy = YoY growth of 12-month centered rolling NO2 (log points %). trailing_yoy = trailing 12-month YoY growth (log points %). Both are approximate percentage changes in NO2 activity vs same period last year.",
   "national": {
-    "centered_12m": -0.7,
-    "centered_12m_date": "2025-12",
+    "centered_yoy": -11.5,
+    "centered_yoy_date": "2025-12",
     "trailing_yoy": -11.5,
-    "weekly_yoy_28d": 9.2,
-    "weekly_date": "2026-05-17",
+    "trailing_yoy_date": "2026-05",
     "status": "red",
     "monthly_series": [
       {
         "month": "2022-06",
-        "log_dev_2019": 8.0,
+        "centered_yoy": 8.4,
         "trailing_yoy": 8.7
       },
       {
         "month": "2022-07",
-        "log_dev_2019": 8.2,
+        "centered_yoy": 8.5,
         "trailing_yoy": 8.0
       },
       {
         "month": "2022-08",
-        "log_dev_2019": 8.9,
+        "centered_yoy": 8.4,
         "trailing_yoy": 6.6
       },
       {
         "month": "2022-09",
-        "log_dev_2019": 7.8,
+        "centered_yoy": 7.0,
         "trailing_yoy": 8.7
       },
       {
         "month": "2022-10",
-        "log_dev_2019": 6.3,
+        "centered_yoy": 4.3,
         "trailing_yoy": 8.0
       },
       {
         "month": "2022-11",
-        "log_dev_2019": 6.6,
+        "centered_yoy": 4.4,
         "trailing_yoy": 8.4
       },
       {
         "month": "2022-12",
-        "log_dev_2019": 7.7,
+        "centered_yoy": 4.7,
         "trailing_yoy": 8.5
       },
       {
         "month": "2023-01",
-        "log_dev_2019": 8.9,
+        "centered_yoy": 4.7,
         "trailing_yoy": 8.4
       },
       {
         "month": "2023-02",
-        "log_dev_2019": 9.6,
+        "centered_yoy": 4.7,
         "trailing_yoy": 7.0
       },
       {
         "month": "2023-03",
-        "log_dev_2019": 10.2,
+        "centered_yoy": 4.9,
         "trailing_yoy": 4.3
       },
       {
         "month": "2023-04",
-        "log_dev_2019": 10.7,
+        "centered_yoy": 4.1,
         "trailing_yoy": 4.4
       },
       {
         "month": "2023-05",
-        "log_dev_2019": 11.9,
+        "centered_yoy": 4.4,
         "trailing_yoy": 4.7
       },
       {
         "month": "2023-06",
-        "log_dev_2019": 12.0,
+        "centered_yoy": 3.9,
         "trailing_yoy": 4.7
       },
       {
         "month": "2023-07",
-        "log_dev_2019": 10.4,
+        "centered_yoy": 2.1,
         "trailing_yoy": 4.7
       },
       {
         "month": "2023-08",
-        "log_dev_2019": 9.0,
+        "centered_yoy": 0.0,
         "trailing_yoy": 4.9
       },
       {
         "month": "2023-09",
-        "log_dev_2019": 8.5,
+        "centered_yoy": 0.7,
         "trailing_yoy": 4.1
       },
       {
         "month": "2023-10",
-        "log_dev_2019": 8.3,
+        "centered_yoy": 2.1,
         "trailing_yoy": 4.4
       },
       {
         "month": "2023-11",
-        "log_dev_2019": 7.4,
+        "centered_yoy": 0.8,
         "trailing_yoy": 3.9
       },
       {
         "month": "2023-12",
-        "log_dev_2019": 6.6,
+        "centered_yoy": -1.1,
         "trailing_yoy": 2.1
       },
       {
         "month": "2024-01",
-        "log_dev_2019": 6.9,
+        "centered_yoy": -2.0,
         "trailing_yoy": 0.0
       },
       {
         "month": "2024-02",
-        "log_dev_2019": 6.5,
+        "centered_yoy": -3.1,
         "trailing_yoy": 0.7
       },
       {
         "month": "2024-03",
-        "log_dev_2019": 5.9,
+        "centered_yoy": -4.3,
         "trailing_yoy": 2.1
       },
       {
         "month": "2024-04",
-        "log_dev_2019": 6.7,
+        "centered_yoy": -3.9,
         "trailing_yoy": 0.8
       },
       {
         "month": "2024-05",
-        "log_dev_2019": 6.6,
+        "centered_yoy": -5.3,
         "trailing_yoy": -1.1
       },
       {
         "month": "2024-06",
-        "log_dev_2019": 6.0,
+        "centered_yoy": -6.0,
         "trailing_yoy": -2.0
       },
       {
         "month": "2024-07",
-        "log_dev_2019": 7.0,
+        "centered_yoy": -3.4,
         "trailing_yoy": -3.1
       },
       {
         "month": "2024-08",
-        "log_dev_2019": 8.8,
+        "centered_yoy": -0.2,
         "trailing_yoy": -4.3
       },
       {
         "month": "2024-09",
-        "log_dev_2019": 10.1,
+        "centered_yoy": 1.6,
         "trailing_yoy": -3.9
       },
       {
         "month": "2024-10",
-        "log_dev_2019": 10.2,
+        "centered_yoy": 1.8,
         "trailing_yoy": -5.3
       },
       {
         "month": "2024-11",
-        "log_dev_2019": 9.9,
+        "centered_yoy": 2.5,
         "trailing_yoy": -6.0
       },
       {
         "month": "2024-12",
-        "log_dev_2019": 10.8,
+        "centered_yoy": 4.2,
         "trailing_yoy": -3.4
       },
       {
         "month": "2025-01",
-        "log_dev_2019": 7.3,
+        "centered_yoy": 0.4,
         "trailing_yoy": -0.2
       },
       {
         "month": "2025-02",
-        "log_dev_2019": 6.7,
+        "centered_yoy": 0.2,
         "trailing_yoy": 1.6
       },
       {
         "month": "2025-03",
-        "log_dev_2019": 6.0,
+        "centered_yoy": 0.1,
         "trailing_yoy": 1.8
       },
       {
         "month": "2025-04",
-        "log_dev_2019": 4.5,
+        "centered_yoy": -2.3,
         "trailing_yoy": 2.5
       },
       {
         "month": "2025-05",
-        "log_dev_2019": 3.1,
+        "centered_yoy": -3.5,
         "trailing_yoy": 4.2
       },
       {
         "month": "2025-06",
-        "log_dev_2019": 2.2,
+        "centered_yoy": -3.8,
         "trailing_yoy": 0.4
       },
       {
         "month": "2025-07",
-        "log_dev_2019": 2.8,
+        "centered_yoy": -4.2,
         "trailing_yoy": 0.2
       },
       {
         "month": "2025-08",
-        "log_dev_2019": 1.7,
+        "centered_yoy": -7.0,
         "trailing_yoy": 0.1
       },
       {
         "month": "2025-09",
-        "log_dev_2019": 2.7,
+        "centered_yoy": -7.3,
         "trailing_yoy": -2.3
       },
       {
         "month": "2025-10",
-        "log_dev_2019": 5.0,
+        "centered_yoy": -5.1,
         "trailing_yoy": -3.5
       },
       {
         "month": "2025-11",
-        "log_dev_2019": 3.6,
+        "centered_yoy": -6.3,
         "trailing_yoy": -3.8
       },
       {
         "month": "2025-12",
-        "log_dev_2019": -0.7,
+        "centered_yoy": -11.5,
         "trailing_yoy": -4.2
       },
       {
         "month": "2026-01",
-        "log_dev_2019": null,
+        "centered_yoy": null,
         "trailing_yoy": -7.0
       },
       {
         "month": "2026-02",
-        "log_dev_2019": null,
+        "centered_yoy": null,
         "trailing_yoy": -7.3
       },
       {
         "month": "2026-03",
-        "log_dev_2019": null,
+        "centered_yoy": null,
         "trailing_yoy": -5.1
       },
       {
         "month": "2026-04",
-        "log_dev_2019": null,
+        "centered_yoy": null,
         "trailing_yoy": -6.3
       },
       {
         "month": "2026-05",
-        "log_dev_2019": null,
+        "centered_yoy": null,
         "trailing_yoy": -11.5
-      }
-    ],
-    "weekly_series": [
-      {
-        "week": "2024-05-19",
-        "yoy_28d": -5.9
-      },
-      {
-        "week": "2024-05-26",
-        "yoy_28d": -10.8
-      },
-      {
-        "week": "2024-06-02",
-        "yoy_28d": 10.4
-      },
-      {
-        "week": "2024-06-09",
-        "yoy_28d": -3.4
-      },
-      {
-        "week": "2024-06-16",
-        "yoy_28d": 4.3
-      },
-      {
-        "week": "2024-06-23",
-        "yoy_28d": 5.7
-      },
-      {
-        "week": "2024-06-30",
-        "yoy_28d": 2.0
-      },
-      {
-        "week": "2024-07-07",
-        "yoy_28d": 7.2
-      },
-      {
-        "week": "2024-07-14",
-        "yoy_28d": -12.7
-      },
-      {
-        "week": "2024-07-21",
-        "yoy_28d": -3.5
-      },
-      {
-        "week": "2024-07-28",
-        "yoy_28d": -11.9
-      },
-      {
-        "week": "2024-08-04",
-        "yoy_28d": -11.8
-      },
-      {
-        "week": "2024-08-11",
-        "yoy_28d": -2.6
-      },
-      {
-        "week": "2024-08-18",
-        "yoy_28d": -2.8
-      },
-      {
-        "week": "2024-08-25",
-        "yoy_28d": -2.1
-      },
-      {
-        "week": "2024-09-01",
-        "yoy_28d": -10.6
-      },
-      {
-        "week": "2024-09-08",
-        "yoy_28d": -2.2
-      },
-      {
-        "week": "2024-09-15",
-        "yoy_28d": -5.4
-      },
-      {
-        "week": "2024-09-22",
-        "yoy_28d": -11.8
-      },
-      {
-        "week": "2024-09-29",
-        "yoy_28d": -5.5
-      },
-      {
-        "week": "2024-10-06",
-        "yoy_28d": -16.1
-      },
-      {
-        "week": "2024-10-13",
-        "yoy_28d": -17.9
-      },
-      {
-        "week": "2024-10-20",
-        "yoy_28d": -16.4
-      },
-      {
-        "week": "2024-10-27",
-        "yoy_28d": -22.5
-      },
-      {
-        "week": "2024-11-03",
-        "yoy_28d": -6.1
-      },
-      {
-        "week": "2024-11-10",
-        "yoy_28d": -5.0
-      },
-      {
-        "week": "2024-11-17",
-        "yoy_28d": -5.1
-      },
-      {
-        "week": "2024-11-24",
-        "yoy_28d": 3.4
-      },
-      {
-        "week": "2024-12-01",
-        "yoy_28d": -7.1
-      },
-      {
-        "week": "2024-12-08",
-        "yoy_28d": -11.3
-      },
-      {
-        "week": "2024-12-15",
-        "yoy_28d": -4.9
-      },
-      {
-        "week": "2024-12-22",
-        "yoy_28d": -2.6
-      },
-      {
-        "week": "2024-12-29",
-        "yoy_28d": -1.7
-      },
-      {
-        "week": "2025-01-05",
-        "yoy_28d": 6.4
-      },
-      {
-        "week": "2025-01-12",
-        "yoy_28d": 16.7
-      },
-      {
-        "week": "2025-01-19",
-        "yoy_28d": 21.6
-      },
-      {
-        "week": "2025-01-26",
-        "yoy_28d": 19.8
-      },
-      {
-        "week": "2025-02-02",
-        "yoy_28d": 15.1
-      },
-      {
-        "week": "2025-02-09",
-        "yoy_28d": 11.0
-      },
-      {
-        "week": "2025-02-16",
-        "yoy_28d": 11.4
-      },
-      {
-        "week": "2025-02-23",
-        "yoy_28d": 14.8
-      },
-      {
-        "week": "2025-03-02",
-        "yoy_28d": 11.0
-      },
-      {
-        "week": "2025-03-09",
-        "yoy_28d": 0.8
-      },
-      {
-        "week": "2025-03-16",
-        "yoy_28d": -7.7
-      },
-      {
-        "week": "2025-03-23",
-        "yoy_28d": -0.3
-      },
-      {
-        "week": "2025-03-30",
-        "yoy_28d": -8.7
-      },
-      {
-        "week": "2025-04-06",
-        "yoy_28d": -3.1
-      },
-      {
-        "week": "2025-04-13",
-        "yoy_28d": -3.4
-      },
-      {
-        "week": "2025-04-20",
-        "yoy_28d": -10.3
-      },
-      {
-        "week": "2025-04-27",
-        "yoy_28d": -11.6
-      },
-      {
-        "week": "2025-05-04",
-        "yoy_28d": -0.9
-      },
-      {
-        "week": "2025-05-11",
-        "yoy_28d": -11.3
-      },
-      {
-        "week": "2025-05-18",
-        "yoy_28d": -9.1
-      },
-      {
-        "week": "2025-05-25",
-        "yoy_28d": 5.6
-      },
-      {
-        "week": "2025-06-01",
-        "yoy_28d": -3.6
-      },
-      {
-        "week": "2025-06-08",
-        "yoy_28d": -1.0
-      },
-      {
-        "week": "2025-06-15",
-        "yoy_28d": -15.7
-      },
-      {
-        "week": "2025-06-22",
-        "yoy_28d": -30.1
-      },
-      {
-        "week": "2025-06-29",
-        "yoy_28d": -45.0
-      },
-      {
-        "week": "2025-07-06",
-        "yoy_28d": -40.9
-      },
-      {
-        "week": "2025-07-13",
-        "yoy_28d": -11.5
-      },
-      {
-        "week": "2025-07-20",
-        "yoy_28d": -13.8
-      },
-      {
-        "week": "2025-07-27",
-        "yoy_28d": -8.2
-      },
-      {
-        "week": "2025-08-03",
-        "yoy_28d": -6.2
-      },
-      {
-        "week": "2025-08-10",
-        "yoy_28d": -17.1
-      },
-      {
-        "week": "2025-08-17",
-        "yoy_28d": -10.2
-      },
-      {
-        "week": "2025-08-24",
-        "yoy_28d": -10.1
-      },
-      {
-        "week": "2025-08-31",
-        "yoy_28d": -15.1
-      },
-      {
-        "week": "2025-09-07",
-        "yoy_28d": -25.0
-      },
-      {
-        "week": "2025-09-14",
-        "yoy_28d": -17.1
-      },
-      {
-        "week": "2025-09-21",
-        "yoy_28d": -9.8
-      },
-      {
-        "week": "2025-09-28",
-        "yoy_28d": 4.2
-      },
-      {
-        "week": "2025-10-05",
-        "yoy_28d": 4.8
-      },
-      {
-        "week": "2025-10-12",
-        "yoy_28d": -3.3
-      },
-      {
-        "week": "2025-10-19",
-        "yoy_28d": -9.4
-      },
-      {
-        "week": "2025-10-26",
-        "yoy_28d": -10.5
-      },
-      {
-        "week": "2025-11-09",
-        "yoy_28d": -26.6
-      },
-      {
-        "week": "2025-11-16",
-        "yoy_28d": -25.7
-      },
-      {
-        "week": "2025-11-23",
-        "yoy_28d": -31.0
-      },
-      {
-        "week": "2025-11-30",
-        "yoy_28d": -27.9
-      },
-      {
-        "week": "2025-12-07",
-        "yoy_28d": -20.9
-      },
-      {
-        "week": "2025-12-14",
-        "yoy_28d": -9.7
-      },
-      {
-        "week": "2025-12-21",
-        "yoy_28d": 3.8
-      },
-      {
-        "week": "2025-12-28",
-        "yoy_28d": 9.4
-      },
-      {
-        "week": "2026-01-04",
-        "yoy_28d": 7.5
-      },
-      {
-        "week": "2026-01-11",
-        "yoy_28d": 7.2
-      },
-      {
-        "week": "2026-01-18",
-        "yoy_28d": -0.2
-      },
-      {
-        "week": "2026-01-25",
-        "yoy_28d": -1.1
-      },
-      {
-        "week": "2026-02-01",
-        "yoy_28d": -9.4
-      },
-      {
-        "week": "2026-02-08",
-        "yoy_28d": -2.3
-      },
-      {
-        "week": "2026-02-15",
-        "yoy_28d": -0.2
-      },
-      {
-        "week": "2026-02-22",
-        "yoy_28d": -4.8
-      },
-      {
-        "week": "2026-03-01",
-        "yoy_28d": -3.4
-      },
-      {
-        "week": "2026-03-08",
-        "yoy_28d": 1.6
-      },
-      {
-        "week": "2026-03-15",
-        "yoy_28d": -1.4
-      },
-      {
-        "week": "2026-03-22",
-        "yoy_28d": 7.3
-      },
-      {
-        "week": "2026-03-29",
-        "yoy_28d": 14.3
-      },
-      {
-        "week": "2026-04-05",
-        "yoy_28d": 8.1
-      },
-      {
-        "week": "2026-04-12",
-        "yoy_28d": 19.5
-      },
-      {
-        "week": "2026-04-19",
-        "yoy_28d": 13.4
-      },
-      {
-        "week": "2026-04-26",
-        "yoy_28d": 16.0
-      },
-      {
-        "week": "2026-05-03",
-        "yoy_28d": 16.4
-      },
-      {
-        "week": "2026-05-10",
-        "yoy_28d": 18.9
-      },
-      {
-        "week": "2026-05-17",
-        "yoy_28d": 9.2
       }
     ]
   },
@@ -676,8 +257,8 @@
       "name": "La Paz\u2013El Alto",
       "dept": "La Paz",
       "altitude": "highland",
-      "centered_12m": 11.4,
-      "centered_12m_date": "2025-12",
+      "centered_yoy": -12.6,
+      "centered_yoy_date": "2025-12",
       "trailing_yoy": -12.6,
       "status": "red",
       "sparkline_28d": [
@@ -737,289 +318,289 @@
       "monthly_series": [
         {
           "month": "2022-06",
-          "log_dev_2019": 15.7,
+          "centered_yoy": 5.6,
           "trailing_yoy": 6.8,
           "no2": 2.0009077067646147e-05
         },
         {
           "month": "2022-07",
-          "log_dev_2019": 16.4,
+          "centered_yoy": 8.3,
           "trailing_yoy": 8.3,
           "no2": 3.311843406241306e-05
         },
         {
           "month": "2022-08",
-          "log_dev_2019": 19.4,
+          "centered_yoy": 13.0,
           "trailing_yoy": 7.8,
           "no2": 2.9947625255712592e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": 20.4,
+          "centered_yoy": 13.8,
           "trailing_yoy": 10.2,
           "no2": 2.296963496158285e-05
         },
         {
           "month": "2022-10",
-          "log_dev_2019": 17.9,
+          "centered_yoy": 8.9,
           "trailing_yoy": 8.9,
           "no2": 2.1645219769109232e-05
         },
         {
           "month": "2022-11",
-          "log_dev_2019": 18.7,
+          "centered_yoy": 9.3,
           "trailing_yoy": 5.6,
           "no2": 1.3510897545183312e-05
         },
         {
           "month": "2022-12",
-          "log_dev_2019": 22.1,
+          "centered_yoy": 12.2,
           "trailing_yoy": 8.3,
           "no2": 1.1802664412501936e-05
         },
         {
           "month": "2023-01",
-          "log_dev_2019": 25.5,
+          "centered_yoy": 15.2,
           "trailing_yoy": 13.0,
           "no2": 1.1450476196853458e-05
         },
         {
           "month": "2023-02",
-          "log_dev_2019": 26.3,
+          "centered_yoy": 14.2,
           "trailing_yoy": 13.8,
           "no2": 1.0974714524049816e-05
         },
         {
           "month": "2023-03",
-          "log_dev_2019": 26.8,
+          "centered_yoy": 13.5,
           "trailing_yoy": 8.9,
           "no2": 8.210650135911984e-06
         },
         {
           "month": "2023-04",
-          "log_dev_2019": 28.3,
+          "centered_yoy": 14.1,
           "trailing_yoy": 9.3,
           "no2": 1.9987905513531033e-05
         },
         {
           "month": "2023-05",
-          "log_dev_2019": 26.5,
+          "centered_yoy": 10.5,
           "trailing_yoy": 12.2,
           "no2": 2.7226986322069666e-05
         },
         {
           "month": "2023-06",
-          "log_dev_2019": 26.5,
+          "centered_yoy": 10.8,
           "trailing_yoy": 15.2,
           "no2": 2.9943303145528168e-05
         },
         {
           "month": "2023-07",
-          "log_dev_2019": 23.7,
+          "centered_yoy": 7.3,
           "trailing_yoy": 14.2,
           "no2": 3.646144870969624e-05
         },
         {
           "month": "2023-08",
-          "log_dev_2019": 20.4,
+          "centered_yoy": 1.0,
           "trailing_yoy": 13.5,
           "no2": 3.1922948413812895e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": 16.2,
+          "centered_yoy": -4.3,
           "trailing_yoy": 14.1,
           "no2": 2.7239369484932797e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": 15.2,
+          "centered_yoy": -2.7,
           "trailing_yoy": 10.5,
           "no2": 1.7569257852090653e-05
         },
         {
           "month": "2023-11",
-          "log_dev_2019": 11.2,
+          "centered_yoy": -7.5,
           "trailing_yoy": 10.8,
           "no2": 1.3547709063217628e-05
         },
         {
           "month": "2023-12",
-          "log_dev_2019": 9.6,
+          "centered_yoy": -12.5,
           "trailing_yoy": 7.3,
           "no2": 8.403356497918399e-06
         },
         {
           "month": "2024-01",
-          "log_dev_2019": 10.2,
+          "centered_yoy": -15.3,
           "trailing_yoy": 1.0,
           "no2": 7.678942501751374e-06
         },
         {
           "month": "2024-02",
-          "log_dev_2019": 8.5,
+          "centered_yoy": -17.8,
           "trailing_yoy": -4.3,
           "no2": 6.61374990625109e-06
         },
         {
           "month": "2024-03",
-          "log_dev_2019": 6.8,
+          "centered_yoy": -20.0,
           "trailing_yoy": -2.7,
           "no2": 7.332358025228613e-06
         },
         {
           "month": "2024-04",
-          "log_dev_2019": 6.5,
+          "centered_yoy": -21.8,
           "trailing_yoy": -7.5,
           "no2": 1.2305295241782848e-05
         },
         {
           "month": "2024-05",
-          "log_dev_2019": 7.8,
+          "centered_yoy": -18.7,
           "trailing_yoy": -12.5,
           "no2": 2.2577805369360083e-05
         },
         {
           "month": "2024-06",
-          "log_dev_2019": 7.4,
+          "centered_yoy": -19.1,
           "trailing_yoy": -15.3,
           "no2": 3.212163701614411e-05
         },
         {
           "month": "2024-07",
-          "log_dev_2019": 10.3,
+          "centered_yoy": -13.4,
           "trailing_yoy": -17.8,
           "no2": 2.9733910607021216e-05
         },
         {
           "month": "2024-08",
-          "log_dev_2019": 14.9,
+          "centered_yoy": -5.5,
           "trailing_yoy": -20.0,
           "no2": 2.6136998946636854e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": 17.7,
+          "centered_yoy": 1.5,
           "trailing_yoy": -21.8,
           "no2": 2.6046323970284184e-05
         },
         {
           "month": "2024-10",
-          "log_dev_2019": 20.8,
+          "centered_yoy": 5.6,
           "trailing_yoy": -18.7,
           "no2": 2.0666037428859405e-05
         },
         {
           "month": "2024-11",
-          "log_dev_2019": 22.4,
+          "centered_yoy": 11.2,
           "trailing_yoy": -19.1,
           "no2": 1.2951555835861869e-05
         },
         {
           "month": "2024-12",
-          "log_dev_2019": 24.0,
+          "centered_yoy": 14.4,
           "trailing_yoy": -13.4,
           "no2": 1.1870279521643692e-05
         },
         {
           "month": "2025-01",
-          "log_dev_2019": 18.9,
+          "centered_yoy": 8.7,
           "trailing_yoy": -5.5,
           "no2": 1.328302566126588e-05
         },
         {
           "month": "2025-02",
-          "log_dev_2019": 18.5,
+          "centered_yoy": 10.0,
           "trailing_yoy": 1.5,
           "no2": 9.280650997985978e-06
         },
         {
           "month": "2025-03",
-          "log_dev_2019": 19.0,
+          "centered_yoy": 12.2,
           "trailing_yoy": 5.6,
           "no2": 1.0653853885375916e-05
         },
         {
           "month": "2025-04",
-          "log_dev_2019": 19.4,
+          "centered_yoy": 13.0,
           "trailing_yoy": 11.2,
           "no2": 1.4841158252923977e-05
         },
         {
           "month": "2025-05",
-          "log_dev_2019": 19.1,
+          "centered_yoy": 11.3,
           "trailing_yoy": 14.4,
           "no2": 2.730856328261403e-05
         },
         {
           "month": "2025-06",
-          "log_dev_2019": 19.9,
+          "centered_yoy": 12.5,
           "trailing_yoy": 8.7,
           "no2": 1.73956865356428e-05
         },
         {
           "month": "2025-07",
-          "log_dev_2019": 21.6,
+          "centered_yoy": 11.3,
           "trailing_yoy": 10.0,
           "no2": 2.857559670457406e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": 19.8,
+          "centered_yoy": 4.9,
           "trailing_yoy": 12.2,
           "no2": 2.781519588947886e-05
         },
         {
           "month": "2025-09",
-          "log_dev_2019": 21.5,
+          "centered_yoy": 3.8,
           "trailing_yoy": 13.0,
           "no2": 2.7293448711656133e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": 21.5,
+          "centered_yoy": 0.7,
           "trailing_yoy": 11.3,
           "no2": 1.991656157657399e-05
         },
         {
           "month": "2025-11",
-          "log_dev_2019": 18.7,
+          "centered_yoy": -3.6,
           "trailing_yoy": 12.5,
           "no2": 1.4278435084568702e-05
         },
         {
           "month": "2025-12",
-          "log_dev_2019": 11.4,
+          "centered_yoy": -12.6,
           "trailing_yoy": 11.3,
           "no2": 1.4482226261454284e-05
         },
         {
           "month": "2026-01",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 4.9,
           "no2": 1.0675534150817368e-05
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 3.8,
           "no2": 1.1475616985364693e-05
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 0.7,
           "no2": 1.0625338326863752e-05
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -3.6,
           "no2": 1.0636940807008009e-05
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -12.6,
           "no2": 1.128101785169819e-05
         }
@@ -1029,8 +610,8 @@
       "name": "Santa Cruz",
       "dept": "Santa Cruz",
       "altitude": "lowland",
-      "centered_12m": -0.2,
-      "centered_12m_date": "2025-12",
+      "centered_yoy": -11.4,
+      "centered_yoy_date": "2025-12",
       "trailing_yoy": -11.4,
       "status": "red",
       "sparkline_28d": [
@@ -1090,289 +671,289 @@
       "monthly_series": [
         {
           "month": "2022-06",
-          "log_dev_2019": 18.5,
+          "centered_yoy": 10.7,
           "trailing_yoy": 12.4,
           "no2": 1.5339416287970224e-05
         },
         {
           "month": "2022-07",
-          "log_dev_2019": 19.3,
+          "centered_yoy": 10.5,
           "trailing_yoy": 12.7,
           "no2": 1.7266105502154854e-05
         },
         {
           "month": "2022-08",
-          "log_dev_2019": 17.3,
+          "centered_yoy": 4.4,
           "trailing_yoy": 10.1,
           "no2": 2.8459847440975493e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": 14.3,
+          "centered_yoy": 0.3,
           "trailing_yoy": 13.2,
           "no2": 4.122036450157947e-05
         },
         {
           "month": "2022-10",
-          "log_dev_2019": 13.2,
+          "centered_yoy": -1.7,
           "trailing_yoy": 10.7,
           "no2": 2.4090762040457223e-05
         },
         {
           "month": "2022-11",
-          "log_dev_2019": 13.2,
+          "centered_yoy": -0.8,
           "trailing_yoy": 10.7,
           "no2": 1.863445481346271e-05
         },
         {
           "month": "2022-12",
-          "log_dev_2019": 9.6,
+          "centered_yoy": -4.8,
           "trailing_yoy": 10.5,
           "no2": 1.7422086417055705e-05
         },
         {
           "month": "2023-01",
-          "log_dev_2019": 5.8,
+          "centered_yoy": -10.5,
           "trailing_yoy": 4.4,
           "no2": 1.2728851101527428e-05
         },
         {
           "month": "2023-02",
-          "log_dev_2019": 5.7,
+          "centered_yoy": -11.0,
           "trailing_yoy": 0.3,
           "no2": 9.833017075253513e-06
         },
         {
           "month": "2023-03",
-          "log_dev_2019": 6.3,
+          "centered_yoy": -10.1,
           "trailing_yoy": -1.7,
           "no2": 1.0989116441037196e-05
         },
         {
           "month": "2023-04",
-          "log_dev_2019": 6.1,
+          "centered_yoy": -13.0,
           "trailing_yoy": -0.8,
           "no2": 9.75773883518855e-06
         },
         {
           "month": "2023-05",
-          "log_dev_2019": 9.5,
+          "centered_yoy": -9.2,
           "trailing_yoy": -4.8,
           "no2": 9.35936211272543e-06
         },
         {
           "month": "2023-06",
-          "log_dev_2019": 11.2,
+          "centered_yoy": -7.3,
           "trailing_yoy": -10.5,
           "no2": 9.66681575083312e-06
         },
         {
           "month": "2023-07",
-          "log_dev_2019": 10.0,
+          "centered_yoy": -9.3,
           "trailing_yoy": -11.0,
           "no2": 1.7039058069903175e-05
         },
         {
           "month": "2023-08",
-          "log_dev_2019": 10.3,
+          "centered_yoy": -7.0,
           "trailing_yoy": -10.1,
           "no2": 3.0656258299828615e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": 12.7,
+          "centered_yoy": -1.6,
           "trailing_yoy": -13.0,
           "no2": 4.00456296364152e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": 12.8,
+          "centered_yoy": -0.3,
           "trailing_yoy": -9.2,
           "no2": 3.645195693884564e-05
         },
         {
           "month": "2023-11",
-          "log_dev_2019": 13.2,
+          "centered_yoy": -0.1,
           "trailing_yoy": -7.3,
           "no2": 2.280297408365015e-05
         },
         {
           "month": "2023-12",
-          "log_dev_2019": 13.3,
+          "centered_yoy": 3.7,
           "trailing_yoy": -9.3,
           "no2": 1.504183298992948e-05
         },
         {
           "month": "2024-01",
-          "log_dev_2019": 12.7,
+          "centered_yoy": 6.9,
           "trailing_yoy": -7.0,
           "no2": 1.3195753824119349e-05
         },
         {
           "month": "2024-02",
-          "log_dev_2019": 15.0,
+          "centered_yoy": 9.4,
           "trailing_yoy": -1.6,
           "no2": 1.313413070668542e-05
         },
         {
           "month": "2024-03",
-          "log_dev_2019": 15.2,
+          "centered_yoy": 8.9,
           "trailing_yoy": -0.3,
           "no2": 1.119614947219626e-05
         },
         {
           "month": "2024-04",
-          "log_dev_2019": 16.7,
+          "centered_yoy": 10.7,
           "trailing_yoy": -0.1,
           "no2": 1.0183722889758516e-05
         },
         {
           "month": "2024-05",
-          "log_dev_2019": 15.0,
+          "centered_yoy": 5.5,
           "trailing_yoy": 3.7,
           "no2": 9.501211610315004e-06
         },
         {
           "month": "2024-06",
-          "log_dev_2019": 13.0,
+          "centered_yoy": 1.8,
           "trailing_yoy": 6.9,
           "no2": 9.017001622101054e-06
         },
         {
           "month": "2024-07",
-          "log_dev_2019": 11.7,
+          "centered_yoy": 1.8,
           "trailing_yoy": 9.4,
           "no2": 2.250761396443121e-05
         },
         {
           "month": "2024-08",
-          "log_dev_2019": 12.3,
+          "centered_yoy": 2.0,
           "trailing_yoy": 8.9,
           "no2": 3.1058862573430664e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": 12.7,
+          "centered_yoy": 0.1,
           "trailing_yoy": 10.7,
           "no2": 4.8410564653279136e-05
         },
         {
           "month": "2024-10",
-          "log_dev_2019": 10.6,
+          "centered_yoy": -2.2,
           "trailing_yoy": 5.5,
           "no2": 2.95379521035684e-05
         },
         {
           "month": "2024-11",
-          "log_dev_2019": 10.2,
+          "centered_yoy": -3.0,
           "trailing_yoy": 1.8,
           "no2": 1.7944417577899748e-05
         },
         {
           "month": "2024-12",
-          "log_dev_2019": 11.2,
+          "centered_yoy": -2.1,
           "trailing_yoy": 1.8,
           "no2": 1.2938664234794e-05
         },
         {
           "month": "2025-01",
-          "log_dev_2019": 11.0,
+          "centered_yoy": -1.7,
           "trailing_yoy": 2.0,
           "no2": 1.4050255473669164e-05
         },
         {
           "month": "2025-02",
-          "log_dev_2019": 9.2,
+          "centered_yoy": -5.8,
           "trailing_yoy": 0.1,
           "no2": 1.389890666133782e-05
         },
         {
           "month": "2025-03",
-          "log_dev_2019": 8.1,
+          "centered_yoy": -7.0,
           "trailing_yoy": -2.2,
           "no2": 8.724020260312696e-06
         },
         {
           "month": "2025-04",
-          "log_dev_2019": 5.8,
+          "centered_yoy": -11.0,
           "trailing_yoy": -3.0,
           "no2": 9.61776125697884e-06
         },
         {
           "month": "2025-05",
-          "log_dev_2019": 3.5,
+          "centered_yoy": -11.5,
           "trailing_yoy": -2.1,
           "no2": 1.077470479880422e-05
         },
         {
           "month": "2025-06",
-          "log_dev_2019": 1.2,
+          "centered_yoy": -11.8,
           "trailing_yoy": -1.7,
           "no2": 8.779378178959934e-06
         },
         {
           "month": "2025-07",
-          "log_dev_2019": 0.4,
+          "centered_yoy": -11.3,
           "trailing_yoy": -5.8,
           "no2": 1.815336987440828e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": -0.2,
+          "centered_yoy": -12.5,
           "trailing_yoy": -7.0,
           "no2": 2.7267963828413827e-05
         },
         {
           "month": "2025-09",
-          "log_dev_2019": 0.1,
+          "centered_yoy": -12.6,
           "trailing_yoy": -11.0,
           "no2": 3.647052895278255e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": 3.2,
+          "centered_yoy": -7.4,
           "trailing_yoy": -11.5,
           "no2": 2.2578486822201657e-05
         },
         {
           "month": "2025-11",
-          "log_dev_2019": 1.1,
+          "centered_yoy": -9.1,
           "trailing_yoy": -11.8,
           "no2": 1.359535134673553e-05
         },
         {
           "month": "2025-12",
-          "log_dev_2019": -0.2,
+          "centered_yoy": -11.4,
           "trailing_yoy": -11.3,
           "no2": 1.1797164017323344e-05
         },
         {
           "month": "2026-01",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -12.5,
           "no2": 1.29407566144592e-05
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -12.6,
           "no2": 1.44643062366176e-05
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -7.4,
           "no2": 1.2693858132376012e-05
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -9.1,
           "no2": 7.422660779139769e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -11.4,
           "no2": 9.270195901525397e-06
         }
@@ -1382,8 +963,8 @@
       "name": "Cochabamba",
       "dept": "Cochabamba",
       "altitude": "highland",
-      "centered_12m": -12.5,
-      "centered_12m_date": "2025-12",
+      "centered_yoy": -8.3,
+      "centered_yoy_date": "2025-12",
       "trailing_yoy": -8.3,
       "status": "red",
       "sparkline_28d": [
@@ -1443,289 +1024,289 @@
       "monthly_series": [
         {
           "month": "2022-06",
-          "log_dev_2019": -6.8,
+          "centered_yoy": 8.4,
           "trailing_yoy": 10.8,
           "no2": 4.2172409524469575e-05
         },
         {
           "month": "2022-07",
-          "log_dev_2019": -7.2,
+          "centered_yoy": 7.3,
           "trailing_yoy": 5.7,
           "no2": 4.902359394181677e-05
         },
         {
           "month": "2022-08",
-          "log_dev_2019": -4.1,
+          "centered_yoy": 11.4,
           "trailing_yoy": 4.9,
           "no2": 5.3762685536350605e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": -5.7,
+          "centered_yoy": 9.5,
           "trailing_yoy": 5.1,
           "no2": 3.828673841415604e-05
         },
         {
           "month": "2022-10",
-          "log_dev_2019": -7.3,
+          "centered_yoy": 6.9,
           "trailing_yoy": 5.8,
           "no2": 3.1760671541870066e-05
         },
         {
           "month": "2022-11",
-          "log_dev_2019": -7.6,
+          "centered_yoy": 5.0,
           "trailing_yoy": 8.4,
           "no2": 2.631127270965949e-05
         },
         {
           "month": "2022-12",
-          "log_dev_2019": -6.2,
+          "centered_yoy": 5.0,
           "trailing_yoy": 7.3,
           "no2": 2.174114891523801e-05
         },
         {
           "month": "2023-01",
-          "log_dev_2019": -4.4,
+          "centered_yoy": 5.1,
           "trailing_yoy": 11.4,
           "no2": 2.699922581693069e-05
         },
         {
           "month": "2023-02",
-          "log_dev_2019": -2.7,
+          "centered_yoy": 7.2,
           "trailing_yoy": 9.5,
           "no2": 1.9863908028059898e-05
         },
         {
           "month": "2023-03",
-          "log_dev_2019": -1.6,
+          "centered_yoy": 7.3,
           "trailing_yoy": 6.9,
           "no2": 2.019759884243925e-05
         },
         {
           "month": "2023-04",
-          "log_dev_2019": -0.6,
+          "centered_yoy": 9.1,
           "trailing_yoy": 5.0,
           "no2": 3.0245328278072043e-05
         },
         {
           "month": "2023-05",
-          "log_dev_2019": -0.8,
+          "centered_yoy": 7.5,
           "trailing_yoy": 5.0,
           "no2": 4.489129804189606e-05
         },
         {
           "month": "2023-06",
-          "log_dev_2019": -3.4,
+          "centered_yoy": 3.4,
           "trailing_yoy": 5.1,
           "no2": 5.231414057783971e-05
         },
         {
           "month": "2023-07",
-          "log_dev_2019": -5.3,
+          "centered_yoy": 1.9,
           "trailing_yoy": 7.2,
           "no2": 6.021679281832945e-05
         },
         {
           "month": "2023-08",
-          "log_dev_2019": -7.2,
+          "centered_yoy": -3.1,
           "trailing_yoy": 7.3,
           "no2": 6.149972209689129e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": -9.3,
+          "centered_yoy": -3.6,
           "trailing_yoy": 9.1,
           "no2": 4.2903851539601296e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": -9.2,
+          "centered_yoy": -1.9,
           "trailing_yoy": 7.5,
           "no2": 3.113741714971245e-05
         },
         {
           "month": "2023-11",
-          "log_dev_2019": -8.5,
+          "centered_yoy": -0.9,
           "trailing_yoy": 3.4,
           "no2": 1.9189840554911392e-05
         },
         {
           "month": "2023-12",
-          "log_dev_2019": -9.0,
+          "centered_yoy": -2.8,
           "trailing_yoy": 1.9,
           "no2": 1.727741288430299e-05
         },
         {
           "month": "2024-01",
-          "log_dev_2019": -8.8,
+          "centered_yoy": -4.4,
           "trailing_yoy": -3.1,
           "no2": 2.1571695465085607e-05
         },
         {
           "month": "2024-02",
-          "log_dev_2019": -10.1,
+          "centered_yoy": -7.4,
           "trailing_yoy": -3.6,
           "no2": 1.5461714597920784e-05
         },
         {
           "month": "2024-03",
-          "log_dev_2019": -11.1,
+          "centered_yoy": -9.5,
           "trailing_yoy": -1.9,
           "no2": 2.0538029850449538e-05
         },
         {
           "month": "2024-04",
-          "log_dev_2019": -10.8,
+          "centered_yoy": -10.2,
           "trailing_yoy": -0.9,
           "no2": 3.2748707489913624e-05
         },
         {
           "month": "2024-05",
-          "log_dev_2019": -9.8,
+          "centered_yoy": -9.0,
           "trailing_yoy": -2.8,
           "no2": 4.211122804928175e-05
         },
         {
           "month": "2024-06",
-          "log_dev_2019": -7.5,
+          "centered_yoy": -4.1,
           "trailing_yoy": -4.4,
           "no2": 5.3976406913529665e-05
         },
         {
           "month": "2024-07",
-          "log_dev_2019": -4.5,
+          "centered_yoy": 0.8,
           "trailing_yoy": -7.4,
           "no2": 5.1151953137128894e-05
         },
         {
           "month": "2024-08",
-          "log_dev_2019": -3.4,
+          "centered_yoy": 3.8,
           "trailing_yoy": -9.5,
           "no2": 5.4938120383767064e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": -1.6,
+          "centered_yoy": 7.7,
           "trailing_yoy": -10.2,
           "no2": 4.435046391777956e-05
         },
         {
           "month": "2024-10",
-          "log_dev_2019": -2.3,
+          "centered_yoy": 6.8,
           "trailing_yoy": -9.0,
           "no2": 3.491246813337524e-05
         },
         {
           "month": "2024-11",
-          "log_dev_2019": -4.2,
+          "centered_yoy": 4.3,
           "trailing_yoy": -4.1,
           "no2": 2.533827559012776e-05
         },
         {
           "month": "2024-12",
-          "log_dev_2019": -4.1,
+          "centered_yoy": 4.9,
           "trailing_yoy": 0.8,
           "no2": 2.4782115532561915e-05
         },
         {
           "month": "2025-01",
-          "log_dev_2019": -7.3,
+          "centered_yoy": 1.4,
           "trailing_yoy": 3.8,
           "no2": 2.469011564084862e-05
         },
         {
           "month": "2025-02",
-          "log_dev_2019": -7.1,
+          "centered_yoy": 3.0,
           "trailing_yoy": 7.7,
           "no2": 1.924715235585203e-05
         },
         {
           "month": "2025-03",
-          "log_dev_2019": -8.1,
+          "centered_yoy": 3.0,
           "trailing_yoy": 6.8,
           "no2": 1.8734210545235032e-05
         },
         {
           "month": "2025-04",
-          "log_dev_2019": -9.2,
+          "centered_yoy": 1.5,
           "trailing_yoy": 4.3,
           "no2": 2.6048074703991073e-05
         },
         {
           "month": "2025-05",
-          "log_dev_2019": -9.7,
+          "centered_yoy": 0.2,
           "trailing_yoy": 4.9,
           "no2": 4.2594752284829495e-05
         },
         {
           "month": "2025-06",
-          "log_dev_2019": -10.8,
+          "centered_yoy": -3.2,
           "trailing_yoy": 1.4,
           "no2": 3.684665661556525e-05
         },
         {
           "month": "2025-07",
-          "log_dev_2019": -10.6,
+          "centered_yoy": -6.1,
           "trailing_yoy": 3.0,
           "no2": 5.2377077347154936e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": -12.4,
+          "centered_yoy": -9.0,
           "trailing_yoy": 3.0,
           "no2": 4.896935115340303e-05
         },
         {
           "month": "2025-09",
-          "log_dev_2019": -10.6,
+          "centered_yoy": -9.0,
           "trailing_yoy": 1.5,
           "no2": 3.859396154707986e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": -6.4,
+          "centered_yoy": -4.1,
           "trailing_yoy": 0.2,
           "no2": 3.3153240655924305e-05
         },
         {
           "month": "2025-11",
-          "log_dev_2019": -6.5,
+          "centered_yoy": -2.3,
           "trailing_yoy": -3.2,
           "no2": 2.2256094096591164e-05
         },
         {
           "month": "2025-12",
-          "log_dev_2019": -12.5,
+          "centered_yoy": -8.3,
           "trailing_yoy": -6.1,
           "no2": 2.5155697790891053e-05
         },
         {
           "month": "2026-01",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -9.0,
           "no2": 2.0045644389177504e-05
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -9.0,
           "no2": 2.384211951109081e-05
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -4.1,
           "no2": 3.075605199077136e-05
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -2.3,
           "no2": 2.579699261998888e-05
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -8.3,
           "no2": 2.088420662413038e-05
         }
@@ -1735,8 +1316,8 @@
       "name": "Sucre",
       "dept": "Chuquisaca",
       "altitude": "highland",
-      "centered_12m": -10.3,
-      "centered_12m_date": "2026-01",
+      "centered_yoy": 2.3,
+      "centered_yoy_date": "2026-01",
       "trailing_yoy": 2.3,
       "status": "yellow",
       "sparkline_28d": [
@@ -1796,289 +1377,289 @@
       "monthly_series": [
         {
           "month": "2022-07",
-          "log_dev_2019": -10.9,
+          "centered_yoy": 2.4,
           "trailing_yoy": -10.6,
           "no2": 1.1420814369129971e-05
         },
         {
           "month": "2022-08",
-          "log_dev_2019": -14.7,
+          "centered_yoy": -3.0,
           "trailing_yoy": -9.1,
           "no2": 1.6863738349144097e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": -16.5,
+          "centered_yoy": -2.4,
           "trailing_yoy": -9.5,
           "no2": 1.610168866208663e-05
         },
         {
           "month": "2022-10",
-          "log_dev_2019": -19.2,
+          "centered_yoy": -4.6,
           "trailing_yoy": 0.6,
           "no2": 1.2599202815074274e-05
         },
         {
           "month": "2022-11",
-          "log_dev_2019": -18.2,
+          "centered_yoy": -4.1,
           "trailing_yoy": 6.7,
           "no2": 1.0582518563464812e-05
         },
         {
           "month": "2022-12",
-          "log_dev_2019": -16.0,
+          "centered_yoy": -1.7,
           "trailing_yoy": 2.4,
           "no2": 5.669033139775965e-06
         },
         {
           "month": "2023-01",
-          "log_dev_2019": -14.8,
+          "centered_yoy": -2.1,
           "trailing_yoy": -3.0,
           "no2": 7.229799474669218e-06
         },
         {
           "month": "2023-02",
-          "log_dev_2019": -12.5,
+          "centered_yoy": 0.7,
           "trailing_yoy": -2.4,
           "no2": 6.941833285555563e-06
         },
         {
           "month": "2023-03",
-          "log_dev_2019": -10.7,
+          "centered_yoy": 1.5,
           "trailing_yoy": -4.6,
           "no2": 7.0197934205150074e-06
         },
         {
           "month": "2023-04",
-          "log_dev_2019": -10.2,
+          "centered_yoy": 3.2,
           "trailing_yoy": -4.1,
           "no2": 7.961616761648801e-06
         },
         {
           "month": "2023-05",
-          "log_dev_2019": -11.8,
+          "centered_yoy": -2.8,
           "trailing_yoy": -1.7,
           "no2": 1.235981489090751e-05
         },
         {
           "month": "2023-06",
-          "log_dev_2019": -13.2,
+          "centered_yoy": -7.4,
           "trailing_yoy": -2.1,
           "no2": 1.34556595963542e-05
         },
         {
           "month": "2023-07",
-          "log_dev_2019": -11.4,
+          "centered_yoy": -0.5,
           "trailing_yoy": 0.7,
           "no2": 1.4934059396702773e-05
         },
         {
           "month": "2023-08",
-          "log_dev_2019": -12.5,
+          "centered_yoy": 2.2,
           "trailing_yoy": 1.5,
           "no2": 2.1075174143085146e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": -10.8,
+          "centered_yoy": 5.7,
           "trailing_yoy": 3.2,
           "no2": 1.7063306896450377e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": -10.8,
+          "centered_yoy": 8.4,
           "trailing_yoy": -2.8,
           "no2": 1.037182429366318e-05
         },
         {
           "month": "2023-11",
-          "log_dev_2019": -10.6,
+          "centered_yoy": 7.7,
           "trailing_yoy": -7.4,
           "no2": 8.950059890888863e-06
         },
         {
           "month": "2023-12",
-          "log_dev_2019": -10.0,
+          "centered_yoy": 5.9,
           "trailing_yoy": -0.5,
           "no2": 7.047115298515806e-06
         },
         {
           "month": "2024-01",
-          "log_dev_2019": -9.4,
+          "centered_yoy": 5.3,
           "trailing_yoy": 2.2,
           "no2": 6.30419265670607e-06
         },
         {
           "month": "2024-02",
-          "log_dev_2019": -8.8,
+          "centered_yoy": 3.7,
           "trailing_yoy": 5.7,
           "no2": 8.548031281746297e-06
         },
         {
           "month": "2024-03",
-          "log_dev_2019": -11.3,
+          "centered_yoy": -0.7,
           "trailing_yoy": 8.4,
           "no2": 7.021076127497267e-06
         },
         {
           "month": "2024-04",
-          "log_dev_2019": -11.5,
+          "centered_yoy": -1.3,
           "trailing_yoy": 7.7,
           "no2": 8.197868845617403e-06
         },
         {
           "month": "2024-05",
-          "log_dev_2019": -8.5,
+          "centered_yoy": 3.3,
           "trailing_yoy": 5.9,
           "no2": 1.317617216269908e-05
         },
         {
           "month": "2024-06",
-          "log_dev_2019": -7.8,
+          "centered_yoy": 5.4,
           "trailing_yoy": 5.3,
           "no2": 1.4463071402443522e-05
         },
         {
           "month": "2024-07",
-          "log_dev_2019": -9.4,
+          "centered_yoy": 2.0,
           "trailing_yoy": 3.7,
           "no2": 1.601339411470546e-05
         },
         {
           "month": "2024-08",
-          "log_dev_2019": -6.4,
+          "centered_yoy": 6.1,
           "trailing_yoy": -0.7,
           "no2": 1.5629082585520076e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": -5.4,
+          "centered_yoy": 5.4,
           "trailing_yoy": -1.3,
           "no2": 1.6756260874940553e-05
         },
         {
           "month": "2024-10",
-          "log_dev_2019": -5.7,
+          "centered_yoy": 5.1,
           "trailing_yoy": 3.3,
           "no2": 1.4860831397190008e-05
         },
         {
           "month": "2024-11",
-          "log_dev_2019": -6.2,
+          "centered_yoy": 4.3,
           "trailing_yoy": 5.4,
           "no2": 9.762326179799922e-06
         },
         {
           "month": "2024-12",
-          "log_dev_2019": -7.4,
+          "centered_yoy": 2.6,
           "trailing_yoy": 2.0,
           "no2": 5.808581877217955e-06
         },
         {
           "month": "2025-01",
-          "log_dev_2019": -12.5,
+          "centered_yoy": -3.1,
           "trailing_yoy": 6.1,
           "no2": 9.000134331002075e-06
         },
         {
           "month": "2025-02",
-          "log_dev_2019": -13.0,
+          "centered_yoy": -4.2,
           "trailing_yoy": 5.4,
           "no2": 9.681232621932184e-06
         },
         {
           "month": "2025-03",
-          "log_dev_2019": -13.5,
+          "centered_yoy": -2.1,
           "trailing_yoy": 5.1,
           "no2": 6.747956401056351e-06
         },
         {
           "month": "2025-04",
-          "log_dev_2019": -14.7,
+          "centered_yoy": -3.3,
           "trailing_yoy": 4.3,
           "no2": 7.681438426608486e-06
         },
         {
           "month": "2025-05",
-          "log_dev_2019": -14.9,
+          "centered_yoy": -6.4,
           "trailing_yoy": 2.6,
           "no2": 1.1494533365538912e-05
         },
         {
           "month": "2025-06",
-          "log_dev_2019": -16.6,
+          "centered_yoy": -8.8,
           "trailing_yoy": -3.1,
           "no2": 7.791046810341272e-06
         },
         {
           "month": "2025-07",
-          "log_dev_2019": -11.4,
+          "centered_yoy": -2.0,
           "trailing_yoy": -4.2,
           "no2": 1.508322161901025e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": -10.2,
+          "centered_yoy": -3.8,
           "trailing_yoy": -2.1,
           "no2": 1.4824357362686266e-05
         },
         {
           "month": "2025-09",
-          "log_dev_2019": -8.9,
+          "centered_yoy": -3.5,
           "trailing_yoy": -3.3,
           "no2": 1.4396142297914368e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": -7.1,
+          "centered_yoy": -1.4,
           "trailing_yoy": -6.4,
           "no2": 1.4566734203921914e-05
         },
         {
           "month": "2025-11",
-          "log_dev_2019": -7.2,
+          "centered_yoy": -1.0,
           "trailing_yoy": -8.8,
           "no2": 7.969647001023669e-06
         },
         {
           "month": "2025-12",
-          "log_dev_2019": -13.5,
+          "centered_yoy": -6.1,
           "trailing_yoy": -2.0,
           "no2": 1.0852074455312708e-05
         },
         {
           "month": "2026-01",
-          "log_dev_2019": -10.3,
+          "centered_yoy": 2.3,
           "trailing_yoy": -3.8,
           "no2": 1.043177272538033e-05
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -3.5,
           "no2": 1.1267089205533626e-05
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -1.4,
           "no2": 8.328584961067336e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -1.0,
           "no2": 7.601793134157951e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -6.1,
           "no2": 5.415671759539406e-06
         },
         {
           "month": "2026-05",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 2.3,
           "no2": 1.1473506922111086e-05
         }
@@ -2088,8 +1669,8 @@
       "name": "Oruro",
       "dept": "Oruro",
       "altitude": "highland",
-      "centered_12m": 13.8,
-      "centered_12m_date": "2025-12",
+      "centered_yoy": 1.0,
+      "centered_yoy_date": "2025-12",
       "trailing_yoy": 1.0,
       "status": "yellow",
       "sparkline_28d": [
@@ -2149,289 +1730,289 @@
       "monthly_series": [
         {
           "month": "2022-06",
-          "log_dev_2019": -7.7,
+          "centered_yoy": 6.4,
           "trailing_yoy": 1.2,
           "no2": 6.9154384867880955e-06
         },
         {
           "month": "2022-07",
-          "log_dev_2019": -9.7,
+          "centered_yoy": -4.4,
           "trailing_yoy": 2.0,
           "no2": 9.393674106231987e-06
         },
         {
           "month": "2022-08",
-          "log_dev_2019": -8.2,
+          "centered_yoy": -0.7,
           "trailing_yoy": 3.6,
           "no2": 1.0814864221382535e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": -7.4,
+          "centered_yoy": 1.7,
           "trailing_yoy": 3.5,
           "no2": 9.105169737444455e-06
         },
         {
           "month": "2022-10",
-          "log_dev_2019": -7.0,
+          "centered_yoy": 4.3,
           "trailing_yoy": 8.1,
           "no2": 7.310317278472519e-06
         },
         {
           "month": "2022-11",
-          "log_dev_2019": -3.1,
+          "centered_yoy": 10.8,
           "trailing_yoy": 6.4,
           "no2": 6.758491975053247e-06
         },
         {
           "month": "2022-12",
-          "log_dev_2019": 1.0,
+          "centered_yoy": 14.2,
           "trailing_yoy": -4.4,
           "no2": 7.651205469693299e-06
         },
         {
           "month": "2023-01",
-          "log_dev_2019": 6.0,
+          "centered_yoy": 18.2,
           "trailing_yoy": -0.7,
           "no2": 8.143930853775769e-06
         },
         {
           "month": "2023-02",
-          "log_dev_2019": 8.5,
+          "centered_yoy": 20.2,
           "trailing_yoy": 1.7,
           "no2": 7.248070946336238e-06
         },
         {
           "month": "2023-03",
-          "log_dev_2019": 9.5,
+          "centered_yoy": 19.7,
           "trailing_yoy": 4.3,
           "no2": 6.022367491748447e-06
         },
         {
           "month": "2023-04",
-          "log_dev_2019": 12.2,
+          "centered_yoy": 24.4,
           "trailing_yoy": 10.8,
           "no2": 7.1861649245686904e-06
         },
         {
           "month": "2023-05",
-          "log_dev_2019": 11.2,
+          "centered_yoy": 20.8,
           "trailing_yoy": 14.2,
           "no2": 1.075406876281468e-05
         },
         {
           "month": "2023-06",
-          "log_dev_2019": 10.5,
+          "centered_yoy": 18.3,
           "trailing_yoy": 18.2,
           "no2": 1.2562086902674902e-05
         },
         {
           "month": "2023-07",
-          "log_dev_2019": 8.4,
+          "centered_yoy": 18.1,
           "trailing_yoy": 20.2,
           "no2": 1.2769443052317794e-05
         },
         {
           "month": "2023-08",
-          "log_dev_2019": 6.9,
+          "centered_yoy": 15.1,
           "trailing_yoy": 19.7,
           "no2": 1.2208353333370226e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": 6.1,
+          "centered_yoy": 13.4,
           "trailing_yoy": 24.4,
           "no2": 1.253887753887878e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": 2.0,
+          "centered_yoy": 9.0,
           "trailing_yoy": 20.8,
           "no2": 6.460372371300586e-06
         },
         {
           "month": "2023-11",
-          "log_dev_2019": 2.5,
+          "centered_yoy": 5.6,
           "trailing_yoy": 18.3,
           "no2": 6.257386562599834e-06
         },
         {
           "month": "2023-12",
-          "log_dev_2019": -0.3,
+          "centered_yoy": -1.3,
           "trailing_yoy": 18.1,
           "no2": 5.905020922491007e-06
         },
         {
           "month": "2024-01",
-          "log_dev_2019": -1.8,
+          "centered_yoy": -7.8,
           "trailing_yoy": 15.1,
           "no2": 6.8441275583040125e-06
         },
         {
           "month": "2024-02",
-          "log_dev_2019": -4.1,
+          "centered_yoy": -12.6,
           "trailing_yoy": 13.4,
           "no2": 6.549401707883573e-06
         },
         {
           "month": "2024-03",
-          "log_dev_2019": -5.0,
+          "centered_yoy": -14.6,
           "trailing_yoy": 9.0,
           "no2": 3.6936544936339375e-06
         },
         {
           "month": "2024-04",
-          "log_dev_2019": -7.5,
+          "centered_yoy": -19.7,
           "trailing_yoy": 5.6,
           "no2": 7.619579238682607e-06
         },
         {
           "month": "2024-05",
-          "log_dev_2019": -3.7,
+          "centered_yoy": -14.9,
           "trailing_yoy": -1.3,
           "no2": 7.695971932194529e-06
         },
         {
           "month": "2024-06",
-          "log_dev_2019": 0.1,
+          "centered_yoy": -10.4,
           "trailing_yoy": -7.8,
           "no2": 1.0489338415326275e-05
         },
         {
           "month": "2024-07",
-          "log_dev_2019": 3.5,
+          "centered_yoy": -4.8,
           "trailing_yoy": -12.6,
           "no2": 9.755662840030145e-06
         },
         {
           "month": "2024-08",
-          "log_dev_2019": 4.6,
+          "centered_yoy": -2.3,
           "trailing_yoy": -14.6,
           "no2": 1.085876295790468e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": 6.1,
+          "centered_yoy": 0.0,
           "trailing_yoy": -19.7,
           "no2": 9.357269375787691e-06
         },
         {
           "month": "2024-10",
-          "log_dev_2019": 9.7,
+          "centered_yoy": 7.7,
           "trailing_yoy": -14.9,
           "no2": 1.014186960719297e-05
         },
         {
           "month": "2024-11",
-          "log_dev_2019": 10.0,
+          "centered_yoy": 7.5,
           "trailing_yoy": -10.4,
           "no2": 9.888174365848594e-06
         },
         {
           "month": "2024-12",
-          "log_dev_2019": 12.8,
+          "centered_yoy": 13.1,
           "trailing_yoy": -4.8,
           "no2": 8.92790435472205e-06
         },
         {
           "month": "2025-01",
-          "log_dev_2019": 7.6,
+          "centered_yoy": 9.5,
           "trailing_yoy": -2.3,
           "no2": 7.811909544277322e-06
         },
         {
           "month": "2025-02",
-          "log_dev_2019": 9.5,
+          "centered_yoy": 13.5,
           "trailing_yoy": 0.0,
           "no2": 7.76789958563385e-06
         },
         {
           "month": "2025-03",
-          "log_dev_2019": 8.5,
+          "centered_yoy": 13.5,
           "trailing_yoy": 7.7,
           "no2": 5.688306388694651e-06
         },
         {
           "month": "2025-04",
-          "log_dev_2019": 9.9,
+          "centered_yoy": 17.4,
           "trailing_yoy": 7.5,
           "no2": 7.935962638929333e-06
         },
         {
           "month": "2025-05",
-          "log_dev_2019": 9.9,
+          "centered_yoy": 13.7,
           "trailing_yoy": 13.1,
           "no2": 1.0800846892758124e-05
         },
         {
           "month": "2025-06",
-          "log_dev_2019": 8.8,
+          "centered_yoy": 8.7,
           "trailing_yoy": 9.5,
           "no2": 5.6278784778754125e-06
         },
         {
           "month": "2025-07",
-          "log_dev_2019": 12.6,
+          "centered_yoy": 9.0,
           "trailing_yoy": 13.5,
           "no2": 1.2137718885868642e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": 13.8,
+          "centered_yoy": 9.2,
           "trailing_yoy": 13.5,
           "no2": 9.662228519020469e-06
         },
         {
           "month": "2025-09",
-          "log_dev_2019": 13.0,
+          "centered_yoy": 6.9,
           "trailing_yoy": 17.4,
           "no2": 1.106441586626239e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": 17.5,
+          "centered_yoy": 7.9,
           "trailing_yoy": 13.7,
           "no2": 1.0218489103152135e-05
         },
         {
           "month": "2025-11",
-          "log_dev_2019": 17.1,
+          "centered_yoy": 7.1,
           "trailing_yoy": 8.7,
           "no2": 8.63044805769297e-06
         },
         {
           "month": "2025-12",
-          "log_dev_2019": 13.8,
+          "centered_yoy": 1.0,
           "trailing_yoy": 9.0,
           "no2": 1.3990356068987165e-05
         },
         {
           "month": "2026-01",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 9.2,
           "no2": 9.0941308925361e-06
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 6.9,
           "no2": 7.044244271203555e-06
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 7.9,
           "no2": 9.772498376291784e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 7.1,
           "no2": 7.573848769656831e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 1.0,
           "no2": 7.248426967394365e-06
         }
@@ -2441,8 +2022,8 @@
       "name": "Potos\u00ed",
       "dept": "Potos\u00ed",
       "altitude": "highland",
-      "centered_12m": 1.1,
-      "centered_12m_date": "2025-12",
+      "centered_yoy": -7.5,
+      "centered_yoy_date": "2025-12",
       "trailing_yoy": -7.5,
       "status": "red",
       "sparkline_28d": [
@@ -2502,289 +2083,289 @@
       "monthly_series": [
         {
           "month": "2022-06",
-          "log_dev_2019": -21.8,
+          "centered_yoy": 5.9,
           "trailing_yoy": -20.9,
           "no2": 8.350182351690742e-06
         },
         {
           "month": "2022-07",
-          "log_dev_2019": -27.2,
+          "centered_yoy": -4.0,
           "trailing_yoy": -17.8,
           "no2": 9.754539902783334e-06
         },
         {
           "month": "2022-08",
-          "log_dev_2019": -13.1,
+          "centered_yoy": 20.4,
           "trailing_yoy": -20.1,
           "no2": 1.051533561166239e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": -9.7,
+          "centered_yoy": 28.8,
           "trailing_yoy": -22.4,
           "no2": 1.0426139902127345e-05
         },
         {
           "month": "2022-10",
-          "log_dev_2019": -7.8,
+          "centered_yoy": 31.9,
           "trailing_yoy": -16.1,
           "no2": 8.275886239591788e-06
         },
         {
           "month": "2022-11",
-          "log_dev_2019": -6.1,
+          "centered_yoy": 34.0,
           "trailing_yoy": 5.9,
           "no2": 7.010500875448195e-06
         },
         {
           "month": "2022-12",
-          "log_dev_2019": -5.0,
+          "centered_yoy": 32.4,
           "trailing_yoy": -4.0,
           "no2": 5.045899528166675e-06
         },
         {
           "month": "2023-01",
-          "log_dev_2019": -2.9,
+          "centered_yoy": 33.1,
           "trailing_yoy": 20.4,
           "no2": 7.546300916383377e-06
         },
         {
           "month": "2023-02",
-          "log_dev_2019": -1.2,
+          "centered_yoy": 31.8,
           "trailing_yoy": 28.8,
           "no2": 7.525022311181292e-06
         },
         {
           "month": "2023-03",
-          "log_dev_2019": -1.3,
+          "centered_yoy": 32.8,
           "trailing_yoy": 31.9,
           "no2": 4.8823371727929605e-06
         },
         {
           "month": "2023-04",
-          "log_dev_2019": -0.6,
+          "centered_yoy": 35.3,
           "trailing_yoy": 34.0,
           "no2": 7.259019586695432e-06
         },
         {
           "month": "2023-05",
-          "log_dev_2019": -0.5,
+          "centered_yoy": 32.3,
           "trailing_yoy": 32.4,
           "no2": 7.370065152380435e-06
         },
         {
           "month": "2023-06",
-          "log_dev_2019": -14.3,
+          "centered_yoy": 7.4,
           "trailing_yoy": 33.1,
           "no2": 1.0712579860705511e-05
         },
         {
           "month": "2023-07",
-          "log_dev_2019": -13.3,
+          "centered_yoy": 13.9,
           "trailing_yoy": 31.8,
           "no2": 1.1999372565658147e-05
         },
         {
           "month": "2023-08",
-          "log_dev_2019": -13.0,
+          "centered_yoy": 0.1,
           "trailing_yoy": 32.8,
           "no2": 1.0354033482217578e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": -11.1,
+          "centered_yoy": -1.3,
           "trailing_yoy": 35.3,
           "no2": 1.1287884798824388e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": -8.4,
+          "centered_yoy": -0.6,
           "trailing_yoy": 32.3,
           "no2": 8.428316647412998e-06
         },
         {
           "month": "2023-11",
-          "log_dev_2019": -5.7,
+          "centered_yoy": 0.4,
           "trailing_yoy": 7.4,
           "no2": 1.3326530236204649e-06
         },
         {
           "month": "2023-12",
-          "log_dev_2019": -8.3,
+          "centered_yoy": -3.3,
           "trailing_yoy": 13.9,
           "no2": 5.699427054739083e-06
         },
         {
           "month": "2024-01",
-          "log_dev_2019": -9.8,
+          "centered_yoy": -6.9,
           "trailing_yoy": 0.1,
           "no2": 7.841957869203873e-06
         },
         {
           "month": "2024-02",
-          "log_dev_2019": -10.9,
+          "centered_yoy": -9.7,
           "trailing_yoy": -1.3,
           "no2": 9.491473626443587e-06
         },
         {
           "month": "2024-03",
-          "log_dev_2019": -10.9,
+          "centered_yoy": -9.6,
           "trailing_yoy": -0.6,
           "no2": 6.6748527398194426e-06
         },
         {
           "month": "2024-04",
-          "log_dev_2019": -8.9,
+          "centered_yoy": -8.3,
           "trailing_yoy": 0.4,
           "no2": 1.0060168530385716e-05
         },
         {
           "month": "2024-05",
-          "log_dev_2019": -7.5,
+          "centered_yoy": -7.0,
           "trailing_yoy": -3.3,
           "no2": 5.434091936456648e-06
         },
         {
           "month": "2024-06",
-          "log_dev_2019": 2.5,
+          "centered_yoy": 16.9,
           "trailing_yoy": -6.9,
           "no2": 8.885356644692252e-06
         },
         {
           "month": "2024-07",
-          "log_dev_2019": 4.4,
+          "centered_yoy": 17.7,
           "trailing_yoy": -9.7,
           "no2": 1.0597322414976252e-05
         },
         {
           "month": "2024-08",
-          "log_dev_2019": 6.9,
+          "centered_yoy": 19.9,
           "trailing_yoy": -9.6,
           "no2": 1.0248030906211109e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": 4.3,
+          "centered_yoy": 15.3,
           "trailing_yoy": -8.3,
           "no2": 1.442714298262474e-05
         },
         {
           "month": "2024-10",
-          "log_dev_2019": 5.6,
+          "centered_yoy": 14.0,
           "trailing_yoy": -7.0,
           "no2": 9.950506085619251e-06
         },
         {
           "month": "2024-11",
-          "log_dev_2019": 3.8,
+          "centered_yoy": 9.5,
           "trailing_yoy": 16.9,
           "no2": 4.4553869473384345e-06
         },
         {
           "month": "2024-12",
-          "log_dev_2019": 8.7,
+          "centered_yoy": 16.9,
           "trailing_yoy": 17.7,
           "no2": 7.1587989444983615e-06
         },
         {
           "month": "2025-01",
-          "log_dev_2019": 4.3,
+          "centered_yoy": 14.2,
           "trailing_yoy": 19.9,
           "no2": 1.0524320559977342e-05
         },
         {
           "month": "2025-02",
-          "log_dev_2019": 5.8,
+          "centered_yoy": 16.7,
           "trailing_yoy": 15.3,
           "no2": 6.921075520968085e-06
         },
         {
           "month": "2025-03",
-          "log_dev_2019": 3.9,
+          "centered_yoy": 14.9,
           "trailing_yoy": 14.0,
           "no2": 7.812998117456474e-06
         },
         {
           "month": "2025-04",
-          "log_dev_2019": 1.9,
+          "centered_yoy": 10.8,
           "trailing_yoy": 9.5,
           "no2": 8.141890724925933e-06
         },
         {
           "month": "2025-05",
-          "log_dev_2019": -0.6,
+          "centered_yoy": 6.9,
           "trailing_yoy": 16.9,
           "no2": 9.742099853156413e-06
         },
         {
           "month": "2025-06",
-          "log_dev_2019": 3.8,
+          "centered_yoy": 1.2,
           "trailing_yoy": 14.2,
           "no2": 5.280393406783687e-06
         },
         {
           "month": "2025-07",
-          "log_dev_2019": 6.6,
+          "centered_yoy": 2.1,
           "trailing_yoy": 16.7,
           "no2": 1.2703565431276263e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": 1.6,
+          "centered_yoy": -5.3,
           "trailing_yoy": 14.9,
           "no2": 8.15532000036871e-06
         },
         {
           "month": "2025-09",
-          "log_dev_2019": 4.5,
+          "centered_yoy": 0.2,
           "trailing_yoy": 10.8,
           "no2": 1.126278733107025e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": 7.1,
+          "centered_yoy": 1.5,
           "trailing_yoy": 6.9,
           "no2": 7.364607750759853e-06
         },
         {
           "month": "2025-11",
-          "log_dev_2019": 6.2,
+          "centered_yoy": 2.4,
           "trailing_yoy": 1.2,
           "no2": 7.540028795935249e-06
         },
         {
           "month": "2025-12",
-          "log_dev_2019": 1.1,
+          "centered_yoy": -7.5,
           "trailing_yoy": 2.1,
           "no2": 1.0033906093065526e-05
         },
         {
           "month": "2026-01",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -5.3,
           "no2": 5.816143970123834e-06
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 0.2,
           "no2": 9.774734348236904e-06
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 1.5,
           "no2": 1.069023550032261e-05
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 2.4,
           "no2": 7.321662782108738e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -7.5,
           "no2": 5.284205270445976e-06
         }
@@ -2794,8 +2375,8 @@
       "name": "Tarija",
       "dept": "Tarija",
       "altitude": "lowland",
-      "centered_12m": -2.5,
-      "centered_12m_date": "2026-01",
+      "centered_yoy": -0.3,
+      "centered_yoy_date": "2026-01",
       "trailing_yoy": -0.3,
       "status": "yellow",
       "sparkline_28d": [
@@ -2855,289 +2436,289 @@
       "monthly_series": [
         {
           "month": "2022-07",
-          "log_dev_2019": -5.5,
+          "centered_yoy": 12.6,
           "trailing_yoy": -5.8,
           "no2": 1.714645832688964e-05
         },
         {
           "month": "2022-08",
-          "log_dev_2019": -2.4,
+          "centered_yoy": 16.5,
           "trailing_yoy": -4.1,
           "no2": 1.7509349162841697e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": -4.3,
+          "centered_yoy": 14.3,
           "trailing_yoy": -6.9,
           "no2": 1.4698815525304042e-05
         },
         {
           "month": "2022-10",
-          "log_dev_2019": -6.0,
+          "centered_yoy": 12.8,
           "trailing_yoy": 1.1,
           "no2": 1.489428498061756e-05
         },
         {
           "month": "2022-11",
-          "log_dev_2019": -7.9,
+          "centered_yoy": 10.2,
           "trailing_yoy": 7.3,
           "no2": 1.3469181695379915e-05
         },
         {
           "month": "2022-12",
-          "log_dev_2019": -8.7,
+          "centered_yoy": 8.8,
           "trailing_yoy": 12.6,
           "no2": 9.479533761233792e-06
         },
         {
           "month": "2023-01",
-          "log_dev_2019": -7.7,
+          "centered_yoy": 8.0,
           "trailing_yoy": 16.5,
           "no2": 1.131260833274709e-05
         },
         {
           "month": "2023-02",
-          "log_dev_2019": -7.9,
+          "centered_yoy": 6.1,
           "trailing_yoy": 14.3,
           "no2": 8.347404966386896e-06
         },
         {
           "month": "2023-03",
-          "log_dev_2019": -8.5,
+          "centered_yoy": 4.3,
           "trailing_yoy": 12.8,
           "no2": 5.99676702725519e-06
         },
         {
           "month": "2023-04",
-          "log_dev_2019": -6.3,
+          "centered_yoy": 8.9,
           "trailing_yoy": 10.2,
           "no2": 9.11185625577878e-06
         },
         {
           "month": "2023-05",
-          "log_dev_2019": -4.6,
+          "centered_yoy": 6.1,
           "trailing_yoy": 8.8,
           "no2": 1.1762298074087606e-05
         },
         {
           "month": "2023-06",
-          "log_dev_2019": -8.3,
+          "centered_yoy": -0.8,
           "trailing_yoy": 8.0,
           "no2": 1.5889941769779582e-05
         },
         {
           "month": "2023-07",
-          "log_dev_2019": -8.8,
+          "centered_yoy": -3.3,
           "trailing_yoy": 6.1,
           "no2": 1.6924382550610336e-05
         },
         {
           "month": "2023-08",
-          "log_dev_2019": -10.2,
+          "centered_yoy": -7.9,
           "trailing_yoy": 4.3,
           "no2": 1.6268858851488372e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": -11.1,
+          "centered_yoy": -6.8,
           "trailing_yoy": 8.9,
           "no2": 1.9082338040077485e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": -8.0,
+          "centered_yoy": -2.0,
           "trailing_yoy": 6.1,
           "no2": 1.831088458398124e-05
         },
         {
           "month": "2023-11",
-          "log_dev_2019": -4.2,
+          "centered_yoy": 3.6,
           "trailing_yoy": -0.8,
           "no2": 8.63879244618213e-06
         },
         {
           "month": "2023-12",
-          "log_dev_2019": -1.7,
+          "centered_yoy": 7.0,
           "trailing_yoy": -3.3,
           "no2": 8.854387107401486e-06
         },
         {
           "month": "2024-01",
-          "log_dev_2019": -0.7,
+          "centered_yoy": 7.0,
           "trailing_yoy": -7.9,
           "no2": 9.566707220638009e-06
         },
         {
           "month": "2024-02",
-          "log_dev_2019": -0.1,
+          "centered_yoy": 7.7,
           "trailing_yoy": -6.8,
           "no2": 7.554390929655089e-06
         },
         {
           "month": "2024-03",
-          "log_dev_2019": 0.2,
+          "centered_yoy": 8.7,
           "trailing_yoy": -2.0,
           "no2": 8.66975002376286e-06
         },
         {
           "month": "2024-04",
-          "log_dev_2019": 1.3,
+          "centered_yoy": 7.6,
           "trailing_yoy": 3.6,
           "no2": 1.430610236215013e-05
         },
         {
           "month": "2024-05",
-          "log_dev_2019": 2.1,
+          "centered_yoy": 6.7,
           "trailing_yoy": 7.0,
           "no2": 1.600258142401662e-05
         },
         {
           "month": "2024-06",
-          "log_dev_2019": 5.0,
+          "centered_yoy": 13.3,
           "trailing_yoy": 7.0,
           "no2": 1.784519500837854e-05
         },
         {
           "month": "2024-07",
-          "log_dev_2019": 6.9,
+          "centered_yoy": 15.7,
           "trailing_yoy": 7.7,
           "no2": 1.818482514874903e-05
         },
         {
           "month": "2024-08",
-          "log_dev_2019": 6.1,
+          "centered_yoy": 16.3,
           "trailing_yoy": 8.7,
           "no2": 1.6862791129383045e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": 7.7,
+          "centered_yoy": 18.7,
           "trailing_yoy": 7.6,
           "no2": 2.1839022475665015e-05
         },
         {
           "month": "2024-10",
-          "log_dev_2019": 5.7,
+          "centered_yoy": 13.7,
           "trailing_yoy": 6.7,
           "no2": 2.021869175343689e-05
         },
         {
           "month": "2024-11",
-          "log_dev_2019": 4.7,
+          "centered_yoy": 9.0,
           "trailing_yoy": 13.3,
           "no2": 1.2176107541316675e-05
         },
         {
           "month": "2024-12",
-          "log_dev_2019": 3.4,
+          "centered_yoy": 5.1,
           "trailing_yoy": 15.7,
           "no2": 1.1060254414502226e-05
         },
         {
           "month": "2025-01",
-          "log_dev_2019": -2.2,
+          "centered_yoy": -1.5,
           "trailing_yoy": 16.3,
           "no2": 8.740892397266166e-06
         },
         {
           "month": "2025-02",
-          "log_dev_2019": -2.1,
+          "centered_yoy": -2.0,
           "trailing_yoy": 18.7,
           "no2": 9.099356727562509e-06
         },
         {
           "month": "2025-03",
-          "log_dev_2019": -3.1,
+          "centered_yoy": -3.3,
           "trailing_yoy": 13.7,
           "no2": 6.893233204827822e-06
         },
         {
           "month": "2025-04",
-          "log_dev_2019": -5.2,
+          "centered_yoy": -6.5,
           "trailing_yoy": 9.0,
           "no2": 1.2670706170558422e-05
         },
         {
           "month": "2025-05",
-          "log_dev_2019": -8.1,
+          "centered_yoy": -10.3,
           "trailing_yoy": 5.1,
           "no2": 1.3617401833851716e-05
         },
         {
           "month": "2025-06",
-          "log_dev_2019": -8.4,
+          "centered_yoy": -13.4,
           "trailing_yoy": -1.5,
           "no2": 9.137522937049146e-06
         },
         {
           "month": "2025-07",
-          "log_dev_2019": -8.4,
+          "centered_yoy": -15.3,
           "trailing_yoy": -2.0,
           "no2": 1.837198021968412e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": -6.6,
+          "centered_yoy": -12.7,
           "trailing_yoy": -3.3,
           "no2": 1.5006341878409302e-05
         },
         {
           "month": "2025-09",
-          "log_dev_2019": -4.9,
+          "centered_yoy": -12.5,
           "trailing_yoy": -6.5,
           "no2": 1.6880585182205062e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": -1.9,
+          "centered_yoy": -7.7,
           "trailing_yoy": -10.3,
           "no2": 1.427715922049409e-05
         },
         {
           "month": "2025-11",
-          "log_dev_2019": -2.8,
+          "centered_yoy": -7.5,
           "trailing_yoy": -13.4,
           "no2": 1.1797924255829988e-05
         },
         {
           "month": "2025-12",
-          "log_dev_2019": -4.8,
+          "centered_yoy": -8.2,
           "trailing_yoy": -15.3,
           "no2": 1.0983679653428995e-05
         },
         {
           "month": "2026-01",
-          "log_dev_2019": -2.5,
+          "centered_yoy": -0.3,
           "trailing_yoy": -12.7,
           "no2": 1.0891916338597406e-05
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -12.5,
           "no2": 1.121170501673097e-05
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -7.7,
           "no2": 9.822201865044324e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -7.5,
           "no2": 1.1447147613849382e-05
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -8.2,
           "no2": 1.0657483615913586e-05
         },
         {
           "month": "2026-05",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -0.3,
           "no2": 1.2007380767415475e-05
         }
@@ -3147,8 +2728,8 @@
       "name": "Trinidad",
       "dept": "Beni",
       "altitude": "lowland",
-      "centered_12m": -1.8,
-      "centered_12m_date": "2025-11",
+      "centered_yoy": -18.9,
+      "centered_yoy_date": "2025-11",
       "trailing_yoy": -18.9,
       "status": "red",
       "sparkline_28d": [
@@ -3208,289 +2789,289 @@
       "monthly_series": [
         {
           "month": "2022-05",
-          "log_dev_2019": 21.3,
+          "centered_yoy": -5.0,
           "trailing_yoy": 6.6,
           "no2": 8.14511874778199e-06
         },
         {
           "month": "2022-06",
-          "log_dev_2019": 22.6,
+          "centered_yoy": -1.8,
           "trailing_yoy": 3.8,
           "no2": 1.0750826954133131e-05
         },
         {
           "month": "2022-07",
-          "log_dev_2019": 22.2,
+          "centered_yoy": -1.0,
           "trailing_yoy": 2.7,
           "no2": 2.628508830955903e-05
         },
         {
           "month": "2022-08",
-          "log_dev_2019": 19.9,
+          "centered_yoy": -1.4,
           "trailing_yoy": -2.3,
           "no2": 3.4235017893079515e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": 21.0,
+          "centered_yoy": 2.9,
           "trailing_yoy": 2.2,
           "no2": 5.5641917631696206e-05
         },
         {
           "month": "2022-10",
-          "log_dev_2019": 18.5,
+          "centered_yoy": -1.8,
           "trailing_yoy": -5.0,
           "no2": 2.2672946293461422e-05
         },
         {
           "month": "2022-11",
-          "log_dev_2019": 19.5,
+          "centered_yoy": 0.3,
           "trailing_yoy": -1.8,
           "no2": 1.4064595369187556e-05
         },
         {
           "month": "2022-12",
-          "log_dev_2019": 17.8,
+          "centered_yoy": -1.4,
           "trailing_yoy": -1.0,
           "no2": 9.11366581377367e-06
         },
         {
           "month": "2023-01",
-          "log_dev_2019": 17.9,
+          "centered_yoy": -0.6,
           "trailing_yoy": -1.4,
           "no2": 7.4307689702153005e-06
         },
         {
           "month": "2023-02",
-          "log_dev_2019": 15.2,
+          "centered_yoy": -5.0,
           "trailing_yoy": 2.9,
           "no2": 8.791836812135706e-06
         },
         {
           "month": "2023-03",
-          "log_dev_2019": 14.3,
+          "centered_yoy": -4.8,
           "trailing_yoy": -1.8,
           "no2": 6.897480792494885e-06
         },
         {
           "month": "2023-04",
-          "log_dev_2019": 13.0,
+          "centered_yoy": -10.3,
           "trailing_yoy": 0.3,
           "no2": 7.687055677286598e-06
         },
         {
           "month": "2023-05",
-          "log_dev_2019": 18.4,
+          "centered_yoy": -2.9,
           "trailing_yoy": -1.4,
           "no2": 6.627231571965479e-06
         },
         {
           "month": "2023-06",
-          "log_dev_2019": 21.0,
+          "centered_yoy": -1.6,
           "trailing_yoy": -0.6,
           "no2": 1.093060064162129e-05
         },
         {
           "month": "2023-07",
-          "log_dev_2019": 21.2,
+          "centered_yoy": -1.0,
           "trailing_yoy": -5.0,
           "no2": 1.8885629290339757e-05
         },
         {
           "month": "2023-08",
-          "log_dev_2019": 19.0,
+          "centered_yoy": -0.9,
           "trailing_yoy": -4.8,
           "no2": 3.0628204281681976e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": 19.6,
+          "centered_yoy": -1.4,
           "trailing_yoy": -10.3,
           "no2": 4.758187326371313e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": 17.2,
+          "centered_yoy": -1.3,
           "trailing_yoy": -2.9,
           "no2": 4.343910163823457e-05
         },
         {
           "month": "2023-11",
-          "log_dev_2019": 17.5,
+          "centered_yoy": -2.0,
           "trailing_yoy": -1.6,
           "no2": 1.9277223022512772e-05
         },
         {
           "month": "2023-12",
-          "log_dev_2019": 17.9,
+          "centered_yoy": 0.1,
           "trailing_yoy": -1.0,
           "no2": 9.358805185229729e-06
         },
         {
           "month": "2024-01",
-          "log_dev_2019": 16.7,
+          "centered_yoy": -1.2,
           "trailing_yoy": -0.9,
           "no2": 5.695063535072766e-06
         },
         {
           "month": "2024-02",
-          "log_dev_2019": 18.9,
+          "centered_yoy": 3.7,
           "trailing_yoy": -1.4,
           "no2": 9.481148188495286e-06
         },
         {
           "month": "2024-03",
-          "log_dev_2019": 21.2,
+          "centered_yoy": 7.0,
           "trailing_yoy": -1.3,
           "no2": 5.129946741143027e-06
         },
         {
           "month": "2024-04",
-          "log_dev_2019": 23.0,
+          "centered_yoy": 10.1,
           "trailing_yoy": -2.0,
           "no2": 8.038994423805887e-06
         },
         {
           "month": "2024-05",
-          "log_dev_2019": 22.4,
+          "centered_yoy": 4.1,
           "trailing_yoy": 0.1,
           "no2": 6.899450458505731e-06
         },
         {
           "month": "2024-06",
-          "log_dev_2019": 17.5,
+          "centered_yoy": -3.5,
           "trailing_yoy": -1.2,
           "no2": 9.551722942547846e-06
         },
         {
           "month": "2024-07",
-          "log_dev_2019": 18.0,
+          "centered_yoy": -3.2,
           "trailing_yoy": 3.7,
           "no2": 2.44029858751191e-05
         },
         {
           "month": "2024-08",
-          "log_dev_2019": 17.4,
+          "centered_yoy": -1.6,
           "trailing_yoy": 7.0,
           "no2": 4.059667768111207e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": 16.6,
+          "centered_yoy": -3.0,
           "trailing_yoy": 10.1,
           "no2": 5.908584804036859e-05
         },
         {
           "month": "2024-10",
-          "log_dev_2019": 19.4,
+          "centered_yoy": 2.2,
           "trailing_yoy": 4.1,
           "no2": 4.045720937682788e-05
         },
         {
           "month": "2024-11",
-          "log_dev_2019": 17.1,
+          "centered_yoy": -0.5,
           "trailing_yoy": -3.5,
           "no2": 1.064678245965823e-05
         },
         {
           "month": "2024-12",
-          "log_dev_2019": 19.1,
+          "centered_yoy": 1.2,
           "trailing_yoy": -3.2,
           "no2": 9.937378391583429e-06
         },
         {
           "month": "2025-01",
-          "log_dev_2019": 19.3,
+          "centered_yoy": 2.5,
           "trailing_yoy": -1.6,
           "no2": 5.281397027233071e-06
         },
         {
           "month": "2025-02",
-          "log_dev_2019": 14.6,
+          "centered_yoy": -4.3,
           "trailing_yoy": -3.0,
           "no2": 8.630205133306394e-06
         },
         {
           "month": "2025-03",
-          "log_dev_2019": 11.3,
+          "centered_yoy": -10.0,
           "trailing_yoy": 2.2,
           "no2": 7.197223622711648e-06
         },
         {
           "month": "2025-04",
-          "log_dev_2019": 6.2,
+          "centered_yoy": -16.9,
           "trailing_yoy": -0.5,
           "no2": 6.077682290327982e-06
         },
         {
           "month": "2025-05",
-          "log_dev_2019": 1.4,
+          "centered_yoy": -21.0,
           "trailing_yoy": 1.2,
           "no2": 8.762352062927182e-06
         },
         {
           "month": "2025-06",
-          "log_dev_2019": -3.0,
+          "centered_yoy": -20.5,
           "trailing_yoy": 2.5,
           "no2": 9.773062243785214e-06
         },
         {
           "month": "2025-07",
-          "log_dev_2019": -8.2,
+          "centered_yoy": -26.2,
           "trailing_yoy": -4.3,
           "no2": 1.397261756185781e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": -3.7,
+          "centered_yoy": -21.1,
           "trailing_yoy": -10.0,
           "no2": 2.713083739458693e-05
         },
         {
           "month": "2025-09",
-          "log_dev_2019": -2.8,
+          "centered_yoy": -19.4,
           "trailing_yoy": -16.9,
           "no2": 3.214026240132418e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": -3.4,
+          "centered_yoy": -22.8,
           "trailing_yoy": -21.0,
           "no2": 2.292378546901734e-05
         },
         {
           "month": "2025-11",
-          "log_dev_2019": -1.8,
+          "centered_yoy": -18.9,
           "trailing_yoy": -20.5,
           "no2": 6.226679478076346e-06
         },
         {
           "month": "2025-12",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -26.2,
           "no2": 5.334255893109328e-06
         },
         {
           "month": "2026-01",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -21.1,
           "no2": 9.082563895965828e-06
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -19.4,
           "no2": 9.585838119374238e-06
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -22.8,
           "no2": 6.67958998488693e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -18.9,
           "no2": 7.400198748709853e-06
         }
@@ -3500,8 +3081,8 @@
       "name": "Cobija",
       "dept": "Pando",
       "altitude": "lowland",
-      "centered_12m": 3.1,
-      "centered_12m_date": "2025-11",
+      "centered_yoy": -6.4,
+      "centered_yoy_date": "2025-11",
       "trailing_yoy": -6.4,
       "status": "red",
       "sparkline_28d": [
@@ -3561,289 +3142,289 @@
       "monthly_series": [
         {
           "month": "2022-05",
-          "log_dev_2019": 7.6,
+          "centered_yoy": 1.1,
           "trailing_yoy": 11.6,
           "no2": 8.853406792040463e-06
         },
         {
           "month": "2022-06",
-          "log_dev_2019": 12.5,
+          "centered_yoy": 9.0,
           "trailing_yoy": 6.8,
           "no2": 8.699510754791508e-06
         },
         {
           "month": "2022-07",
-          "log_dev_2019": 18.1,
+          "centered_yoy": 14.1,
           "trailing_yoy": -2.0,
           "no2": 7.31830266349976e-06
         },
         {
           "month": "2022-08",
-          "log_dev_2019": 18.9,
+          "centered_yoy": 13.6,
           "trailing_yoy": -4.1,
           "no2": 2.5753010296927928e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": 20.6,
+          "centered_yoy": 16.6,
           "trailing_yoy": -3.3,
           "no2": 2.496460919581339e-05
         },
         {
           "month": "2022-10",
-          "log_dev_2019": 19.7,
+          "centered_yoy": 10.9,
           "trailing_yoy": 1.1,
           "no2": 2.10655886382178e-05
         },
         {
           "month": "2022-11",
-          "log_dev_2019": 20.6,
+          "centered_yoy": 14.6,
           "trailing_yoy": 9.0,
           "no2": 1.2095804207413748e-05
         },
         {
           "month": "2022-12",
-          "log_dev_2019": 20.2,
+          "centered_yoy": 14.6,
           "trailing_yoy": 14.1,
           "no2": 1.1151045394493974e-05
         },
         {
           "month": "2023-01",
-          "log_dev_2019": 22.1,
+          "centered_yoy": 16.2,
           "trailing_yoy": 13.6,
           "no2": 1.0480804163099942e-05
         },
         {
           "month": "2023-02",
-          "log_dev_2019": 26.5,
+          "centered_yoy": 25.3,
           "trailing_yoy": 16.6,
           "no2": 7.391228847103419e-06
         },
         {
           "month": "2023-03",
-          "log_dev_2019": 22.3,
+          "centered_yoy": 20.3,
           "trailing_yoy": 10.9,
           "no2": 7.524693182708155e-06
         },
         {
           "month": "2023-04",
-          "log_dev_2019": 22.1,
+          "centered_yoy": 19.4,
           "trailing_yoy": 14.6,
           "no2": 6.582846468310006e-06
         },
         {
           "month": "2023-05",
-          "log_dev_2019": 18.5,
+          "centered_yoy": 10.9,
           "trailing_yoy": 14.6,
           "no2": 8.403678669089731e-06
         },
         {
           "month": "2023-06",
-          "log_dev_2019": 17.3,
+          "centered_yoy": 4.9,
           "trailing_yoy": 16.2,
           "no2": 1.0915588244695294e-05
         },
         {
           "month": "2023-07",
-          "log_dev_2019": 14.6,
+          "centered_yoy": -3.5,
           "trailing_yoy": 25.3,
           "no2": 1.236078338483546e-05
         },
         {
           "month": "2023-08",
-          "log_dev_2019": 10.7,
+          "centered_yoy": -8.2,
           "trailing_yoy": 20.3,
           "no2": 1.5607410376518288e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": 11.2,
+          "centered_yoy": -9.4,
           "trailing_yoy": 19.4,
           "no2": 2.439004748515403e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": 8.4,
+          "centered_yoy": -11.3,
           "trailing_yoy": 10.9,
           "no2": 1.3705749705137463e-05
         },
         {
           "month": "2023-11",
-          "log_dev_2019": 4.2,
+          "centered_yoy": -16.5,
           "trailing_yoy": 4.9,
           "no2": 1.0445439555328492e-05
         },
         {
           "month": "2023-12",
-          "log_dev_2019": 1.3,
+          "centered_yoy": -18.9,
           "trailing_yoy": -3.5,
           "no2": 8.097892313160502e-06
         },
         {
           "month": "2024-01",
-          "log_dev_2019": -5.2,
+          "centered_yoy": -27.3,
           "trailing_yoy": -8.2,
           "no2": 6.572467075035592e-06
         },
         {
           "month": "2024-02",
-          "log_dev_2019": -5.2,
+          "centered_yoy": -31.6,
           "trailing_yoy": -9.4,
           "no2": 7.768916514121941e-06
         },
         {
           "month": "2024-03",
-          "log_dev_2019": -1.1,
+          "centered_yoy": -23.4,
           "trailing_yoy": -11.3,
           "no2": 5.402369186817269e-06
         },
         {
           "month": "2024-04",
-          "log_dev_2019": 0.2,
+          "centered_yoy": -21.9,
           "trailing_yoy": -16.5,
           "no2": 3.953568619805482e-06
         },
         {
           "month": "2024-05",
-          "log_dev_2019": 0.7,
+          "centered_yoy": -17.8,
           "trailing_yoy": -18.9,
           "no2": 5.9820329383351315e-06
         },
         {
           "month": "2024-06",
-          "log_dev_2019": 1.0,
+          "centered_yoy": -16.3,
           "trailing_yoy": -27.3,
           "no2": 5.005626571124456e-06
         },
         {
           "month": "2024-07",
-          "log_dev_2019": 1.8,
+          "centered_yoy": -12.8,
           "trailing_yoy": -31.6,
           "no2": 1.2396891849495772e-05
         },
         {
           "month": "2024-08",
-          "log_dev_2019": 4.6,
+          "centered_yoy": -6.2,
           "trailing_yoy": -23.4,
           "no2": 2.53298097202172e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": 3.2,
+          "centered_yoy": -7.9,
           "trailing_yoy": -21.9,
           "no2": 2.858931265168271e-05
         },
         {
           "month": "2024-10",
-          "log_dev_2019": 6.1,
+          "centered_yoy": -2.3,
           "trailing_yoy": -17.8,
           "no2": 1.450292912942887e-05
         },
         {
           "month": "2024-11",
-          "log_dev_2019": 9.5,
+          "centered_yoy": 5.4,
           "trailing_yoy": -16.3,
           "no2": 1.0888962563149418e-05
         },
         {
           "month": "2024-12",
-          "log_dev_2019": 10.5,
+          "centered_yoy": 9.2,
           "trailing_yoy": -12.8,
           "no2": 8.8980858603952e-06
         },
         {
           "month": "2025-01",
-          "log_dev_2019": 14.4,
+          "centered_yoy": 19.6,
           "trailing_yoy": -6.2,
           "no2": 9.168718577918406e-06
         },
         {
           "month": "2025-02",
-          "log_dev_2019": 14.4,
+          "centered_yoy": 19.6,
           "trailing_yoy": -7.9,
           "no2": 6.594774282387612e-06
         },
         {
           "month": "2025-03",
-          "log_dev_2019": 11.4,
+          "centered_yoy": 12.5,
           "trailing_yoy": -2.3,
           "no2": 7.666207210814407e-06
         },
         {
           "month": "2025-04",
-          "log_dev_2019": 7.5,
+          "centered_yoy": 7.3,
           "trailing_yoy": 5.4,
           "no2": 5.952811976858828e-06
         },
         {
           "month": "2025-05",
-          "log_dev_2019": 6.1,
+          "centered_yoy": 5.4,
           "trailing_yoy": 9.2,
           "no2": 6.684316202130432e-06
         },
         {
           "month": "2025-06",
-          "log_dev_2019": 5.8,
+          "centered_yoy": 4.8,
           "trailing_yoy": 19.6,
           "no2": 8.042779867102972e-06
         },
         {
           "month": "2025-07",
-          "log_dev_2019": 4.9,
+          "centered_yoy": 3.1,
           "trailing_yoy": 19.6,
           "no2": 1.2363067538954706e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": 3.8,
+          "centered_yoy": -0.8,
           "trailing_yoy": 12.5,
           "no2": 1.7683239661029178e-05
         },
         {
           "month": "2025-09",
-          "log_dev_2019": 4.1,
+          "centered_yoy": 0.9,
           "trailing_yoy": 7.3,
           "no2": 1.7951113236073768e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": 5.4,
+          "centered_yoy": -0.8,
           "trailing_yoy": 5.4,
           "no2": 1.2153652899906782e-05
         },
         {
           "month": "2025-11",
-          "log_dev_2019": 3.1,
+          "centered_yoy": -6.4,
           "trailing_yoy": 4.8,
           "no2": 1.0593160546571282e-05
         },
         {
           "month": "2025-12",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 3.1,
           "no2": 7.998481831761732e-06
         },
         {
           "month": "2026-01",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -0.8,
           "no2": 8.031084024973706e-06
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": 0.9,
           "no2": 6.8194375418682986e-06
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -0.8,
           "no2": 8.909046161886299e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -6.4,
           "no2": 4.538990464450219e-06
         }
@@ -3853,8 +3434,8 @@
       "name": "Montero",
       "dept": "Santa Cruz",
       "altitude": "lowland",
-      "centered_12m": 2.1,
-      "centered_12m_date": "2025-12",
+      "centered_yoy": -16.1,
+      "centered_yoy_date": "2025-12",
       "trailing_yoy": -16.1,
       "status": "red",
       "sparkline_28d": [
@@ -3914,289 +3495,289 @@
       "monthly_series": [
         {
           "month": "2022-06",
-          "log_dev_2019": 12.9,
+          "centered_yoy": 7.2,
           "trailing_yoy": 18.5,
           "no2": 1.345049866513286e-05
         },
         {
           "month": "2022-07",
-          "log_dev_2019": 11.7,
+          "centered_yoy": 2.9,
           "trailing_yoy": 19.2,
           "no2": 1.637241173978257e-05
         },
         {
           "month": "2022-08",
-          "log_dev_2019": 8.9,
+          "centered_yoy": -4.8,
           "trailing_yoy": 11.5,
           "no2": 2.8054204344351305e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": 5.5,
+          "centered_yoy": -10.0,
           "trailing_yoy": 12.5,
           "no2": 3.38819994202214e-05
         },
         {
           "month": "2022-10",
-          "log_dev_2019": 6.0,
+          "centered_yoy": -11.8,
           "trailing_yoy": 5.7,
           "no2": 2.141882484582075e-05
         },
         {
           "month": "2022-11",
-          "log_dev_2019": 9.5,
+          "centered_yoy": -6.2,
           "trailing_yoy": 7.2,
           "no2": 1.63962850562055e-05
         },
         {
           "month": "2022-12",
-          "log_dev_2019": 7.3,
+          "centered_yoy": -8.3,
           "trailing_yoy": 2.9,
           "no2": 1.2553930144895117e-05
         },
         {
           "month": "2023-01",
-          "log_dev_2019": 4.2,
+          "centered_yoy": -11.4,
           "trailing_yoy": -4.8,
           "no2": 9.745082925270157e-06
         },
         {
           "month": "2023-02",
-          "log_dev_2019": 3.9,
+          "centered_yoy": -12.4,
           "trailing_yoy": -10.0,
           "no2": 7.82529362827486e-06
         },
         {
           "month": "2023-03",
-          "log_dev_2019": 3.0,
+          "centered_yoy": -10.2,
           "trailing_yoy": -11.8,
           "no2": 1.0855113861440555e-05
         },
         {
           "month": "2023-04",
-          "log_dev_2019": 2.3,
+          "centered_yoy": -12.1,
           "trailing_yoy": -6.2,
           "no2": 9.82572118840726e-06
         },
         {
           "month": "2023-05",
-          "log_dev_2019": 5.6,
+          "centered_yoy": -6.2,
           "trailing_yoy": -8.3,
           "no2": 8.048587266010696e-06
         },
         {
           "month": "2023-06",
-          "log_dev_2019": 7.5,
+          "centered_yoy": -5.5,
           "trailing_yoy": -11.4,
           "no2": 9.25648509415958e-06
         },
         {
           "month": "2023-07",
-          "log_dev_2019": 7.9,
+          "centered_yoy": -3.8,
           "trailing_yoy": -12.4,
           "no2": 1.584307700297157e-05
         },
         {
           "month": "2023-08",
-          "log_dev_2019": 8.7,
+          "centered_yoy": -0.2,
           "trailing_yoy": -10.2,
           "no2": 2.5359577004673746e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": 11.4,
+          "centered_yoy": 5.9,
           "trailing_yoy": -12.1,
           "no2": 3.0899357626825835e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": 10.5,
+          "centered_yoy": 4.5,
           "trailing_yoy": -6.2,
           "no2": 3.2037149784436534e-05
         },
         {
           "month": "2023-11",
-          "log_dev_2019": 10.3,
+          "centered_yoy": 0.8,
           "trailing_yoy": -5.5,
           "no2": 2.040433096570123e-05
         },
         {
           "month": "2023-12",
-          "log_dev_2019": 12.9,
+          "centered_yoy": 5.6,
           "trailing_yoy": -3.8,
           "no2": 1.3207546271738887e-05
         },
         {
           "month": "2024-01",
-          "log_dev_2019": 13.5,
+          "centered_yoy": 9.3,
           "trailing_yoy": -0.2,
           "no2": 1.070031262078773e-05
         },
         {
           "month": "2024-02",
-          "log_dev_2019": 16.2,
+          "centered_yoy": 12.3,
           "trailing_yoy": 5.9,
           "no2": 1.0861167861452862e-05
         },
         {
           "month": "2024-03",
-          "log_dev_2019": 18.9,
+          "centered_yoy": 15.8,
           "trailing_yoy": 4.5,
           "no2": 9.795687718875208e-06
         },
         {
           "month": "2024-04",
-          "log_dev_2019": 23.0,
+          "centered_yoy": 20.7,
           "trailing_yoy": 0.8,
           "no2": 9.501318310490702e-06
         },
         {
           "month": "2024-05",
-          "log_dev_2019": 22.2,
+          "centered_yoy": 16.6,
           "trailing_yoy": 5.6,
           "no2": 1.1046449972262056e-05
         },
         {
           "month": "2024-06",
-          "log_dev_2019": 19.0,
+          "centered_yoy": 11.5,
           "trailing_yoy": 9.3,
           "no2": 9.95612023164261e-06
         },
         {
           "month": "2024-07",
-          "log_dev_2019": 17.8,
+          "centered_yoy": 9.9,
           "trailing_yoy": 12.3,
           "no2": 2.1869920075226904e-05
         },
         {
           "month": "2024-08",
-          "log_dev_2019": 19.3,
+          "centered_yoy": 10.7,
           "trailing_yoy": 15.8,
           "no2": 3.5022662109566e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": 20.7,
+          "centered_yoy": 9.3,
           "trailing_yoy": 20.7,
           "no2": 5.0568448932660755e-05
         },
         {
           "month": "2024-10",
-          "log_dev_2019": 20.5,
+          "centered_yoy": 10.0,
           "trailing_yoy": 16.6,
           "no2": 2.9126128610526087e-05
         },
         {
           "month": "2024-11",
-          "log_dev_2019": 19.8,
+          "centered_yoy": 9.5,
           "trailing_yoy": 11.5,
           "no2": 1.385160321304537e-05
         },
         {
           "month": "2024-12",
-          "log_dev_2019": 18.1,
+          "centered_yoy": 5.3,
           "trailing_yoy": 9.9,
           "no2": 1.1503767702626437e-05
         },
         {
           "month": "2025-01",
-          "log_dev_2019": 18.0,
+          "centered_yoy": 4.5,
           "trailing_yoy": 10.7,
           "no2": 1.2822511603361836e-05
         },
         {
           "month": "2025-02",
-          "log_dev_2019": 16.5,
+          "centered_yoy": 0.4,
           "trailing_yoy": 9.3,
           "no2": 1.281667843556723e-05
         },
         {
           "month": "2025-03",
-          "log_dev_2019": 14.0,
+          "centered_yoy": -4.9,
           "trailing_yoy": 10.0,
           "no2": 9.55245044733292e-06
         },
         {
           "month": "2025-04",
-          "log_dev_2019": 10.7,
+          "centered_yoy": -12.2,
           "trailing_yoy": 9.5,
           "no2": 8.74128153583507e-06
         },
         {
           "month": "2025-05",
-          "log_dev_2019": 8.7,
+          "centered_yoy": -13.5,
           "trailing_yoy": 5.3,
           "no2": 9.062941930735432e-06
         },
         {
           "month": "2025-06",
-          "log_dev_2019": 7.4,
+          "centered_yoy": -11.6,
           "trailing_yoy": 4.5,
           "no2": 9.755119386552069e-06
         },
         {
           "month": "2025-07",
-          "log_dev_2019": 4.6,
+          "centered_yoy": -13.2,
           "trailing_yoy": 0.4,
           "no2": 1.8445249976977988e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": 3.9,
+          "centered_yoy": -15.4,
           "trailing_yoy": -4.9,
           "no2": 2.57498200305671e-05
         },
         {
           "month": "2025-09",
-          "log_dev_2019": 3.0,
+          "centered_yoy": -17.7,
           "trailing_yoy": -12.2,
           "no2": 3.4204235269765475e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": 3.1,
+          "centered_yoy": -17.4,
           "trailing_yoy": -13.5,
           "no2": 2.2861504701860864e-05
         },
         {
           "month": "2025-11",
-          "log_dev_2019": 3.4,
+          "centered_yoy": -16.4,
           "trailing_yoy": -11.6,
           "no2": 1.1773534372901732e-05
         },
         {
           "month": "2025-12",
-          "log_dev_2019": 2.1,
+          "centered_yoy": -16.1,
           "trailing_yoy": -13.2,
           "no2": 8.284720441067278e-06
         },
         {
           "month": "2026-01",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -15.4,
           "no2": 1.1825172086252758e-05
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -17.7,
           "no2": 1.147475009657828e-05
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -17.4,
           "no2": 9.59747997281842e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -16.4,
           "no2": 9.093194532819618e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -16.1,
           "no2": 7.741388657604156e-06
         }
@@ -4206,8 +3787,8 @@
       "name": "Yacuiba",
       "dept": "Tarija",
       "altitude": "lowland",
-      "centered_12m": 3.6,
-      "centered_12m_date": "2025-11",
+      "centered_yoy": -15.5,
+      "centered_yoy_date": "2025-11",
       "trailing_yoy": -15.5,
       "status": "red",
       "sparkline_28d": [
@@ -4267,289 +3848,289 @@
       "monthly_series": [
         {
           "month": "2022-05",
-          "log_dev_2019": 18.6,
+          "centered_yoy": 4.3,
           "trailing_yoy": -15.7,
           "no2": 6.408929163821067e-06
         },
         {
           "month": "2022-06",
-          "log_dev_2019": 22.3,
+          "centered_yoy": 7.5,
           "trailing_yoy": -14.0,
           "no2": 8.9793417622808e-06
         },
         {
           "month": "2022-07",
-          "log_dev_2019": 24.1,
+          "centered_yoy": 8.6,
           "trailing_yoy": -13.2,
           "no2": 1.434330807957894e-05
         },
         {
           "month": "2022-08",
-          "log_dev_2019": 27.9,
+          "centered_yoy": 12.3,
           "trailing_yoy": -11.6,
           "no2": 1.843849127728647e-05
         },
         {
           "month": "2022-09",
-          "log_dev_2019": 29.7,
+          "centered_yoy": 18.5,
           "trailing_yoy": -4.9,
           "no2": 2.522464648455105e-05
         },
         {
           "month": "2022-10",
-          "log_dev_2019": 31.3,
+          "centered_yoy": 19.9,
           "trailing_yoy": 4.3,
           "no2": 2.2163473383171364e-05
         },
         {
           "month": "2022-11",
-          "log_dev_2019": 29.6,
+          "centered_yoy": 20.4,
           "trailing_yoy": 7.5,
           "no2": 2.852586821393662e-05
         },
         {
           "month": "2022-12",
-          "log_dev_2019": 29.9,
+          "centered_yoy": 21.6,
           "trailing_yoy": 8.6,
           "no2": 1.3647120835756128e-05
         },
         {
           "month": "2023-01",
-          "log_dev_2019": 29.5,
+          "centered_yoy": 20.2,
           "trailing_yoy": 12.3,
           "no2": 1.6593757994685728e-05
         },
         {
           "month": "2023-02",
-          "log_dev_2019": 25.7,
+          "centered_yoy": 14.3,
           "trailing_yoy": 18.5,
           "no2": 7.49339016242316e-06
         },
         {
           "month": "2023-03",
-          "log_dev_2019": 24.9,
+          "centered_yoy": 12.9,
           "trailing_yoy": 19.9,
           "no2": 7.518378873512201e-06
         },
         {
           "month": "2023-04",
-          "log_dev_2019": 23.7,
+          "centered_yoy": 8.7,
           "trailing_yoy": 20.4,
           "no2": 4.85642342926919e-06
         },
         {
           "month": "2023-05",
-          "log_dev_2019": 24.6,
+          "centered_yoy": 6.0,
           "trailing_yoy": 21.6,
           "no2": 6.636263138706893e-06
         },
         {
           "month": "2023-06",
-          "log_dev_2019": 23.6,
+          "centered_yoy": 1.3,
           "trailing_yoy": 20.2,
           "no2": 8.524335691184067e-06
         },
         {
           "month": "2023-07",
-          "log_dev_2019": 21.7,
+          "centered_yoy": -2.4,
           "trailing_yoy": 14.3,
           "no2": 9.11611734347679e-06
         },
         {
           "month": "2023-08",
-          "log_dev_2019": 15.9,
+          "centered_yoy": -12.0,
           "trailing_yoy": 12.9,
           "no2": 1.685460985837153e-05
         },
         {
           "month": "2023-09",
-          "log_dev_2019": 17.5,
+          "centered_yoy": -12.2,
           "trailing_yoy": 8.7,
           "no2": 2.1760849339259932e-05
         },
         {
           "month": "2023-10",
-          "log_dev_2019": 18.5,
+          "centered_yoy": -12.8,
           "trailing_yoy": 6.0,
           "no2": 2.482871190716419e-05
         },
         {
           "month": "2023-11",
-          "log_dev_2019": 20.3,
+          "centered_yoy": -9.3,
           "trailing_yoy": 1.3,
           "no2": 2.518051624233117e-05
         },
         {
           "month": "2023-12",
-          "log_dev_2019": 19.1,
+          "centered_yoy": -10.8,
           "trailing_yoy": -2.4,
           "no2": 1.0851017103299893e-05
         },
         {
           "month": "2024-01",
-          "log_dev_2019": 21.7,
+          "centered_yoy": -7.7,
           "trailing_yoy": -12.0,
           "no2": 8.24591593227288e-06
         },
         {
           "month": "2024-02",
-          "log_dev_2019": 23.6,
+          "centered_yoy": -2.0,
           "trailing_yoy": -12.2,
           "no2": 9.144096225432784e-06
         },
         {
           "month": "2024-03",
-          "log_dev_2019": 24.1,
+          "centered_yoy": -0.8,
           "trailing_yoy": -12.8,
           "no2": 8.45254255570345e-06
         },
         {
           "month": "2024-04",
-          "log_dev_2019": 24.6,
+          "centered_yoy": 0.9,
           "trailing_yoy": -9.3,
           "no2": 6.024813168848975e-06
         },
         {
           "month": "2024-05",
-          "log_dev_2019": 25.0,
+          "centered_yoy": 0.4,
           "trailing_yoy": -10.8,
           "no2": 5.7620077572756475e-06
         },
         {
           "month": "2024-06",
-          "log_dev_2019": 17.3,
+          "centered_yoy": -6.3,
           "trailing_yoy": -7.7,
           "no2": 1.1665896970172778e-05
         },
         {
           "month": "2024-07",
-          "log_dev_2019": 14.8,
+          "centered_yoy": -6.9,
           "trailing_yoy": -2.0,
           "no2": 1.1442831487573586e-05
         },
         {
           "month": "2024-08",
-          "log_dev_2019": 15.8,
+          "centered_yoy": -0.1,
           "trailing_yoy": -0.8,
           "no2": 1.7919824580650328e-05
         },
         {
           "month": "2024-09",
-          "log_dev_2019": 19.3,
+          "centered_yoy": 1.8,
           "trailing_yoy": 0.9,
           "no2": 2.3054083072892857e-05
         },
         {
           "month": "2024-10",
-          "log_dev_2019": 19.3,
+          "centered_yoy": 0.8,
           "trailing_yoy": 0.4,
           "no2": 2.598912978380508e-05
         },
         {
           "month": "2024-11",
-          "log_dev_2019": 19.1,
+          "centered_yoy": -1.2,
           "trailing_yoy": -6.3,
           "no2": 1.0032404886434963e-05
         },
         {
           "month": "2024-12",
-          "log_dev_2019": 19.7,
+          "centered_yoy": 0.6,
           "trailing_yoy": -6.9,
           "no2": 7.958801677188564e-06
         },
         {
           "month": "2025-01",
-          "log_dev_2019": 16.9,
+          "centered_yoy": -4.8,
           "trailing_yoy": -0.1,
           "no2": 9.304057236482942e-06
         },
         {
           "month": "2025-02",
-          "log_dev_2019": 15.9,
+          "centered_yoy": -7.7,
           "trailing_yoy": 1.8,
           "no2": 1.4021848848451815e-05
         },
         {
           "month": "2025-03",
-          "log_dev_2019": 12.0,
+          "centered_yoy": -12.1,
           "trailing_yoy": 0.8,
           "no2": 8.459424102468935e-06
         },
         {
           "month": "2025-04",
-          "log_dev_2019": 10.0,
+          "centered_yoy": -14.6,
           "trailing_yoy": -1.2,
           "no2": 5.88383337470719e-06
         },
         {
           "month": "2025-05",
-          "log_dev_2019": 7.1,
+          "centered_yoy": -17.9,
           "trailing_yoy": 0.6,
           "no2": 6.152148574606764e-06
         },
         {
           "month": "2025-06",
-          "log_dev_2019": 7.8,
+          "centered_yoy": -9.6,
           "trailing_yoy": -4.8,
           "no2": 8.362524546103916e-06
         },
         {
           "month": "2025-07",
-          "log_dev_2019": 8.7,
+          "centered_yoy": -6.1,
           "trailing_yoy": -7.7,
           "no2": 1.0191159338414456e-05
         },
         {
           "month": "2025-08",
-          "log_dev_2019": 8.4,
+          "centered_yoy": -7.4,
           "trailing_yoy": -12.1,
           "no2": 1.122765912225931e-05
         },
         {
           "month": "2025-09",
-          "log_dev_2019": 4.6,
+          "centered_yoy": -14.7,
           "trailing_yoy": -14.6,
           "no2": 1.803748349990884e-05
         },
         {
           "month": "2025-10",
-          "log_dev_2019": 4.6,
+          "centered_yoy": -14.7,
           "trailing_yoy": -17.9,
           "no2": 1.846338540867798e-05
         },
         {
           "month": "2025-11",
-          "log_dev_2019": 3.6,
+          "centered_yoy": -15.5,
           "trailing_yoy": -9.6,
           "no2": 1.0810063503425811e-05
         },
         {
           "month": "2025-12",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -6.1,
           "no2": 8.869678027731485e-06
         },
         {
           "month": "2026-01",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -7.4,
           "no2": 8.958285373981337e-06
         },
         {
           "month": "2026-02",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -14.7,
           "no2": 8.968615686944903e-06
         },
         {
           "month": "2026-03",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -14.7,
           "no2": 8.459001380085526e-06
         },
         {
           "month": "2026-04",
-          "log_dev_2019": null,
+          "centered_yoy": null,
           "trailing_yoy": -15.5,
           "no2": 5.20810037643028e-06
         }

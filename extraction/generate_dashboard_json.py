@@ -31,34 +31,24 @@ def safe(v):
     return round(float(v), 1)
 
 # ── National ────────────────────────────────────────────────────────
-last_c12 = natl_m.log_dev_2019.dropna()
+last_c12_yoy = natl_m.centered_yoy.dropna()
 last_trail = natl_m.trailing_yoy.dropna()
-last_wk = natl_w.yoy_28d.dropna()
 
 monthly_series = []
 for date, row in natl_m.tail(48).iterrows():
     monthly_series.append({
         "month": date.strftime("%Y-%m"),
-        "log_dev_2019": safe(row.log_dev_2019),
+        "centered_yoy": safe(row.centered_yoy),
         "trailing_yoy": safe(row.trailing_yoy),
     })
 
-weekly_series = []
-for date, row in natl_w.tail(104).iterrows():
-    weekly_series.append({
-        "week": date.strftime("%Y-%m-%d"),
-        "yoy_28d": safe(row.yoy_28d),
-    })
-
 national = {
-    "centered_12m": safe(last_c12.iloc[-1]),
-    "centered_12m_date": last_c12.index[-1].strftime("%Y-%m"),
+    "centered_yoy": safe(last_c12_yoy.iloc[-1]),
+    "centered_yoy_date": last_c12_yoy.index[-1].strftime("%Y-%m"),
     "trailing_yoy": safe(last_trail.iloc[-1]),
-    "weekly_yoy_28d": safe(last_wk.iloc[-1]),
-    "weekly_date": last_wk.index[-1].strftime("%Y-%m-%d"),
+    "trailing_yoy_date": last_trail.index[-1].strftime("%Y-%m"),
     "status": status(float(last_trail.iloc[-1])),
     "monthly_series": monthly_series,
-    "weekly_series": weekly_series,
 }
 
 # ── Per metro ───────────────────────────────────────────────────────
@@ -67,14 +57,14 @@ for roi_id, meta in ROI_META.items():
     mc = metro_c12[metro_c12.roi == roi_id].set_index("date").sort_index()
     mw = metro_wk[metro_wk.roi == roi_id].set_index("date").sort_index()
 
-    valid_c12 = mc.log_dev_2019.dropna()
+    valid_c12_yoy = mc.centered_yoy.dropna() if "centered_yoy" in mc.columns else pd.Series(dtype=float)
     valid_tyoy = mc.trailing_yoy.dropna()
 
     m_series = []
     for date, row in mc.tail(48).iterrows():
         m_series.append({
             "month": date.strftime("%Y-%m"),
-            "log_dev_2019": safe(row.log_dev_2019),
+            "centered_yoy": safe(row.centered_yoy) if "centered_yoy" in mc.columns else None,
             "trailing_yoy": safe(row.trailing_yoy),
             "no2": float(row.no2_monthly) if not np.isnan(row.no2_monthly) else None,
         })
@@ -87,8 +77,8 @@ for roi_id, meta in ROI_META.items():
         "name": meta["name"],
         "dept": meta["dept"],
         "altitude": meta["altitude"],
-        "centered_12m": safe(valid_c12.iloc[-1]) if len(valid_c12) > 0 else None,
-        "centered_12m_date": valid_c12.index[-1].strftime("%Y-%m") if len(valid_c12) > 0 else None,
+        "centered_yoy": safe(valid_c12_yoy.iloc[-1]) if len(valid_c12_yoy) > 0 else None,
+        "centered_yoy_date": valid_c12_yoy.index[-1].strftime("%Y-%m") if len(valid_c12_yoy) > 0 else None,
         "trailing_yoy": safe(valid_tyoy.iloc[-1]) if len(valid_tyoy) > 0 else None,
         "status": status(float(valid_tyoy.iloc[-1])) if len(valid_tyoy) > 0 else "nodata",
         "sparkline_28d": sparkline,
@@ -100,10 +90,9 @@ out = {
     "last_updated": pd.Timestamp.now().strftime("%Y-%m-%d"),
     "gasolinazo_date": "2025-12-17",
     "reference_year": 2019,
-    "note": "centered_12m = log(12-month centered rolling NO2 / 2019 mean) x 100. "
-            "This is the paper's headline indicator (Figure 2). "
-            "trailing_yoy = trailing 12-month YoY growth in log points. "
-            "weekly_yoy_28d = 28-day rolling YoY for early warning.",
+    "note": "centered_yoy = YoY growth of 12-month centered rolling NO2 (log points %). "
+            "trailing_yoy = trailing 12-month YoY growth (log points %). "
+            "Both are approximate percentage changes in NO2 activity vs same period last year.",
     "national": national,
     "metros": metros,
 }
@@ -142,7 +131,7 @@ METRO_TEMPLATE = """<!DOCTYPE html>
       <h2 id="metro-name">__ROI_NAME__</h2>
       <div class="kpis">
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-dept">Department</span> <span class="kpi-val" id="metro-meta">—</span></span>
-        <span class="kpi"><span class="kpi-label" data-i18n="kpi-c12">Centered 12m</span> <span class="kpi-val" id="current-c12">—</span> <span class="dot" id="current-dot"></span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-c12-yoy">Centered 12m YoY</span> <span class="kpi-val" id="current-c12">—</span> <span class="dot" id="current-dot"></span></span>
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-asof">As of</span> <span class="kpi-val" id="c12-date">—</span></span>
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-trail">Trailing 12m YoY</span> <span class="kpi-val" id="current-trail" style="color:var(--muted)">—</span></span>
       </div>
@@ -151,9 +140,9 @@ METRO_TEMPLATE = """<!DOCTYPE html>
 
   <section class="detail-grid">
     <div class="panel">
-      <h2 data-i18n="metro-chart-c12">Paper's indicator: centered 12-month</h2>
+      <h2 data-i18n="metro-chart-c12">Year-over-year growth</h2>
       <div class="chart-wrap"><canvas id="chart-monthly"></canvas></div>
-      <p class="caption" data-i18n="caption-metro-c12">log(centered 12m NO₂ / 2019 mean) × 100. Zero = 2019 baseline.</p>
+      <p class="caption" data-i18n="caption-metro-c12">YoY growth of centered and trailing 12-month NO₂ (%). Zero = no change vs prior year.</p>
     </div>
     <div class="panel">
       <h2 data-i18n="metro-chart-lvl">Monthly NO₂ level</h2>

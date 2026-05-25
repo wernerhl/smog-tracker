@@ -1,5 +1,5 @@
 // Per-metro detail page. Reads ?id=<roi> from query string OR a global ROI_ID.
-// Charts: 1) monthly centered-12m (paper's indicator) 2) monthly NO₂ level
+// Charts: 1) YoY growth (centered + trailing) 2) monthly NO₂ level
 // i18n.js must be loaded before this file.
 
 console.log('[smog-tracker] metro.js loaded');
@@ -56,14 +56,14 @@ function renderMetroPage(d, m, id) {
   const dot = document.getElementById('current-dot');
   dot.className = 'dot ' + (m.status || 'grey');
   const c12El = document.getElementById('current-c12');
-  c12El.textContent = fmtDev(m.centered_12m) + ' ' + T('log-pts');
+  c12El.textContent = fmtPct(m.centered_yoy);
   c12El.style.color = colorFor(m.status);
   const c12Date = document.getElementById('c12-date');
-  if (c12Date) c12Date.textContent = m.centered_12m_date || '—';
+  if (c12Date) c12Date.textContent = m.centered_yoy_date || '—';
   const trailEl = document.getElementById('current-trail');
   if (trailEl) trailEl.textContent = fmtPct(m.trailing_yoy);
 
-  // ---- Monthly chart (paper's indicator) ----
+  // ---- YoY growth chart ----
   const mseries = m.monthly_series || [];
   if (mseries.length > 0) {
     const labels = mseries.map(p => p.month);
@@ -85,7 +85,7 @@ function renderMetroPage(d, m, id) {
           },
           {
             label: T('chart-centered'),
-            data: mseries.map(p => p.log_dev_2019),
+            data: mseries.map(p => p.centered_yoy),
             borderColor: PALETTE.teal,
             backgroundColor: 'rgba(31,111,115,0.10)',
             borderWidth: 2.5, pointRadius: 0, tension: 0.3, fill: true, spanGaps: true,
@@ -97,10 +97,10 @@ function renderMetroPage(d, m, id) {
         responsive: true, maintainAspectRatio: false,
         plugins: {
           legend: { display: true, position: 'top', labels: { boxWidth: 14 } },
-          tooltip: { callbacks: { label: c => c.dataset.label + ': ' + fmtDev(c.parsed.y) + ' ' + T('log-pts') } },
+          tooltip: { callbacks: { label: c => c.dataset.label + ': ' + fmtPct(c.parsed.y) } },
         },
         scales: {
-          y: { title: { display: true, text: T('chart-yaxis-logdev') },
+          y: { title: { display: true, text: T('chart-yaxis-yoy') },
                grid: { color: 'rgba(120,120,120,0.12)' } },
           x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }, grid: { display: false } },
         },
@@ -111,9 +111,14 @@ function renderMetroPage(d, m, id) {
           const { ctx, chartArea, scales } = chart;
           if (!chartArea || !scales.y) return;
           ctx.save();
+          // Zero line
           const y0 = scales.y.getPixelForValue(0);
           ctx.strokeStyle = PALETTE.slate; ctx.lineWidth = 1.5;
           ctx.beginPath(); ctx.moveTo(chartArea.left, y0); ctx.lineTo(chartArea.right, y0); ctx.stroke();
+          // Red shading below zero
+          ctx.fillStyle = 'rgba(161,61,45,0.08)';
+          ctx.fillRect(chartArea.left, y0, chartArea.right - chartArea.left, chartArea.bottom - y0);
+          // Gasolinazo
           if (idxGas >= 0) {
             const xGas = scales.x.getPixelForValue(idxGas);
             ctx.strokeStyle = PALETTE.rust; ctx.setLineDash([5, 4]);
@@ -186,9 +191,9 @@ window._rebuildCharts = function() {
     document.getElementById('csv-dl').addEventListener('click', e => {
       e.preventDefault();
       const mseries = m.monthly_series || [];
-      const rows = [['month', 'no2_mol_m2', 'log_dev_2019']];
+      const rows = [['month', 'no2_mol_m2', 'centered_yoy', 'trailing_yoy']];
       for (const p of mseries) {
-        rows.push([p.month, p.no2 ?? '', p.log_dev_2019 ?? '']);
+        rows.push([p.month, p.no2 ?? '', p.centered_yoy ?? '', p.trailing_yoy ?? '']);
       }
       const blob = new Blob([rows.map(r => r.join(',')).join('\n')], {type: 'text/csv'});
       const url = URL.createObjectURL(blob);

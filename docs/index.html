@@ -27,12 +27,12 @@
 </header>
 
 <main>
-  <!-- HEADLINE: Paper's indicator -->
+  <!-- HEADLINE: YoY growth -->
   <section id="national" class="panel">
     <div class="panel-head">
-      <h2 data-i18n="national-title">National aggregate — the paper's indicator</h2>
+      <h2 data-i18n="national-title">National aggregate — year-over-year growth</h2>
       <div class="kpis">
-        <span class="kpi"><span class="kpi-label" data-i18n="kpi-c12">Centered 12-month</span> <span class="kpi-val" id="nat-c12">—</span> <span class="dot" id="nat-dot"></span></span>
+        <span class="kpi"><span class="kpi-label" data-i18n="kpi-c12-yoy">Centered 12m YoY</span> <span class="kpi-val" id="nat-c12">—</span> <span class="dot" id="nat-dot"></span></span>
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-trail">Trailing 12m YoY</span> <span class="kpi-val" id="nat-trail">—</span></span>
         <span class="kpi"><span class="kpi-label" data-i18n="kpi-asof">As of</span> <span class="kpi-val" id="nat-date">—</span></span>
       </div>
@@ -41,9 +41,9 @@
       <canvas id="chart-monthly"></canvas>
     </div>
     <p class="caption" data-i18n="caption-monthly" data-i18n-html="true">
-      <b>Centered 12-month rolling NO₂</b>, log deviation from 2019 mean (%).
-      This is Figure 2 from the paper, updated monthly. Population-weighted national aggregate.
-      Dashed line = Dec 2025 (gasolinazo). 0 = 2019 baseline.
+      <b>Year-over-year growth</b> of 12-month rolling NO₂ (%).
+      Population-weighted national aggregate. Zero = no change vs prior year.
+      Dashed line = Dec 2025 (gasolinazo).
     </p>
   </section>
 
