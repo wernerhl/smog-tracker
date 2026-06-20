@@ -84,15 +84,27 @@ def main() -> None:
     raw_dir.mkdir(parents=True, exist_ok=True)
     for y, sub in new.groupby("year"):
         out = raw_dir / f"tropomi_daily_{y}.csv"
+        sub = sub.drop(columns=["year"])
         if out.exists():
             old = pd.read_csv(out)
-            merged = pd.concat([old, sub.drop(columns=["year"])], ignore_index=True)
-            merged = merged.drop_duplicates(subset=["date", "roi"], keep="last")
-            merged = merged.sort_values(["date", "roi"])
+            # Refresh ONLY the dates this run actually returned valid data for,
+            # so an empty fetch (TROPOMI L3 OFFL publication latency) is a no-op
+            # and can never clobber previously-extracted observations.
+            #
+            # Do NOT dedup on (date, roi): TROPOMI yields several overlapping
+            # orbits per day, each a legitimate row that compute_indicators
+            # averages. Collapsing to one row per (date, roi) silently drops
+            # the valid orbits and was the cause of the 2026 data wipe.
+            valid_dates = set(sub.loc[sub["no2_mol_m2"].notna(), "date"].unique())
+            old_keep = old[~old["date"].isin(valid_dates)]
+            new_keep = sub[sub["date"].isin(valid_dates)]
+            merged = pd.concat([old_keep, new_keep], ignore_index=True)
         else:
-            merged = sub.drop(columns=["year"]).sort_values(["date", "roi"])
+            merged = sub
+        merged = merged.sort_values(["date", "roi"]).reset_index(drop=True)
         merged.to_csv(out, index=False)
-        print(f"[extract] wrote {out.name} ({len(merged):,} rows)")
+        n_valid = int(merged["no2_mol_m2"].notna().sum())
+        print(f"[extract] wrote {out.name} ({len(merged):,} rows, {n_valid:,} valid)")
 
 
 if __name__ == "__main__":
