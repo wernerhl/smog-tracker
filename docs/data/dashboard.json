@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-20",
+  "last_updated": "2026-06-21",
   "gasolinazo_date": "2025-12-17",
   "reference_year": 2019,
   "note": "centered_yoy = YoY growth of 12-month centered rolling NO2 (log points %). trailing_yoy = trailing 12-month YoY growth (log points %). Both are approximate percentage changes in NO2 activity vs same period last year.",
@@ -313,7 +313,7 @@
         17.4,
         28.3,
         31.1,
-        29.1
+        31.1
       ],
       "monthly_series": [
         {
@@ -1019,7 +1019,7 @@
         4.1,
         13.1,
         26.7,
-        31.7
+        38.3
       ],
       "monthly_series": [
         {
@@ -1372,7 +1372,7 @@
         12.8,
         29.6,
         14.0,
-        8.7
+        9.8
       ],
       "monthly_series": [
         {
@@ -1725,7 +1725,7 @@
         -2.8,
         1.6,
         4.2,
-        6.9
+        13.4
       ],
       "monthly_series": [
         {
@@ -2078,7 +2078,7 @@
         -60.2,
         -54.4,
         -46.4,
-        -41.7
+        -27.9
       ],
       "monthly_series": [
         {
@@ -2431,7 +2431,7 @@
         6.8,
         18.7,
         33.2,
-        39.8
+        38.0
       ],
       "monthly_series": [
         {
@@ -2784,7 +2784,7 @@
         -80.5,
         -93.6,
         -96.8,
-        -100.7
+        -109.1
       ],
       "monthly_series": [
         {
