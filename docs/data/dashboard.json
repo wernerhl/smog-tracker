@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-21",
+  "last_updated": "2026-06-28",
   "gasolinazo_date": "2025-12-17",
   "reference_year": 2019,
   "note": "centered_yoy = YoY growth of 12-month centered rolling NO2 (log points %). trailing_yoy = trailing 12-month YoY growth (log points %). Both are approximate percentage changes in NO2 activity vs same period last year.",
@@ -262,7 +262,6 @@
       "trailing_yoy": -12.6,
       "status": "red",
       "sparkline_28d": [
-        121.9,
         139.0,
         141.0,
         117.3,
@@ -313,7 +312,8 @@
         17.4,
         28.3,
         31.1,
-        31.1
+        46.7,
+        51.3
       ],
       "monthly_series": [
         {
@@ -968,7 +968,6 @@
       "trailing_yoy": -8.3,
       "status": "red",
       "sparkline_28d": [
-        62.7,
         68.8,
         55.9,
         47.0,
@@ -1019,7 +1018,8 @@
         4.1,
         13.1,
         26.7,
-        38.3
+        44.8,
+        50.0
       ],
       "monthly_series": [
         {
@@ -1321,7 +1321,6 @@
       "trailing_yoy": 2.3,
       "status": "yellow",
       "sparkline_28d": [
-        21.0,
         34.5,
         22.4,
         26.6,
@@ -1372,7 +1371,8 @@
         12.8,
         29.6,
         14.0,
-        9.8
+        13.9,
+        14.5
       ],
       "monthly_series": [
         {
@@ -1674,7 +1674,6 @@
       "trailing_yoy": 1.0,
       "status": "yellow",
       "sparkline_28d": [
-        48.4,
         77.0,
         84.5,
         102.3,
@@ -1725,7 +1724,8 @@
         -2.8,
         1.6,
         4.2,
-        13.4
+        23.4,
+        26.3
       ],
       "monthly_series": [
         {
@@ -2027,7 +2027,6 @@
       "trailing_yoy": -7.5,
       "status": "red",
       "sparkline_28d": [
-        -0.0,
         46.5,
         78.8,
         91.0,
@@ -2078,7 +2077,8 @@
         -60.2,
         -54.4,
         -46.4,
-        -27.9
+        -20.5,
+        -15.9
       ],
       "monthly_series": [
         {
@@ -2380,7 +2380,6 @@
       "trailing_yoy": -0.3,
       "status": "yellow",
       "sparkline_28d": [
-        48.8,
         44.3,
         32.3,
         18.3,
@@ -2431,7 +2430,8 @@
         6.8,
         18.7,
         33.2,
-        38.0
+        26.6,
+        29.0
       ],
       "monthly_series": [
         {
@@ -3137,7 +3137,7 @@
         22.2,
         25.2,
         29.5,
-        20.1
+        18.0
       ],
       "monthly_series": [
         {
@@ -3439,7 +3439,6 @@
       "trailing_yoy": -16.1,
       "status": "red",
       "sparkline_28d": [
-        -112.2,
         -115.8,
         -117.3,
         -113.9,
@@ -3490,7 +3489,8 @@
         -122.7,
         -137.1,
         -144.1,
-        -162.3
+        -162.3,
+        -165.6
       ],
       "monthly_series": [
         {
