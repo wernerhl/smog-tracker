@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-11",
+  "last_updated": "2026-10-18",
   "gasolinazo_date": "2025-12-17",
   "reference_year": 2019,
   "note": "centered_yoy = YoY growth of 12-month centered rolling NO2 (log points %). trailing_yoy = trailing 12-month YoY growth (log points %). Both are approximate percentage changes in NO2 activity vs same period last year.",
@@ -262,7 +262,6 @@
       "trailing_yoy": -18.3,
       "status": "red",
       "sparkline_28d": [
-        -12.0,
         -28.2,
         -16.7,
         -11.5,
@@ -313,7 +312,8 @@
         -19.1,
         -4.7,
         -4.1,
-        -2.9
+        -0.6,
+        1.4
       ],
       "monthly_series": [
         {
@@ -615,7 +615,6 @@
       "trailing_yoy": -1.0,
       "status": "yellow",
       "sparkline_28d": [
-        126.4,
         123.3,
         101.7,
         66.4,
@@ -666,7 +665,8 @@
         116.2,
         110.7,
         112.7,
-        110.7
+        107.7,
+        104.2
       ],
       "monthly_series": [
         {
@@ -968,7 +968,6 @@
       "trailing_yoy": -5.9,
       "status": "red",
       "sparkline_28d": [
-        -37.0,
         -35.7,
         -22.7,
         -25.0,
@@ -1019,7 +1018,8 @@
         15.5,
         6.3,
         0.7,
-        0.3
+        0.8,
+        -3.5
       ],
       "monthly_series": [
         {
@@ -1321,7 +1321,6 @@
       "trailing_yoy": 3.4,
       "status": "yellow",
       "sparkline_28d": [
-        11.0,
         6.9,
         2.6,
         5.3,
@@ -1372,7 +1371,8 @@
         48.1,
         49.7,
         53.7,
-        51.2
+        59.4,
+        58.5
       ],
       "monthly_series": [
         {
@@ -1674,7 +1674,6 @@
       "trailing_yoy": 14.3,
       "status": "green",
       "sparkline_28d": [
-        -17.0,
         -12.4,
         -1.6,
         1.4,
@@ -1725,7 +1724,8 @@
         52.3,
         53.1,
         59.6,
-        45.6
+        32.9,
+        28.2
       ],
       "monthly_series": [
         {
@@ -2027,7 +2027,6 @@
       "trailing_yoy": 5.1,
       "status": "green",
       "sparkline_28d": [
-        38.5,
         63.3,
         69.8,
         68.6,
@@ -2078,7 +2077,8 @@
         27.5,
         35.6,
         33.3,
-        26.0
+        15.6,
+        32.9
       ],
       "monthly_series": [
         {
@@ -2380,7 +2380,6 @@
       "trailing_yoy": 7.6,
       "status": "green",
       "sparkline_28d": [
-        -4.8,
         1.6,
         8.6,
         0.8,
@@ -2431,7 +2430,8 @@
         58.5,
         43.3,
         39.8,
-        36.9
+        34.8,
+        36.8
       ],
       "monthly_series": [
         {
@@ -2733,7 +2733,6 @@
       "trailing_yoy": -1.9,
       "status": "yellow",
       "sparkline_28d": [
-        83.9,
         112.4,
         140.5,
         147.2,
@@ -2784,7 +2783,8 @@
         -7.4,
         54.4,
         111.6,
-        110.7
+        116.4,
+        119.0
       ],
       "monthly_series": [
         {
@@ -3086,7 +3086,6 @@
       "trailing_yoy": -1.6,
       "status": "yellow",
       "sparkline_28d": [
-        -18.5,
         -10.0,
         12.1,
         12.8,
@@ -3137,7 +3136,8 @@
         83.4,
         83.6,
         49.8,
-        41.5
+        35.6,
+        13.3
       ],
       "monthly_series": [
         {
@@ -3439,7 +3439,6 @@
       "trailing_yoy": -8.3,
       "status": "red",
       "sparkline_28d": [
-        102.8,
         105.9,
         101.6,
         99.6,
@@ -3490,7 +3489,8 @@
         61.0,
         80.2,
         74.3,
-        70.6
+        69.7,
+        69.9
       ],
       "monthly_series": [
         {
@@ -3792,7 +3792,6 @@
       "trailing_yoy": 1.2,
       "status": "yellow",
       "sparkline_28d": [
-        -82.8,
         -64.7,
         -78.5,
         -52.3,
@@ -3843,7 +3842,8 @@
         -80.9,
         -61.7,
         -61.4,
-        -54.4
+        -53.4,
+        -48.8
       ],
       "monthly_series": [
         {
