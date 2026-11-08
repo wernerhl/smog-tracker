@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-01",
+  "last_updated": "2026-11-08",
   "gasolinazo_date": "2025-12-17",
   "reference_year": 2019,
   "note": "centered_yoy = YoY growth of 12-month centered rolling NO2 (log points %). trailing_yoy = trailing 12-month YoY growth (log points %). Both are approximate percentage changes in NO2 activity vs same period last year.",
@@ -257,12 +257,11 @@
       "name": "La Paz\u2013El Alto",
       "dept": "La Paz",
       "altitude": "highland",
-      "centered_yoy": -20.5,
+      "centered_yoy": -21.3,
       "centered_yoy_date": "2026-04",
-      "trailing_yoy": -20.5,
+      "trailing_yoy": -21.3,
       "status": "red",
       "sparkline_28d": [
-        -11.5,
         -20.7,
         -20.0,
         -35.6,
@@ -313,7 +312,8 @@
         -0.6,
         12.3,
         13.5,
-        -23.0
+        -35.2,
+        -57.0
       ],
       "monthly_series": [
         {
@@ -570,7 +570,7 @@
         },
         {
           "month": "2026-04",
-          "centered_yoy": -20.5,
+          "centered_yoy": -21.3,
           "trailing_yoy": -12.6,
           "no2": 1.128101785169819e-05
         },
@@ -601,8 +601,8 @@
         {
           "month": "2026-10",
           "centered_yoy": null,
-          "trailing_yoy": -20.5,
-          "no2": 1.4583613012434658e-05
+          "trailing_yoy": -21.3,
+          "no2": 1.3364292530054321e-05
         }
       ]
     },
@@ -610,12 +610,11 @@
       "name": "Santa Cruz",
       "dept": "Santa Cruz",
       "altitude": "lowland",
-      "centered_yoy": -1.0,
-      "centered_yoy_date": "2026-03",
-      "trailing_yoy": -1.0,
+      "centered_yoy": -4.8,
+      "centered_yoy_date": "2026-04",
+      "trailing_yoy": -4.8,
       "status": "yellow",
       "sparkline_28d": [
-        66.4,
         39.5,
         31.5,
         7.1,
@@ -666,15 +665,10 @@
         107.7,
         101.5,
         85.1,
-        77.6
+        71.5,
+        68.7
       ],
       "monthly_series": [
-        {
-          "month": "2022-09",
-          "centered_yoy": 0.3,
-          "trailing_yoy": 13.2,
-          "no2": 4.122036450157947e-05
-        },
         {
           "month": "2022-10",
           "centered_yoy": -1.7,
@@ -929,7 +923,7 @@
         },
         {
           "month": "2026-04",
-          "centered_yoy": null,
+          "centered_yoy": -4.8,
           "trailing_yoy": -9.1,
           "no2": 7.422660779139769e-06
         },
@@ -956,6 +950,12 @@
           "centered_yoy": null,
           "trailing_yoy": -1.0,
           "no2": 2.877726779416875e-05
+        },
+        {
+          "month": "2026-10",
+          "centered_yoy": null,
+          "trailing_yoy": -4.8,
+          "no2": 1.7466142414546256e-05
         }
       ]
     },
@@ -963,12 +963,11 @@
       "name": "Cochabamba",
       "dept": "Cochabamba",
       "altitude": "highland",
-      "centered_yoy": -7.0,
+      "centered_yoy": -7.3,
       "centered_yoy_date": "2026-04",
-      "trailing_yoy": -7.0,
+      "trailing_yoy": -7.3,
       "status": "red",
       "sparkline_28d": [
-        -25.0,
         -42.0,
         -38.0,
         -58.3,
@@ -1019,7 +1018,8 @@
         0.8,
         -7.3,
         -3.8,
-        -19.2
+        -29.9,
+        -40.5
       ],
       "monthly_series": [
         {
@@ -1276,7 +1276,7 @@
         },
         {
           "month": "2026-04",
-          "centered_yoy": -7.0,
+          "centered_yoy": -7.3,
           "trailing_yoy": -8.3,
           "no2": 2.088420662413038e-05
         },
@@ -1307,8 +1307,8 @@
         {
           "month": "2026-10",
           "centered_yoy": null,
-          "trailing_yoy": -7.0,
-          "no2": 2.7612896050498824e-05
+          "trailing_yoy": -7.3,
+          "no2": 2.6561565502312304e-05
         }
       ]
     },
@@ -1316,12 +1316,11 @@
       "name": "Sucre",
       "dept": "Chuquisaca",
       "altitude": "highland",
-      "centered_yoy": 8.0,
+      "centered_yoy": 7.7,
       "centered_yoy_date": "2026-05",
-      "trailing_yoy": 8.0,
+      "trailing_yoy": 7.7,
       "status": "green",
       "sparkline_28d": [
-        5.3,
         27.8,
         28.2,
         4.0,
@@ -1372,7 +1371,8 @@
         59.4,
         50.1,
         56.8,
-        47.2
+        36.6,
+        36.2
       ],
       "monthly_series": [
         {
@@ -1629,7 +1629,7 @@
         },
         {
           "month": "2026-05",
-          "centered_yoy": 8.0,
+          "centered_yoy": 7.7,
           "trailing_yoy": 2.3,
           "no2": 1.1473506922111086e-05
         },
@@ -1660,8 +1660,8 @@
         {
           "month": "2026-10",
           "centered_yoy": null,
-          "trailing_yoy": 8.0,
-          "no2": 1.1236945033838985e-05
+          "trailing_yoy": 7.7,
+          "no2": 1.0942157997931607e-05
         }
       ]
     },
@@ -1669,12 +1669,11 @@
       "name": "Oruro",
       "dept": "Oruro",
       "altitude": "highland",
-      "centered_yoy": 13.6,
+      "centered_yoy": 13.2,
       "centered_yoy_date": "2026-04",
-      "trailing_yoy": 13.6,
+      "trailing_yoy": 13.2,
       "status": "green",
       "sparkline_28d": [
-        1.4,
         -4.0,
         -6.3,
         11.2,
@@ -1725,7 +1724,8 @@
         32.9,
         17.6,
         11.9,
-        -7.8
+        -21.1,
+        -26.7
       ],
       "monthly_series": [
         {
@@ -1982,7 +1982,7 @@
         },
         {
           "month": "2026-04",
-          "centered_yoy": 13.6,
+          "centered_yoy": 13.2,
           "trailing_yoy": 1.0,
           "no2": 7.248426967394365e-06
         },
@@ -2013,8 +2013,8 @@
         {
           "month": "2026-10",
           "centered_yoy": null,
-          "trailing_yoy": 13.6,
-          "no2": 9.556252652472914e-06
+          "trailing_yoy": 13.2,
+          "no2": 9.050225740847252e-06
         }
       ]
     },
@@ -2022,12 +2022,11 @@
       "name": "Potos\u00ed",
       "dept": "Potos\u00ed",
       "altitude": "highland",
-      "centered_yoy": 6.5,
+      "centered_yoy": 6.2,
       "centered_yoy_date": "2026-04",
-      "trailing_yoy": 6.5,
+      "trailing_yoy": 6.2,
       "status": "green",
       "sparkline_28d": [
-        68.6,
         53.0,
         18.6,
         5.5,
@@ -2078,7 +2077,8 @@
         15.6,
         30.5,
         18.3,
-        13.1
+        13.5,
+        11.5
       ],
       "monthly_series": [
         {
@@ -2335,7 +2335,7 @@
         },
         {
           "month": "2026-04",
-          "centered_yoy": 6.5,
+          "centered_yoy": 6.2,
           "trailing_yoy": -7.5,
           "no2": 5.284205270445976e-06
         },
@@ -2366,8 +2366,8 @@
         {
           "month": "2026-10",
           "centered_yoy": null,
-          "trailing_yoy": 6.5,
-          "no2": 6.4859462978528696e-06
+          "trailing_yoy": 6.2,
+          "no2": 6.215172424552643e-06
         }
       ]
     },
@@ -2375,9 +2375,9 @@
       "name": "Tarija",
       "dept": "Tarija",
       "altitude": "lowland",
-      "centered_yoy": 7.6,
-      "centered_yoy_date": "2026-04",
-      "trailing_yoy": 7.6,
+      "centered_yoy": 8.4,
+      "centered_yoy_date": "2026-05",
+      "trailing_yoy": 8.4,
       "status": "green",
       "sparkline_28d": [
         0.8,
@@ -2431,15 +2431,9 @@
         34.8,
         35.3,
         25.3,
-        18.6
+        15.0
       ],
       "monthly_series": [
-        {
-          "month": "2022-11",
-          "centered_yoy": 10.2,
-          "trailing_yoy": 7.3,
-          "no2": 1.3469181695379915e-05
-        },
         {
           "month": "2022-12",
           "centered_yoy": 8.8,
@@ -2694,7 +2688,7 @@
         },
         {
           "month": "2026-05",
-          "centered_yoy": null,
+          "centered_yoy": 8.4,
           "trailing_yoy": -0.3,
           "no2": 1.2007380767415477e-05
         },
@@ -2721,6 +2715,12 @@
           "centered_yoy": null,
           "trailing_yoy": 7.6,
           "no2": 1.7005618526266996e-05
+        },
+        {
+          "month": "2026-10",
+          "centered_yoy": null,
+          "trailing_yoy": 8.4,
+          "no2": 1.2630383228276355e-05
         }
       ]
     },
@@ -2728,12 +2728,11 @@
       "name": "Trinidad",
       "dept": "Beni",
       "altitude": "lowland",
-      "centered_yoy": -6.1,
+      "centered_yoy": -4.3,
       "centered_yoy_date": "2026-03",
-      "trailing_yoy": -6.1,
-      "status": "red",
+      "trailing_yoy": -4.3,
+      "status": "yellow",
       "sparkline_28d": [
-        147.2,
         137.4,
         135.5,
         140.9,
@@ -2784,7 +2783,8 @@
         116.4,
         116.6,
         98.8,
-        105.1
+        109.0,
+        105.0
       ],
       "monthly_series": [
         {
@@ -3041,7 +3041,7 @@
         },
         {
           "month": "2026-03",
-          "centered_yoy": -6.1,
+          "centered_yoy": -4.3,
           "trailing_yoy": -22.8,
           "no2": 6.67958998488693e-06
         },
@@ -3072,8 +3072,8 @@
         {
           "month": "2026-10",
           "centered_yoy": null,
-          "trailing_yoy": -6.1,
-          "no2": 1.0851183942661641e-05
+          "trailing_yoy": -4.3,
+          "no2": 1.3470092064581703e-05
         }
       ]
     },
@@ -3086,7 +3086,6 @@
       "trailing_yoy": -1.6,
       "status": "yellow",
       "sparkline_28d": [
-        12.8,
         29.2,
         40.5,
         42.5,
@@ -3137,7 +3136,8 @@
         35.6,
         5.1,
         -3.8,
-        -12.3
+        -22.5,
+        -32.3
       ],
       "monthly_series": [
         {
@@ -3490,7 +3490,7 @@
         69.7,
         69.6,
         66.9,
-        57.4
+        62.0
       ],
       "monthly_series": [
         {
@@ -3843,7 +3843,7 @@
         -61.4,
         -53.4,
         -48.8,
-        -37.9
+        -30.4
       ],
       "monthly_series": [
         {
